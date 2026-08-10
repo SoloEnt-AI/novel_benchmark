@@ -58,14 +58,18 @@ const reports = readdirSync(join(ROOT, 'reports'), { withFileTypes: true })
 		const meta = JSON.parse(read(dir, 'meta.json'));
 		if (meta.slug !== d.name) throw new Error(`${dir}/meta.json 的 slug 与目录名不一致`);
 
-		const works = JSON.parse(read(dir, 'data/works.json'));
-		const comments = JSON.parse(read(dir, 'data/comments.json'));
+		// 有的报告不公开原文（只有汇总数据），data/ 可以整个不存在
+		const hasData = existsSync(join(ROOT, dir, 'data/works.json'));
+		const works = hasData ? JSON.parse(read(dir, 'data/works.json')) : null;
+		const comments = hasData ? JSON.parse(read(dir, 'data/comments.json')) : null;
 
-		for (const [id, w] of Object.entries(works)) {
-			if (!w.text || !w.text.trim()) throw new Error(`${dir}：作品 ${id} 正文为空`);
+		if (hasData) {
+			for (const [id, w] of Object.entries(works)) {
+				if (!w.text || !w.text.trim()) throw new Error(`${dir}：作品 ${id} 正文为空`);
+			}
+			const orphan = comments.filter((c) => !works[c.workId]);
+			if (orphan.length) throw new Error(`${dir}：有 ${orphan.length} 条简评找不到对应作品`);
 		}
-		const orphan = comments.filter((c) => !works[c.workId]);
-		if (orphan.length) throw new Error(`${dir}：有 ${orphan.length} 条简评找不到对应作品`);
 
 		return { ...meta, dir, works, comments };
 	})
@@ -161,14 +165,19 @@ for (const r of reports) {
 	});
 
 	const bytes = write(join('reports', r.slug), html);
-	built.push({ slug: r.slug, bytes, works: Object.keys(r.works).length, comments: r.comments.length });
+	built.push({
+		slug: r.slug,
+		bytes,
+		works: r.works ? Object.keys(r.works).length : 0,
+		comments: r.comments ? r.comments.length : 0,
+	});
 }
 
 /* ============================================================
    首页
    ============================================================ */
-const statOf = (r, label) => (r.stats.find((s) => s.label === label) || {}).value || 0;
-const sum = (label) => reports.reduce((n, r) => n + Number(statOf(r, label)), 0);
+// 首页的累计数字来自各期 meta.totals，与用于展示的 stats 解耦
+const sum = (key) => reports.reduce((n, r) => n + Number((r.totals || {})[key] || 0), 0);
 
 const cards = reports
 	.map(
@@ -191,9 +200,9 @@ const cards = reports
 const homeBody = read('src/home.template.html')
 	.replace('{{REPORT_CARDS}}', cards)
 	.replace('{{TOTAL_REPORTS}}', String(reports.length))
-	.replace('{{TOTAL_MODELS}}', String(sum('参评模型')))
-	.replace('{{TOTAL_WORKS}}', String(sum('匿名作品')))
-	.replace('{{TOTAL_SCORES}}', String(sum('有效评分')));
+	.replace('{{TOTAL_MODELS}}', String(sum('models')))
+	.replace('{{TOTAL_WORKS}}', String(sum('works')))
+	.replace('{{TOTAL_SCORES}}', String(sum('ratings')));
 
 if (/\{\{[A-Z_]+\}\}/.test(homeBody)) throw new Error('首页模板占位符未全部替换');
 
@@ -205,7 +214,7 @@ const homeHtml = shell({
 	body: homeBody,
 	navLinks: '<a href="#reports">全部报告</a>\n      <a href="#method">怎么测</a>\n      <a href="#join">加入测评团</a>',
 	brandSub: '',
-	footerNote: ['双盲评分 · 原文与评语全文公开', '页面为静态站，无外部请求，离线可读'],
+	footerNote: ['盲评打分 · 数据与口径全部公开', '页面为静态站，无外部请求，离线可读'],
 	home: './',
 	og: 'website',
 });

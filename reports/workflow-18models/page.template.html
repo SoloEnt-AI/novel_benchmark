@@ -1,0 +1,1335 @@
+<main>
+  <!-- ================= HERO ================= -->
+  <header id="hero" class="hero hero-gradient">
+    <div class="wrap">
+      <span class="tag eyebrow">第 01 期 · 全流程 · 18 模型汇总 · 2026.08.01</span>
+      <h1>十八个模型跑同一条工作流，<br /><em>从策划一直写到</em>第一章。</h1>
+      <p class="lede">
+        统一提示词（穿越闰土修炼国术）、统一补充条件（100 万字 / 传统国术 / 魂穿 / 热血爽文 / 清末民初）、
+        统一流程：Plan 引导 → 策划文件 → 章纲 → 第一章落盘即停。每个模型跑三轮，共 54 次运行、53 篇有效首章。
+        首章由真人编辑做百分制盲评。
+      </p>
+      <div class="herocta">
+        <a class="btn" href="#rank">看总榜</a>
+        <a class="btn-ghost" href="#pick">直接看怎么选</a>
+      </div>
+
+      <div class="statrow">
+        <div class="stat"><b class="num" data-count="18">0</b><span>参评模型</span></div>
+        <div class="stat"><b class="num" data-count="54">0</b><span>同题运行</span></div>
+        <div class="stat"><b class="num" data-count="53">0</b><span>有效首章</span></div>
+        <div class="stat"><b class="num" data-count="4">0</b><span>能力维度</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= FOUR ================= -->
+  <section class="chapter" id="four">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">01</div>
+        <div>
+          <h2>先说清楚：这里的「写作能力」被拆成了四件事</h2>
+          <p class="sub">
+            很多测评把「写得好不好」当成一个数字。这次拆成四个维度分别打分，
+            因为样本扩到 18 个模型之后，这四件事的相关性依然很低——有的甚至是负的。
+          </p>
+        </div>
+      </div>
+      <div class="twocol reveal">
+        <div class="card pad">
+          <h3 style="font-size:1.05rem;color:var(--accent-ink)">引导互动</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            Plan 阶段是否稳定、有效、合理地帮作者澄清需求、做出创作决策。
+            考察的是「问得对不对」，不是「说了多少」。5 分制。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1.05rem;color:var(--accent-ink)">结构设计</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            策划文件体系的完整度、大纲工程质量与前后因果链，以及三轮之间的粒度稳定性。5 分制。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1.05rem;color:var(--accent-ink)">执行遵从</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            正文对自己预写章纲的遵从性——「规划能不能有效约束写作」。
+            它是可预测性指标，不是质量指标。5 分制。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1.05rem;color:var(--accent-ink)">正文创作</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            首章的实际阅读质量，由真人编辑百分制盲评，三轮取均分。这是读者唯一会买单的东西。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RANK ================= -->
+  <section class="chapter" id="rank">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">02</div>
+        <div>
+          <h2>总榜：换个维度，榜就重排一次</h2>
+          <p class="sub">
+            默认按正文创作（真人编辑盲评均分）排。点下面的维度看榜单怎么洗牌——
+            引导第一的模型正文垫底，正文第一的模型结构文件最少，这不是个例。
+          </p>
+        </div>
+      </div>
+
+      <div class="card pad reveal">
+        <div class="chips scroller" id="dim-chips" style="padding-bottom:4px;margin-bottom:24px;flex-wrap:nowrap"></div>
+        <div class="lb-wrap">
+          <div class="lb-rows" id="lb-rows"></div>
+          <div class="lb-axis" id="lb-axis"></div>
+        </div>
+        <p class="note" id="lb-note" style="margin-top:18px"></p>
+      </div>
+
+      <div class="tierbar reveal">
+        <div class="tier">
+          <b>独一档</b>
+          <p>GPT-5.4</p>
+          <p class="rng">75.0 分 · 领先第二名 11.7 分</p>
+        </div>
+        <div class="tier">
+          <b>第二档</b>
+          <p>Step 3.7 Flash · Gemini 3.1 Pro · Hy3 · Kimi K2.6</p>
+          <p class="rng">60.0 — 63.3 分</p>
+        </div>
+        <div class="tier">
+          <b>第三档及以下</b>
+          <p>其余 13 个模型</p>
+          <p class="rng">37.5 — 58.3 分</p>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:14px;max-width:var(--prose)">
+        五批盲评时点不同、编辑可能不同，个位数分差（如 Step 63.3 与 Gemini 63.0）不构成可靠胜负，只用于分档。
+        全场 53 篇有效首章中 23 篇达到 60 分及以上，<strong>依然无一篇达到 80 分</strong>。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= DIMS ================= -->
+  <section class="chapter" id="dims">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">03</div>
+        <div>
+          <h2>四维拆解：挑两个模型比一比</h2>
+          <p class="sub">
+            为了同图比较，四个维度都归一化到 100（5 分制的乘 20，正文分本来就是百分制），
+            再补一条「稳定性」＝三轮极差换算的分数，极差越小越高。右侧列的是原始分。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div class="radar-layout">
+          <div class="chart-box">
+            <svg class="radar-svg" viewBox="0 0 380 350" id="radar" role="img" aria-label="四维能力对比雷达图"></svg>
+            <p class="note" style="text-align:center;margin-top:4px">径向刻度为归一化后的 0 — 100</p>
+          </div>
+          <div>
+            <div class="pickgroup">
+              <div class="picklabel"><span class="swatch" style="background:var(--accent)"></span>模型 A</div>
+              <select class="sel" id="radar-a"></select>
+            </div>
+            <div class="pickgroup">
+              <div class="picklabel"><span class="swatch" style="background:var(--teal)"></span>模型 B</div>
+              <select class="sel" id="radar-b"></select>
+            </div>
+            <div class="deltas" id="radar-deltas"></div>
+          </div>
+        </div>
+      </div>
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--accent-ink)">引导 + 结构双第一，正文垫底区</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            Sonnet 5 引导 4.57 全场第一、结构 4.6，正文只有 57.3。GLM-5.2 结构 4.7 全场第一，正文 55.0。
+            两个最会做前期的模型，写出来的第一章都被编辑判「不是网文写法」。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--teal-ink)">正文第一，结构文件最少</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            GPT-5.4 三轮只落盘 7 个文件（策划总纲 + 前 20 章提纲 + 正文），章纲覆盖率全场最低（1/3），
+            正文却是 75 分、极差仅 4。<strong>文件规模与正文质量在 54 轮样本里接近零相关。</strong>
+          </p>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:16px;max-width:var(--prose)">
+        Hy3、DeepSeek V4 Flash、Step 3.7 Flash、Mimo 2.5 Pro 的 Plan 对话全文未保留，引导覆盖率 0/3，
+        本报告对它们的引导能力无结论，雷达图上这一轴按 0 绘制。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= STABILITY ================= -->
+  <section class="chapter" id="stability">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">04</div>
+        <div>
+          <h2>稳定性：同一套输入，跑三次</h2>
+          <p class="sub">
+            每个点是一轮的真人盲评分，横条是三轮跨度，竖线是均分。极差最小的 4 分，最大的 35 分。
+            把鼠标放到点上看具体分数。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div id="dotplot"></div>
+        <div class="dp-axis" id="dp-axis"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:20px;font-size:.8rem;color:var(--ink-3)">
+          <span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--accent);vertical-align:middle;margin-right:6px"></span>单轮盲评分</span>
+          <span><span style="display:inline-block;width:2px;height:12px;background:var(--ink);opacity:.55;vertical-align:middle;margin-right:6px"></span>三轮均分</span>
+          <span style="margin-left:auto">右侧数字为极差</span>
+        </div>
+      </div>
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--teal-ink)">极差 ≤ 6 分的只有四家</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            GPT-5.4（4）、Grok 4.5（5）、Qwen3.7 Plus（5）、Kimi K2.6（6）——
+            分别是高位稳、中低位稳、低位稳、中位稳。<strong>稳在什么水平比稳本身更重要。</strong>
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--accent-ink)">高分样本不等于能稳定拿到</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            DeepSeek V4 Pro 拿到过全场单篇最高的 70 分，也跌到过 35 分，极差 35 分为全场最大。
+            这类模型只能靠多版本择优使用，不能当主力直出。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COST ================= -->
+  <section class="chapter" id="cost">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">05</div>
+        <div>
+          <h2>钱花在哪：账单差 24 倍，分差 5 分</h2>
+          <p class="sub">
+            横轴是每轮账单（对数刻度），纵轴是真人盲评均分。如果贵有贵的道理，点应该沿对角线排列——它们没有。
+            账单 = 单价 × 每轮消耗，两个偏差会互相掩盖，所以下面把三个数字分开列。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div class="chart-box">
+          <svg class="scatter-svg" viewBox="0 0 760 420" id="scatter" role="img" aria-label="每轮账单与真人盲评均分的散点图"></svg>
+        </div>
+
+        <div class="budget">
+          <div class="budget-head">
+            <label for="chapters">按 <output id="ch-out" class="num">1,000</output> 章估算，全书 API 总账单：</label>
+            <input type="range" id="chapters" min="50" max="20000" step="50" value="1000" />
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:18px;margin-bottom:12px;font-size:.78rem;color:var(--ink-3)">
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--teal);vertical-align:middle;margin-right:6px"></span>正文 60 分及以上</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--accent);vertical-align:middle;margin-right:6px"></span>正文 60 分以下</span>
+          </div>
+          <div id="budget-rows"></div>
+          <p class="note" style="margin-top:14px">
+            账单为「首章工作流跑一轮」的实付，含 Plan 阶段的全部策划消耗，不是纯正文的 token 费。
+            按章数线性外推只作预算参考——续写章节不需要重跑策划。
+          </p>
+        </div>
+      </div>
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--teal-ink)">新出现的「低价高分区」</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            Hy3（¥0.27/轮，61.7 分）与 Step 3.7 Flash（¥0.42/轮，63.3 分）把低价档的正文上限抬到 63 分，
+            与 Gemini（63.0 分，¥2.18/轮）同档，账单只有它的 1/8 到 1/5。
+            <strong>在标准化铺量场景中，海外模型的正文性价比优势已基本消失。</strong>
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--accent-ink)">多烧的 token 变成了策划文件，不是分数</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            Grok 4.5 每轮 97.3 万 token 是 Hy3（22.5 万）的 4.3 倍，真人分反而低 8.4 分。
+            单价接近时，模型的<strong>消耗纪律比单价更影响长期成本</strong>——这条在 18 模型样本里无一例外。
+          </p>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:16px;max-width:var(--prose)">
+        单价跨度约 47 倍，分四级：国产补充 ¥0.06–0.12、原平价组 ¥0.07–0.13、原贵价组 ¥0.29–0.41、
+        新旗舰批 ¥0.41–1.09、海外组 ¥1.06–2.64。Kimi K3 单价 ¥1.09 已经高于 Gemini 的 ¥1.06——
+        「国产 = 便宜」这条经验规则在 2026 年新一代旗舰上已经失效。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= GENERATION ================= -->
+  <section class="chapter" id="gen">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">06</div>
+        <div>
+          <h2>版本迭代不等于正文提升</h2>
+          <p class="sub">
+            这是本次汇总最反直觉的发现：新旗舰批次三个模型，全部没有跑赢自家上一代或同门低价版本。
+          </p>
+        </div>
+      </div>
+      <div class="card reveal" style="overflow:hidden">
+        <div class="scroller">
+          <table id="gen-table" class="nostick">
+            <thead>
+              <tr>
+                <th style="cursor:default">新版本</th>
+                <th style="cursor:default">真人均分</th>
+                <th style="cursor:default">对照旧版 / 同门</th>
+                <th style="cursor:default">真人均分</th>
+                <th style="cursor:default;text-align:left">结论</th>
+              </tr>
+            </thead>
+            <tbody id="gen-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:16px;max-width:var(--prose)">
+        在「清末国术网文首章」这一任务上，模型代际升级的收益主要体现在工程能力、上下文和自主性，
+        而不是正文可读性。<strong>采购新旗舰前必须实测本品类，不能按发布时间或跑分默认更好。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= OPS ================= -->
+  <section class="chapter" id="ops">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">07</div>
+        <div>
+          <h2>跑得动，还要不要人盯着</h2>
+          <p class="sub">
+            全场 54 轮中 15/18 个模型零错误，新增的七个模型全部零错误。
+            工具兼容问题正在快速收敛，<strong>分水岭已经从「能不能跑完」转向「要不要人盯着跑完」</strong>。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div style="display:flex;flex-wrap:wrap;gap:18px;margin-bottom:14px;font-size:.78rem;color:var(--ink-3)">
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--teal);vertical-align:middle;margin-right:6px"></span>零错误</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--accent);vertical-align:middle;margin-right:6px"></span>出现过错误</span>
+          <span style="margin-left:auto">柱长为单轮耗时均值，越短越快</span>
+        </div>
+        <div id="time-rows"></div>
+        <p class="note" style="margin-top:16px">
+          标「约」的是区间估计。LongCat 2.0 有一轮超过 26 分钟仍未完成，没有可比完成时间。
+          催写率（要不要人工干预才能跑完）见每一行的悬停提示。
+        </p>
+      </div>
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--teal-ink)">全自动闭环</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            Qwen 3.8 三轮全自动跑完，不需要人催。对无人值守的批量生产，这是比单价更硬的约束。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1rem;color:var(--accent-ink)">三轮全需催写</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            Hy3 与 Mimo 2.5 Pro 三轮都需要人工催写才能走完流程。便宜但要占人，折算工时后未必划算。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LAWS ================= -->
+  <section class="chapter" id="laws">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">08</div>
+        <div>
+          <h2>六条全场性规律</h2>
+          <p class="sub">18 个模型、54 轮之后仍然成立的结论。</p>
+        </div>
+      </div>
+      <div class="twocol reveal">
+        <div class="card pad">
+          <span class="cta-eyebrow">规律一</span>
+          <h3 style="font-size:1.15rem;margin:10px 0 10px">四维能力彼此独立，甚至负相关</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2)">
+            Step 3.7 Flash 结构分与遵从分双双垫底，正文却是全场第二；Mimo 2.5 Pro 结构与遵从都在本批第一，正文垫底。
+            <strong>选模型必须按环节选，不存在全能冠军。</strong>
+          </p>
+        </div>
+        <div class="card pad">
+          <span class="cta-eyebrow">规律二</span>
+          <h3 style="font-size:1.15rem;margin:10px 0 10px">稳定性是被低估的分水岭</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2)">
+            极差 ≤6 分的只有四家。DeepSeek V4 Pro（35）、Kimi K3（17）、Doubao（15）的高分样本都不可稳定输出，
+            只能靠多版本择优。
+          </p>
+        </div>
+        <div class="card pad">
+          <span class="cta-eyebrow">规律三</span>
+          <h3 style="font-size:1.15rem;margin:10px 0 10px">章纲遵从是可预测性指标，不是质量指标</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2)">
+            Qwen3.7 Max 遵从 4.77 却被评「没冲突」，Qwen 3.8 遵从全场最低 3.17 正文却在中游。
+            遵从高只保证「按设计交付」，不保证设计本身好看。
+          </p>
+        </div>
+        <div class="card pad">
+          <span class="cta-eyebrow">规律四</span>
+          <h3 style="font-size:1.15rem;margin:10px 0 10px">失效模式高度集中：章节边界膨胀</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2)">
+            18 个模型里有 8 个的扣分主因是「把后续章节内容提前塞进第一章」，导致开篇节奏失控、第二章功能被提前消耗。
+            最严重的一次是 Step 3.7 Flash 第 2 轮，一口气前移了洋人冲突、拜师、拳谱三个节点。
+          </p>
+        </div>
+        <div class="card pad">
+          <span class="cta-eyebrow">规律五</span>
+          <h3 style="font-size:1.15rem;margin:10px 0 10px">工具层已不是分水岭，自主闭环是</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2)">
+            两个「暂不建议生产使用」的结论全部由工具层故障导致，且都来自更早的批次。
+            新的区分点是催写率。
+          </p>
+        </div>
+        <div class="card pad">
+          <span class="cta-eyebrow">规律六</span>
+          <h3 style="font-size:1.15rem;margin:10px 0 10px">海外与国产的正文差距只剩 GPT</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2)">
+            GPT（75）领先国产最佳 Step 3.7 Flash（63.3）11.7 分，这个差距真实存在。
+            但 Gemini（63.0）已被追平，Sonnet 5（57.3）已被四个国产模型超越。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TABLE ================= -->
+  <section class="chapter" id="detail">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">09</div>
+        <div>
+          <h2>18 个模型的全部数字</h2>
+          <p class="sub">点表头排序。5 分制的三个维度越高越好，成本三列越低越好，正文分是百分制。</p>
+        </div>
+      </div>
+
+      <div class="viewtabs reveal">
+        <button class="chip on" type="button" data-view="cards">按模型浏览</button>
+        <button class="chip" type="button" data-view="table">明细表</button>
+      </div>
+
+      <div id="view-cards" class="reveal">
+        <div class="wgrid" id="wgrid"></div>
+      </div>
+
+      <div id="view-table" class="card reveal" style="overflow:hidden;display:none">
+        <div class="scroller">
+          <table id="detail-table">
+            <thead><tr id="detail-head"></tr></thead>
+            <tbody id="detail-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:14px;max-width:var(--prose)">
+        引导分标 N/A 的四个模型是 Plan 对话未保留、覆盖率 0/3；遵从分带 * 的是章纲覆盖率不足 3/3，
+        均分只按可评分轮次计算，置信度低于全覆盖模型。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PICK ================= -->
+  <section class="chapter" id="pick">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">10</div>
+        <div>
+          <h2>最终推荐组合拳</h2>
+          <p class="sub">按环节选模型，不要指望一个模型全包。</p>
+        </div>
+      </div>
+      <div class="twocol reveal">
+        <div class="card pad">
+          <h3 style="font-size:1.25rem;margin-bottom:16px">策划与前期</h3>
+          <div class="deflist">
+            <div>
+              <h4>共创与世界观</h4>
+              <p>用 <strong>Sonnet 5</strong>；预算敏感换 <strong>GLM-5.2</strong> 或 <strong>Kimi K3</strong>（K3 文件最全但最慢最贵，适合一次性建 bible）。</p>
+            </div>
+            <div>
+              <h4>需求模糊、要「建议即约束」</h4>
+              <p>平价档可用 <strong>DeepSeek V4 Pro</strong>。</p>
+            </div>
+            <div>
+              <h4>连载资料、伏笔与索引</h4>
+              <p>用 <strong>Qwen3.7 Max</strong>；极低成本方案用 <strong>DeepSeek V4 Flash</strong>（每轮 ¥0.29，文件工程最完整）。</p>
+            </div>
+          </div>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1.25rem;margin-bottom:16px">正文生产</h3>
+          <div class="deflist">
+            <div>
+              <h4>重点章节（黄金三章、卷末、大高潮）</h4>
+              <p>用 <strong>GPT-5.4</strong>；预算敏感换 <strong>Step 3.7 Flash</strong> 多版本竞稿，但必须加事实、人物关系与章纲边界复核。</p>
+            </div>
+            <div>
+              <h4>铺量与方向验证</h4>
+              <p>用 <strong>Hy3</strong>（每轮 ¥0.27），提示词里必须明确<strong>篇幅下限、完整冲突、完章钩子</strong>——它唯一的系统性短板就是首章偏短、像没写完。</p>
+            </div>
+            <div>
+              <h4>无人值守的批量初稿</h4>
+              <p>用 <strong>Qwen 3.8</strong>（三轮全自动闭环），但必须复核历史年份、人物年龄、季节一致性与中英混杂。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pad reveal" style="margin-top:20px;border-color:var(--accent);background:var(--accent-soft)">
+        <span class="cta-eyebrow">对所有模型生效</span>
+        <h3 style="font-size:1.4rem;margin:10px 0 14px">统一硬约束</h3>
+        <div class="deflist">
+          <div><h4>1 · 先落盘</h4><p>Plan 阶段必须先保存第一章细纲。</p></div>
+          <div><h4>2 · 只照着写</h4><p>Act 阶段只能依据该细纲写作。</p></div>
+          <div><h4>3 · 先改纲</h4><p>若需调整，先修改章纲再写正文。</p></div>
+          <div><h4>4 · 不许提前兑现</h4><p>不得跨章提前兑现后续章节功能。</p></div>
+          <div><h4>5 · 先修结构再润色</h4><p>正文落盘后逐项对照预写章纲，不符合边界时先修结构，再做文字润色。</p></div>
+        </div>
+        <p class="note" style="margin-top:16px;color:var(--ink-2)">
+          切换模型时务必先总结前续上下文（用好 <span class="mono">soloent.md</span>）再开新窗口，
+          否则切换后的模型会一次性读取太多上下文。
+        </p>
+      </div>
+
+      <p class="note reveal" style="margin-top:16px;max-width:var(--prose)">
+        <strong>暂不进入默认生产链：</strong>Grok 4.5 仅用于定向改稿与对照稿；
+        Mimo 2.5 Pro 仅在「明确外部冲突、阶段性胜负、禁止议论式升华」的强约束下复测；
+        LongCat 2.0 与 MiniMax M3 在工具层故障解决前不建议生产使用。
+      </p>
+      <p class="note reveal" style="margin-top:12px;max-width:var(--prose)">
+        编辑对 15 个国产模型的共性批评在扩样后完全没有改变：升华过度、爽点不足、「不像网文」。
+        <strong>当前任一模型的直出正文都不能免编辑交付。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section class="chapter" id="method">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">11</div>
+        <div>
+          <h2>方法与局限</h2>
+          <p class="sub">怎么打的分，以及这份结果不能用来说明什么。</p>
+        </div>
+      </div>
+      <div class="twocol reveal">
+        <div class="card pad">
+          <h3 style="font-size:1.25rem;margin-bottom:16px">怎么测的</h3>
+          <div class="deflist">
+            <div>
+              <h4>统一输入</h4>
+              <p>同一条提示词（穿越闰土修炼国术）、同一套补充条件（100 万字 / 传统国术 / 魂穿 / 热血爽文 / 清末民初）、同一流程：Plan → 补充条件 → Act → 首章落盘即停。</p>
+            </div>
+            <div>
+              <h4>盲评与机评分工</h4>
+              <p>五组均由真人编辑对首章做百分制盲评，另由 GPT 系模型做非盲的证据评分。五组评估框架一致：四维分析 + 三维引导口径 + 五要素章纲遵从口径。</p>
+            </div>
+            <div>
+              <h4>成本口径</h4>
+              <p>均为 SoloEnt 后台实付。原平价组为灵蟹折扣价（2.5–5 折），原贵价与海外组为平台实际计费，新增两批次为美元实付按 ¥6.80/$ 折算。</p>
+            </div>
+            <div>
+              <h4>三个成本指标分开看</h4>
+              <p>单价回答「贵不贵」，每轮消耗回答「省不省」，每轮账单是两者的乘积、只作预算参考，不作模型效率评价。</p>
+            </div>
+          </div>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1.25rem;margin-bottom:16px">这份结果的边界</h3>
+          <div class="deflist">
+            <div>
+              <h4>样本量与题材单一</h4>
+              <p>每个模型仅 3 轮同题样本，单一题材（清末国术爽文），结论不外推到其他品类。</p>
+            </div>
+            <div>
+              <h4>评的是完整工作流，不是纯文笔</h4>
+              <p>正文质量受各自大纲反向影响，评的是「完整工作流产出」。</p>
+            </div>
+            <div>
+              <h4>跨批次不可精确比较</h4>
+              <p>五批盲评时点不同、编辑可能不同，跨批次个位数分差不构成可靠胜负，本报告只用于分档。机器评分非盲，且原三组为七维、新增两批为六维。</p>
+            </div>
+            <div>
+              <h4>部分维度证据不全</h4>
+              <p>国产补充批次的 Plan 对话全文未保留，引导覆盖率 0/3，其引导能力无结论。Kimi K3、Hy3、GPT-5.4、Doubao、MiniMax、LongCat 的章纲覆盖率不足 3/3。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="appendix reveal">
+        <summary>附录：更多口径说明与后续计划</summary>
+        <div class="appendix-body">
+          <h4>成本口径的已知误差</h4>
+          <ul>
+            <li>新增两批次按 ¥6.80/$ 统一折算，且各批折扣率不同（Kimi K3 九折、Qwen 3.8 四折、Grok 无记录折扣），单价横向比较存在口径误差。</li>
+            <li>成本表未拆分输入 / 输出 / 缓存 token，无法从目录价独立复算。</li>
+          </ul>
+
+          <h4>其他需要注意的地方</h4>
+          <ul>
+            <li>首章字符数差异极大（Hy3 平均 1,927 字符至 Step 3.7 Flash 平均 5,866 字符），可能包含自检、小结或多章合并内容，不直接代表质量。</li>
+            <li>Step 3.7 Flash 第 1 轮事件流中途失效，中间交互与错误不可观测，零错误为已确认下限。</li>
+            <li>旧版 MiMo 与 Mimo 2.5 Pro 为不同版本样本，三轮成功只说明旧问题未复现。</li>
+          </ul>
+
+          <h4>后续计划</h4>
+          <ul>
+            <li>优先复测「低价高分区」：Hy3、Step 3.7 Flash 在补齐「篇幅下限 + 完整冲突 + 完章钩子」提示后，能否稳定站上 65 分。</li>
+            <li>补齐引导评分证据：国产补充批次保存完整 Plan 对话全文与统一追问答案后重测。</li>
+            <li>验证「版本迭代不提升正文」是否跨品类成立：对 Kimi K3 / K2.6、DeepSeek V4 Flash / Pro 做都市、玄幻、悬疑三品类对照。</li>
+            <li>专项验证哪些过程文件对最终正文有实际提升（Grok 4.5 每轮 97 万 token 对 Hy3 22 万 token 是最好的对照组）。</li>
+            <li>增加第二名独立盲评编辑，并统一隐藏模型、文件结构与价格。</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section id="cta">
+    <div class="wrap">
+      <div class="cta-grid reveal">
+        <div class="cta-card join">
+          <span class="cta-eyebrow">来打分</span>
+          <h3>加入测评团</h3>
+          <p>
+            本期首章由真人编辑做百分制盲评。我们的测评团还在持续招募有网文深度阅读经验的同学，
+            下一期起会引入第二名独立盲评编辑，欢迎加入我们。
+          </p>
+          <div class="spacer"></div>
+          <a class="btn" style="align-self:flex-start" href="https://soloent.cn/zh/activities/mo-xing-ce-ping-zuo-pin-ping-shen-tuan-zhao-mu-la" target="_blank" rel="noopener">加入测评团 →</a>
+        </div>
+
+        <div class="cta-card">
+          <span class="cta-eyebrow">点菜</span>
+          <h3>下一期想看什么测评？</h3>
+          <p>想看测评什么品类，什么模型，或什么环节，快让我们知道吧。</p>
+          <div class="spacer"></div>
+          <div class="ask-row">
+            <input class="ask-input" id="ask-input" type="text" maxlength="200"
+              placeholder="例如：想看 AI 写悬疑推理的测评" aria-label="你还想看什么测评" />
+            <button class="btn" type="button" id="ask-btn">提交</button>
+          </div>
+          <p class="ask-msg" id="ask-msg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function () {
+  "use strict";
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ==========================================================
+     Data — 全部来自同名测评报告，未作额外推断
+     guide/struct/comply 为 5 分制，human 为真人编辑百分制盲评三轮均分
+     price = 每 10 万 Token 单价（¥），tokens = 每轮消耗（万），bill = 每轮账单（¥）
+     ========================================================== */
+  var MODELS = [
+    { id:"gpt54",  name:"GPT-5.4",            short:"GPT-5.4",   group:"海外",     human:75.0, gens:[73,77,75], range:4,
+      guide:4.33, struct:4.3, comply:4.5,  complyPartial:true,  files:7,
+      price:1.71, tokens:21.0, bill:3.59, total3:10.76,
+      time:"均值 7 分 40 秒（7:19–7:57）", timeMin:7.67, timeApprox:false, err:"零错误，耗时最稳",
+      pos:"质量优先的正文主力",
+      note:"文笔、细节、年代感稳定超过普通作者；短板是剧情冲突与主角视角" },
+    { id:"step37", name:"Step 3.7 Flash",     short:"Step 3.7",  group:"国产补充", human:63.3, gens:[70,60,60], range:10,
+      guide:null, struct:3.6, comply:3.5,  complyPartial:false, files:18,
+      price:0.12, tokens:35.6, bill:0.42, total3:1.26,
+      time:"均值 7 分 00 秒（4:08–8:41）", timeMin:7.0, timeApprox:false, err:"零错误；1/3 需催写",
+      pos:"受监控的高价值长稿",
+      note:"上限最高（70）；首轮铺垫与细节好，后两轮剧情逻辑不足、冲突强行" },
+    { id:"gemini", name:"Gemini 3.1 Pro",     short:"Gemini",    group:"海外",     human:63.0, gens:[70,59,60], range:11,
+      guide:4.10, struct:4.2, comply:4.8,  complyPartial:false, files:15,
+      price:1.06, tokens:20.4, bill:2.18, total3:6.53,
+      time:"均值 4 分 37 秒（3:29–5:30）", timeMin:4.62, timeApprox:false, err:"零错误，全场最快",
+      pos:"标准化生产与 A-B 测试",
+      note:"开场快、冲突早；后两轮细节和剧情深度下滑，模板痕迹明显" },
+    { id:"hy3",    name:"Hy3",                short:"Hy3",       group:"国产补充", human:61.7, gens:[55,65,65], range:10,
+      guide:null, struct:4.0, comply:4.2,  complyPartial:true,  files:19,
+      price:0.12, tokens:22.5, bill:0.27, total3:0.81,
+      time:"均值 5 分 04 秒（3:26–5:54）", timeMin:5.07, timeApprox:false, err:"零错误；3/3 需催写",
+      pos:"默认低成本样章与方向验证",
+      note:"细节获肯定、后两轮稳定 65；主要问题是首章偏短、像没写完" },
+    { id:"kimi26", name:"Kimi K2.6",          short:"Kimi K2.6", group:"国内贵价", human:60.0, gens:[57,60,63], range:6,
+      guide:4.03, struct:4.2, comply:4.87, complyPartial:false, files:23,
+      price:0.41, tokens:35.2, bill:1.43, total3:4.28,
+      time:"约 7–16 分钟", timeMin:11.5, timeApprox:true, err:"零错误，贵价组最快",
+      pos:"国产试写首选，消耗最克制",
+      note:"无低谷、逐轮上升；小白感和刻意升华需修，节奏一般" },
+    { id:"doubao", name:"Doubao Seed 2.1",    short:"Doubao",    group:"国内贵价", human:58.3, gens:[50,65,60], range:15,
+      guide:4.27, struct:4.4, comply:4.00, complyPartial:true,  files:31,
+      price:0.32, tokens:143.1, bill:4.54, total3:13.63,
+      time:"约 25–28 分钟", timeMin:26.5, timeApprox:true, err:"2 次非阻断错误",
+      pos:"厚正文备选，消耗最高",
+      note:"上限不低（65），但过度抒情、网文感不稳" },
+    { id:"sonnet", name:"Claude Sonnet 5",    short:"Sonnet 5",  group:"海外",     human:57.3, gens:[65,50,57], range:15,
+      guide:4.57, struct:4.6, comply:4.1,  complyPartial:false, files:26,
+      price:2.64, tokens:20.9, bill:5.53, total3:16.59,
+      time:"均值 16 分 12 秒（11:41–21:44）", timeMin:16.2, timeApprox:false, err:"零错误，耗时波动大",
+      pos:"前期共创与世界观搭建",
+      note:"原作互文和场景铺陈好，爽点到达慢，第二轮明显偏离网文节奏" },
+    { id:"qwenmax",name:"Qwen3.7 Max",        short:"Qwen Max",  group:"国内贵价", human:56.7, gens:[55,50,65], range:15,
+      guide:4.47, struct:4.6, comply:4.77, complyPartial:false, files:35,
+      price:0.31, tokens:65.5, bill:2.05, total3:6.14,
+      time:"约 12–17 分钟", timeMin:14.5, timeApprox:true, err:"零错误",
+      pos:"连载资料与章节管理",
+      note:"细节三轮受肯定，但剧情「没意思→没冲突→爽点不够」，问题一致" },
+    { id:"dsv4pro",name:"DeepSeek V4 Pro",    short:"DS V4 Pro", group:"国内平价", human:56.7, gens:[65,35,70], range:35,
+      guide:4.20, struct:4.5, comply:4.2,  complyPartial:false, files:29,
+      price:0.13, tokens:45.4, bill:0.59, total3:1.76,
+      time:"约 7–11 分钟", timeMin:9.0, timeApprox:true, err:"零错误",
+      pos:"重点章节多版本择优",
+      note:"全场单篇最高分 70（文笔细节最佳），也跌出 35；上限高、方差全场最大" },
+    { id:"kimi3",  name:"Kimi K3",            short:"Kimi K3",   group:"新旗舰",   human:56.7, gens:[57,65,48], range:17,
+      guide:4.50, struct:4.5, comply:4.50, complyPartial:true,  files:51,
+      price:1.09, tokens:40.4, bill:4.42, total3:13.26,
+      time:"均值 34 分 44 秒（32:05–38:37）", timeMin:34.73, timeApprox:false, err:"零错误；2/3 需催写",
+      pos:"小说 bible 与高上限竞争稿",
+      note:"上限 65 但波动大；网文代入感、冲突和爽点三轮不稳定，升华偏多" },
+    { id:"qwen38", name:"Qwen 3.8",           short:"Qwen 3.8",  group:"新旗舰",   human:56.3, gens:[63,49,57], range:14,
+      guide:4.33, struct:4.5, comply:3.17, complyPartial:false, files:27,
+      price:0.41, tokens:37.6, bill:1.54, total3:4.62,
+      time:"均值 13 分 25 秒（9:33–18:49）", timeMin:13.42, timeApprox:false, err:"零错误；3/3 全自动",
+      pos:"无人值守初稿，需补历史校验",
+      note:"首轮剧情节奏文笔较均衡；后两轮缺冲突、缺网文类型感，仍有升华" },
+    { id:"glm",    name:"GLM-5.2",            short:"GLM-5.2",   group:"国内贵价", human:55.0, gens:[60,50,55], range:10,
+      guide:4.53, struct:4.7, comply:4.27, complyPartial:false, files:39,
+      price:0.29, tokens:101.0, bill:2.98, total3:8.93,
+      time:"约 16–27 分钟", timeMin:21.5, timeApprox:true, err:"零错误",
+      pos:"小说圣经与分卷工程",
+      note:"三轮均被指「不是网文写法」，工程能力未转化为网文感" },
+    { id:"grok45", name:"Grok 4.5",           short:"Grok 4.5",  group:"新旗舰",   human:53.3, gens:[55,55,50], range:5,
+      guide:4.17, struct:4.5, comply:4.33, complyPartial:false, files:37,
+      price:0.58, tokens:97.3, bill:5.67, total3:17.02,
+      time:"均值 20 分 31 秒（13:02–32:04）", timeMin:20.52, timeApprox:false, err:"零错误；2/3 需催写",
+      pos:"定向改稿与提示词实验",
+      note:"波动最小但稳定在中低位；文笔是加分项，剧情普通、缺冲突节奏反复出现" },
+    { id:"dsv4f",  name:"DeepSeek V4 Flash",  short:"DS V4 Flash",group:"国产补充",human:51.7, gens:[50,45,60], range:15,
+      guide:null, struct:4.2, comply:4.0,  complyPartial:false, files:35,
+      price:0.06, tokens:52.2, bill:0.29, total3:0.88,
+      time:"均值 7 分 07 秒（5:52–8:11）", timeMin:7.12, timeApprox:false, err:"零错误；1/3 需催写",
+      pos:"世界观、人物卡与连载索引",
+      note:"主线、逻辑和过度描写问题明显；文件工程最完整却没转化为读感" },
+    { id:"mimo",   name:"Mimo 2.5 Pro",       short:"Mimo 2.5",  group:"国产补充", human:50.0, gens:[50,55,45], range:10,
+      guide:null, struct:4.3, comply:4.3,  complyPartial:false, files:21,
+      price:0.11, tokens:48.6, bill:0.51, total3:1.53,
+      time:"均值 14 分 38 秒（8:27–19:52）", timeMin:14.63, timeApprox:false, err:"零错误；3/3 需催写",
+      pos:"限定强约束下复测",
+      note:"三轮均未达 60；冲突与亮点最弱，议论式升华重复" },
+    { id:"qwenplus",name:"Qwen3.7 Plus",      short:"Qwen Plus", group:"国内平价", human:48.3, gens:[50,50,45], range:5,
+      guide:4.00, struct:4.2, comply:4.0,  complyPartial:false, files:21,
+      price:0.07, tokens:34.6, bill:0.24, total3:0.73,
+      time:"约 5–9 分钟", timeMin:7.0, timeApprox:true, err:"零错误",
+      pos:"极低成本铺量初稿",
+      note:"极稳的「及格线初稿机」：文笔勉强及格、升华过多、网文理解不足" },
+    { id:"longcat",name:"LongCat 2.0",        short:"LongCat",   group:"国内平价", human:48.3, gens:[45,40,60], range:20,
+      guide:3.40, struct:3.7, comply:3.6,  complyPartial:true,  files:12,
+      price:0.13, tokens:42.8, bill:0.55, total3:1.64,
+      time:"11 分钟–超 26 分钟仍未完成", timeMin:null, timeApprox:true, err:"≥3 错误演变为阻断",
+      pos:"暂不建议生产使用",
+      note:"文字偏传统，不懂网文节奏；60 分样本证明有上限" },
+    { id:"minimax",name:"MiniMax M3",         short:"MiniMax",   group:"国内平价", human:37.5, gens:[45,null,30], range:15,
+      guide:2.90, struct:4.0, comply:3.7,  complyPartial:true,  files:16,
+      price:0.13, tokens:27.4, bill:0.35, total3:1.06,
+      time:"7.5–17.6 分钟", timeMin:12.5, timeApprox:true, err:"≥6 错误 + 1 轮失败",
+      pos:"暂不建议生产使用",
+      note:"一轮失败；30 分样本被编辑评为未达可编辑初稿最低标准" }
+  ];
+  var BY_ID = {};
+  MODELS.forEach(function (m) { BY_ID[m.id] = m; });
+
+  // 新旧版本对照
+  var GENERATIONS = [
+    ["Kimi K3", "56.7（极差 17）", "Kimi K2.6", "60.0（极差 6）", "分更低、更不稳、慢 3 倍、贵 3.1 倍", false],
+    ["Qwen 3.8", "56.3", "Qwen3.7 Max", "56.7", "持平，但账单低 25%、自主闭环更好", true],
+    ["DeepSeek V4 Flash", "51.7", "DeepSeek V4 Pro", "56.7", "Flash 版正文明显弱于 Pro 版", false],
+    ["Grok 4.5", "53.3", "—", "—", "首次测试即落于中低位，且账单全场最高", false]
+  ];
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function fmt(v, d) { return v == null ? "—" : Number(v).toFixed(d == null ? 2 : d); }
+  function money(v) {
+    if (v >= 1000) return "¥" + Math.round(v).toLocaleString("en-US");
+    if (v >= 10) return "¥" + v.toFixed(0);
+    if (v >= 1) return "¥" + v.toFixed(2);
+    return "¥" + v.toFixed(2);
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  var tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.classList.add("on");
+    var r = tip.getBoundingClientRect();
+    var left = Math.min(Math.max(8, x - r.width / 2), window.innerWidth - r.width - 8);
+    var top = y - r.height - 14;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.classList.remove("on"); }
+  function bindTip(node, htmlFn) {
+    function move(e) {
+      var t = e.touches ? e.touches[0] : e;
+      showTip(htmlFn(), t.clientX, t.clientY);
+    }
+    node.addEventListener("mouseenter", move);
+    node.addEventListener("mousemove", move);
+    node.addEventListener("mouseleave", hideTip);
+    node.addEventListener("touchstart", function (e) { move(e); }, { passive: true });
+  }
+
+  /* ==========================================================
+     Leaderboard
+     ========================================================== */
+  var DIMS = [
+    { key:"human",  label:"正文创作",  max:80,  dec:1, unit:"",     note:"真人编辑百分制盲评三轮均分。GPT-5.4 独一档，领先第二名 11.7 分。" },
+    { key:"guide",  label:"引导互动",  max:5,   dec:2, unit:"",     note:"Plan 阶段的引导质量。国产补充批次 Plan 对话未保留，四个模型无数据，不参与本维度排名。" },
+    { key:"struct", label:"结构设计",  max:5,   dec:2, unit:"",     note:"策划文件体系与大纲工程。头部是 GLM、Sonnet、Qwen Max，新增七个模型全部落在 3.6 — 4.5 区间。" },
+    { key:"comply", label:"执行遵从",  max:5,   dec:2, unit:"",     note:"正文对预写章纲的遵从性。带 * 的模型章纲覆盖率不足 3/3，置信度较低。" },
+    { key:"files",  label:"策划文件数", max:55, dec:0, unit:" 个",  note:"三轮落盘的非系统文件合计。Kimi K3 最多 51 个、正文 56.7；GPT-5.4 最少 7 个、正文 75.0。" },
+    { key:"bill",   label:"每轮账单",  max:6,   dec:2, unit:"",     lower:true, prefix:"¥",
+      note:"越短越省。账单是单价与消耗的乘积，Grok 4.5 单价只有 Sonnet 的 22%，账单却更高——贵在消耗。" },
+    { key:"tokens", label:"每轮消耗",  max:150, dec:1, unit:" 万",  lower:true,
+      note:"越短越克制。海外三家最自律（每轮 20 — 21 万 token），Doubao 143 万为全场最高。" }
+  ];
+  var curDim = 0;
+
+  var chipBox = document.getElementById("dim-chips");
+  DIMS.forEach(function (d, i) {
+    var b = el("button", "chip" + (i === 0 ? " on" : ""), d.label);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      curDim = i;
+      chipBox.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("on"); });
+      b.classList.add("on");
+      renderBoard();
+    });
+    chipBox.appendChild(b);
+  });
+
+  var lbRows = document.getElementById("lb-rows");
+  var lbAxis = document.getElementById("lb-axis");
+  var lbNote = document.getElementById("lb-note");
+  var ROW_H = 32;
+  var rowNodes = {};
+
+  MODELS.forEach(function (m) {
+    var row = el("div", "lb-row");
+    row.innerHTML =
+      '<div class="lb-rank"></div>' +
+      '<div class="lb-name">' + esc(m.name) + "</div>" +
+      '<div class="lb-track"><div class="lb-bar"></div></div>' +
+      '<div class="lb-val num"></div>';
+    lbRows.appendChild(row);
+    rowNodes[m.id] = row;
+  });
+  lbRows.style.height = MODELS.length * ROW_H + "px";
+
+  function renderBoard() {
+    var d = DIMS[curDim];
+    var rated = MODELS.filter(function (m) { return m[d.key] != null; });
+    var unrated = MODELS.filter(function (m) { return m[d.key] == null; });
+    rated.sort(function (a, b) { return d.lower ? a[d.key] - b[d.key] : b[d.key] - a[d.key]; });
+    var order = rated.concat(unrated);
+
+    order.forEach(function (m, i) {
+      var row = rowNodes[m.id];
+      row.style.transform = "translateY(" + i * ROW_H + "px)";
+      var v = m[d.key];
+      row.classList.toggle("is-top", v != null && i < 3);
+      row.classList.toggle("dim", v == null);
+      row.querySelector(".lb-rank").textContent = v == null ? "—" : i + 1;
+      row.querySelector(".lb-bar").style.width = v == null ? "0%" : Math.max(1, (v / d.max) * 100) + "%";
+      var star = d.key === "comply" && m.complyPartial ? " *" : "";
+      row.querySelector(".lb-val").textContent =
+        v == null ? "N/A" : (d.prefix || "") + fmt(v, d.dec) + (d.unit || "") + star;
+    });
+
+    lbAxis.innerHTML = "";
+    for (var t = 0; t <= 4; t++) {
+      var val = (d.max / 4) * t;
+      lbAxis.appendChild(el("span", null, (d.prefix || "") + (d.max >= 50 ? Math.round(val) : val.toFixed(1))));
+    }
+    lbNote.textContent = d.note;
+  }
+  renderBoard();
+
+  /* ==========================================================
+     Radar — 四维 + 稳定性，全部归一化到 0—100
+     ========================================================== */
+  var AXES = [
+    { key:"guide",  label:"引导互动", scale:20, dec:2, raw:function (m) { return m.guide == null ? null : fmt(m.guide, 2); } },
+    { key:"struct", label:"结构设计", scale:20, dec:2, raw:function (m) { return fmt(m.struct, 2); } },
+    { key:"comply", label:"执行遵从", scale:20, dec:2, raw:function (m) { return fmt(m.comply, 2); } },
+    { key:"human",  label:"正文创作", scale:1,  dec:1, raw:function (m) { return fmt(m.human, 1); } },
+    { key:"stable", label:"稳定性",   scale:1,  dec:0, raw:function (m) { return "极差 " + m.range; },
+      // 极差越小越好，所以差值取反向
+      diff:function (a, b) { return b.range - a.range; } }
+  ];
+  function axisValue(m, a) {
+    if (a.key === "stable") return Math.max(0, 100 - (m.range / 35) * 100);
+    if (m[a.key] == null) return 0;
+    return m[a.key] * a.scale;
+  }
+
+  var selA = document.getElementById("radar-a");
+  var selB = document.getElementById("radar-b");
+  MODELS.forEach(function (m) {
+    [selA, selB].forEach(function (s) {
+      var o = document.createElement("option");
+      o.value = m.id;
+      o.textContent = m.name;
+      s.appendChild(o);
+    });
+  });
+  selA.value = "gpt54";
+  selB.value = "glm";
+
+  var radar = document.getElementById("radar");
+  var CX = 190, CY = 168, R = 118;
+  var shown = { a: null, b: null };
+
+  function pt(i, v) {
+    var ang = (Math.PI * 2 * i) / AXES.length - Math.PI / 2;
+    var r = (v / 100) * R;
+    return [CX + Math.cos(ang) * r, CY + Math.sin(ang) * r];
+  }
+  function poly(m) {
+    return AXES.map(function (a, i) { return pt(i, axisValue(m, a)).join(","); }).join(" ");
+  }
+
+  function drawRadar(instant) {
+    var a = BY_ID[selA.value], b = BY_ID[selB.value];
+    var css = getComputedStyle(document.documentElement);
+    var rule = css.getPropertyValue("--rule").trim();
+    var ink3 = css.getPropertyValue("--ink-3").trim();
+    var acc = css.getPropertyValue("--accent").trim();
+    var teal = css.getPropertyValue("--teal").trim();
+
+    var g = "";
+    [25, 50, 75, 100].forEach(function (lv) {
+      var p = AXES.map(function (_, i) { return pt(i, lv).join(","); }).join(" ");
+      g += '<polygon points="' + p + '" fill="none" stroke="' + rule + '" stroke-width="1"/>';
+    });
+    AXES.forEach(function (ax, i) {
+      var p = pt(i, 100);
+      g += '<line x1="' + CX + '" y1="' + CY + '" x2="' + p[0] + '" y2="' + p[1] + '" stroke="' + rule + '" stroke-width="1"/>';
+      var lp = pt(i, 128);
+      var anchor = Math.abs(lp[0] - CX) < 12 ? "middle" : (lp[0] > CX ? "start" : "end");
+      g += '<text x="' + lp[0] + '" y="' + (lp[1] + 4) + '" text-anchor="' + anchor + '" font-size="12" font-weight="600" fill="' + ink3 + '">' + ax.label + "</text>";
+    });
+
+    g += '<polygon id="rp-b" points="' + (instant || !shown.b ? poly(b) : shown.b) + '" fill="' + teal + '" fill-opacity=".16" stroke="' + teal + '" stroke-width="2"/>';
+    g += '<polygon id="rp-a" points="' + (instant || !shown.a ? poly(a) : shown.a) + '" fill="' + acc + '" fill-opacity=".16" stroke="' + acc + '" stroke-width="2"/>';
+    AXES.forEach(function (ax, i) {
+      var pb = pt(i, axisValue(b, ax)), pa = pt(i, axisValue(a, ax));
+      g += '<circle cx="' + pb[0] + '" cy="' + pb[1] + '" r="3.5" fill="' + teal + '"/>';
+      g += '<circle cx="' + pa[0] + '" cy="' + pa[1] + '" r="3.5" fill="' + acc + '"/>';
+    });
+    g += '<text x="' + CX + '" y="330" text-anchor="middle" font-size="12" font-weight="600" fill="' + acc + '">■ ' + esc(a.name) + "</text>";
+    g += '<text x="' + CX + '" y="346" text-anchor="middle" font-size="12" font-weight="600" fill="' + teal + '">■ ' + esc(b.name) + "</text>";
+    radar.innerHTML = g;
+
+    if (!instant && !reduceMotion) {
+      var pa2 = document.getElementById("rp-a"), pb2 = document.getElementById("rp-b");
+      pa2.style.transition = pb2.style.transition = "all .5s cubic-bezier(.22,.85,.25,1)";
+      requestAnimationFrame(function () {
+        pa2.setAttribute("points", poly(a));
+        pb2.setAttribute("points", poly(b));
+      });
+    }
+    shown.a = poly(a);
+    shown.b = poly(b);
+
+    var box = document.getElementById("radar-deltas");
+    box.innerHTML = "";
+    AXES.forEach(function (ax) {
+      var ra = ax.raw(a), rb = ax.raw(b);
+      // 差值用原始单位，不用归一化后的值
+      var diff = ax.diff ? ax.diff(a, b) : (ra == null || rb == null ? null : a[ax.key] - b[ax.key]);
+      var row = el("div", "delta-row");
+      row.innerHTML =
+        "<span>" + ax.label + "</span>" +
+        '<span class="a">' + (ra == null ? "N/A" : ra) + "</span>" +
+        '<span class="b">' + (rb == null ? "N/A" : rb) + "</span>" +
+        '<span class="d">' + (diff == null ? "—" : (diff >= 0 ? "+" : "") + diff.toFixed(ax.dec)) + "</span>";
+      box.appendChild(row);
+    });
+  }
+  selA.addEventListener("change", function () { drawRadar(false); });
+  selB.addEventListener("change", function () { drawRadar(false); });
+  drawRadar(true);
+
+  /* ==========================================================
+     Stability dot plot
+     ========================================================== */
+  var DP_MIN = 25, DP_MAX = 80;
+  var dp = document.getElementById("dotplot");
+  var dpSorted = MODELS.slice().sort(function (a, b) { return a.range - b.range; });
+  var dots = [];
+
+  dpSorted.forEach(function (m) {
+    var row = el("div", "dp-row");
+    var vals = m.gens.filter(function (v) { return v != null; });
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+    var pos = function (v) { return ((v - DP_MIN) / (DP_MAX - DP_MIN)) * 100; };
+
+    var track = el("div", "dp-track");
+    var rng = el("div", "dp-range");
+    rng.style.left = pos(lo) + "%";
+    rng.style.width = (pos(hi) - pos(lo)) + "%";
+    track.appendChild(rng);
+
+    m.gens.forEach(function (v, gi) {
+      if (v == null) return;
+      var d = el("div", "dp-dot");
+      d.style.left = pos(v) + "%";
+      bindTip(d, function () {
+        return "<b>" + esc(m.name) + "</b>第 " + (gi + 1) + " 轮：" + v + " 分<br>" +
+          '<span class="k">三轮均分 ' + fmt(m.human, 1) + " · 极差 " + m.range + "</span>";
+      });
+      track.appendChild(d);
+      dots.push(d);
+    });
+
+    var mean = el("div", "dp-mean");
+    mean.style.left = pos(m.human) + "%";
+    track.appendChild(mean);
+
+    row.appendChild(el("div", "dp-name", esc(m.name)));
+    row.appendChild(track);
+    row.appendChild(el("div", "dp-val", String(m.range)));
+    dp.appendChild(row);
+  });
+
+  var dpAxis = document.getElementById("dp-axis");
+  [25, 39, 53, 66, 80].forEach(function (v) { dpAxis.appendChild(el("span", null, String(v))); });
+
+  var dpIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      dpIo.unobserve(e.target);
+      dots.forEach(function (d, i) {
+        setTimeout(function () { d.classList.add("in"); }, reduceMotion ? 0 : i * 20);
+      });
+    });
+  }, { threshold: 0.15 });
+  dpIo.observe(dp);
+
+  /* ==========================================================
+     Scatter: 每轮账单（log）× 真人均分
+     ========================================================== */
+  var scatter = document.getElementById("scatter");
+  var SW = 760, SH = 420, PL = 62, PR = 24, PT = 22, PB = 62;
+
+  function drawScatter() {
+    var css = getComputedStyle(document.documentElement);
+    var acc = css.getPropertyValue("--accent").trim();
+    var teal = css.getPropertyValue("--teal").trim();
+
+    var xs = MODELS.map(function (m) { return Math.log10(m.bill); });
+    var x0 = Math.log10(0.2), x1 = Math.log10(6.5);
+    var y0 = 33, y1 = 78;
+    var px = function (v) { return PL + ((v - x0) / (x1 - x0)) * (SW - PL - PR); };
+    var py = function (v) { return SH - PB - ((v - y0) / (y1 - y0)) * (SH - PT - PB); };
+
+    var g = "";
+    [35, 45, 55, 65, 75].forEach(function (v) {
+      g += '<line class="ax-line" x1="' + PL + '" y1="' + py(v) + '" x2="' + (SW - PR) + '" y2="' + py(v) + '"/>';
+      g += '<text class="ax-text" x="' + (PL - 10) + '" y="' + (py(v) + 4) + '" text-anchor="end">' + v + "</text>";
+    });
+    [0.2, 0.5, 1, 2, 5].forEach(function (v) {
+      var X = px(Math.log10(v));
+      g += '<line class="ax-line" x1="' + X + '" y1="' + PT + '" x2="' + X + '" y2="' + (SH - PB) + '" stroke-dasharray="2 4"/>';
+      g += '<text class="ax-text" x="' + X + '" y="' + (SH - PB + 18) + '" text-anchor="middle">¥' + v + "</text>";
+    });
+    g += '<text class="ax-title" x="' + ((PL + SW - PR) / 2) + '" y="' + (SH - 16) + '" text-anchor="middle">每轮账单（人民币，对数刻度）</text>';
+    g += '<text class="ax-title" x="16" y="' + ((PT + SH - PB) / 2) + '" text-anchor="middle" transform="rotate(-90 16 ' + ((PT + SH - PB) / 2) + ')">真人盲评均分</text>';
+
+    // 18 个点在 ¥2—6 区间挤成一团，标签逐个试位置，避开已放好的标签框
+    var placed = [];
+    function hits(box) {
+      return placed.some(function (p) {
+        return !(box.x2 < p.x1 || box.x1 > p.x2 || box.y2 < p.y1 || box.y1 > p.y2);
+      });
+    }
+    var CANDIDATES = [
+      { dx: 12, dy: 4, anchor: "start" },
+      { dx: -12, dy: 4, anchor: "end" },
+      { dx: 0, dy: -12, anchor: "middle" },
+      { dx: 0, dy: 19, anchor: "middle" },
+      { dx: 12, dy: -10, anchor: "start" },
+      { dx: -12, dy: -10, anchor: "end" },
+      { dx: 12, dy: 17, anchor: "start" },
+      { dx: -12, dy: 17, anchor: "end" }
+    ];
+    var dotsSvg = "", labelsSvg = "";
+
+    MODELS.forEach(function (m, i) {
+      var X = px(xs[i]), Y = py(m.human);
+      var c = m.human >= 60 ? teal : acc;
+      dotsSvg += '<circle class="sc-dot" data-i="' + i + '" cx="' + X + '" cy="' + Y + '" r="7" fill="' + c + '" fill-opacity=".85"/>';
+
+      var w = m.short.length * 7.2, h = 14;
+      var best = null;
+      for (var k = 0; k < CANDIDATES.length; k++) {
+        var cd = CANDIDATES[k];
+        var lx = X + cd.dx, ly = Y + cd.dy;
+        var x1 = cd.anchor === "start" ? lx : (cd.anchor === "end" ? lx - w : lx - w / 2);
+        var box = { x1: x1, x2: x1 + w, y1: ly - h + 3, y2: ly + 3 };
+        if (box.x1 < PL - 46 || box.x2 > SW - 2 || box.y1 < PT - 12 || box.y2 > SH - PB + 10) continue;
+        if (!hits(box)) { best = { cd: cd, lx: lx, ly: ly, box: box }; break; }
+      }
+      if (!best) return;   // 实在放不下就不画标签，鼠标悬停仍可看到
+      placed.push(best.box);
+      labelsSvg += '<text class="sc-label" x="' + best.lx + '" y="' + best.ly + '" text-anchor="' + best.cd.anchor + '">' + esc(m.short) + "</text>";
+    });
+    g += dotsSvg + labelsSvg;
+    scatter.innerHTML = g;
+
+    scatter.querySelectorAll(".sc-dot").forEach(function (node) {
+      var m = MODELS[+node.getAttribute("data-i")];
+      bindTip(node, function () {
+        return "<b>" + esc(m.name) + "</b>" +
+          '<span class="k">正文 </span>' + fmt(m.human, 1) + " 分<br>" +
+          '<span class="k">每轮账单 </span>' + money(m.bill) + '　<span class="k">单价 </span>¥' + fmt(m.price, 2) + "<br>" +
+          '<span class="k">每轮消耗 </span>' + fmt(m.tokens, 1) + " 万 token";
+      });
+    });
+  }
+  drawScatter();
+  window.onThemeChange(function () { drawRadar(true); drawScatter(); });
+
+  /* ==========================================================
+     Budget slider
+     ========================================================== */
+  var slider = document.getElementById("chapters");
+  var chOut = document.getElementById("ch-out");
+  var bdRows = document.getElementById("budget-rows");
+  var bdNodes = [];
+
+  MODELS.slice().sort(function (a, b) { return b.bill - a.bill; }).forEach(function (m) {
+    var row = el("div", "bd-row");
+    row.innerHTML =
+      '<div class="bd-name">' + esc(m.name) + "</div>" +
+      '<div class="bd-track"><div class="bd-bar' + (m.human >= 60 ? "" : " hot") + '"></div></div>' +
+      '<div class="bd-val"></div>';
+    bdRows.appendChild(row);
+    bdNodes.push({ m: m, bar: row.querySelector(".bd-bar"), val: row.querySelector(".bd-val") });
+  });
+
+  function renderBudget() {
+    var n = +slider.value;
+    chOut.textContent = n.toLocaleString("en-US");
+    var max = Math.max.apply(null, MODELS.map(function (m) { return m.bill; })) * n;
+    bdNodes.forEach(function (b) {
+      var total = b.m.bill * n;
+      b.bar.style.width = (total / max) * 100 + "%";
+      b.val.textContent = money(total);
+    });
+  }
+  slider.addEventListener("input", renderBudget);
+  renderBudget();
+
+  /* ==========================================================
+     Generation table
+     ========================================================== */
+  var genBody = document.getElementById("gen-body");
+  GENERATIONS.forEach(function (r) {
+    var tr = el("tr");
+    tr.innerHTML =
+      "<td>" + esc(r[0]) + "</td>" +
+      '<td class="n' + (r[5] ? " best" : " worst") + '">' + esc(r[1]) + "</td>" +
+      "<td>" + esc(r[2]) + "</td>" +
+      '<td class="n">' + esc(r[3]) + "</td>" +
+      '<td style="text-align:left;white-space:normal;min-width:16em">' + esc(r[4]) + "</td>";
+    genBody.appendChild(tr);
+  });
+
+  /* ==========================================================
+     Time bars
+     ========================================================== */
+  var timeBox = document.getElementById("time-rows");
+  var timeMax = 36;
+  MODELS.slice()
+    .sort(function (a, b) { return (a.timeMin == null ? 99 : a.timeMin) - (b.timeMin == null ? 99 : b.timeMin); })
+    .forEach(function (m) {
+      var row = el("div", "bd-row");
+      row.style.gridTemplateColumns = "";
+      row.innerHTML =
+        '<div class="bd-name">' + esc(m.name) + "</div>" +
+        '<div class="bd-track"><div class="bd-bar' + (m.err.indexOf("零错误") === 0 ? "" : " hot") + '"></div></div>' +
+        '<div class="bd-val" style="font-size:.74rem"></div>';
+      var bar = row.querySelector(".bd-bar");
+      bar.style.width = m.timeMin == null ? "100%" : (m.timeMin / timeMax) * 100 + "%";
+      if (m.timeMin == null) bar.style.opacity = ".35";
+      row.querySelector(".bd-val").textContent = m.timeMin == null ? "未完成" : (m.timeApprox ? "约 " : "") + fmt(m.timeMin, 1) + " 分钟";
+      bindTip(row, function () {
+        return "<b>" + esc(m.name) + "</b>" + esc(m.time) + "<br><span class=\"k\">" + esc(m.err) + "</span>";
+      });
+      timeBox.appendChild(row);
+    });
+
+  /* ==========================================================
+     Model cards + view toggle
+     ========================================================== */
+  var wgrid = document.getElementById("wgrid");
+  MODELS.forEach(function (m) {
+    var card = el("div", "wcard" + (m.human >= 60 ? " hi" : (m.human < 50 ? " lo" : "")));
+    card.innerHTML =
+      '<span class="wc-code">' + esc(m.group) + "</span>" +
+      '<span class="wc-model">' + esc(m.name) + "</span>" +
+      '<span class="wc-score num">' + fmt(m.human, 1) + "</span>" +
+      '<span class="wc-meta">每轮 ' + money(m.bill) + " · 极差 " + m.range + "</span>" +
+      '<span class="wc-open" style="color:var(--ink-2);font-weight:600">' + esc(m.pos) + "</span>";
+    bindTip(card, function () {
+      return "<b>" + esc(m.name) + "</b>" + esc(m.note);
+    });
+    wgrid.appendChild(card);
+  });
+
+  document.querySelectorAll("[data-view]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-view");
+      document.querySelectorAll("[data-view]").forEach(function (c) { c.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("view-cards").style.display = v === "cards" ? "" : "none";
+      document.getElementById("view-table").style.display = v === "table" ? "" : "none";
+    });
+  });
+
+  /* ==========================================================
+     Detail table
+     ========================================================== */
+  var COLS = [
+    { label: "模型", key: "name", type: "text" },
+    { label: "组别", key: "group", type: "text" },
+    { label: "正文 ↑", key: "human", dec: 1 },
+    { label: "引导 ↑", key: "guide", dec: 2 },
+    { label: "结构 ↑", key: "struct", dec: 2 },
+    { label: "遵从 ↑", key: "comply", dec: 2, star: true },
+    { label: "极差 ↓", key: "range", dec: 0, lower: true },
+    { label: "文件数", key: "files", dec: 0 },
+    { label: "单价 ¥ ↓", key: "price", dec: 2, lower: true },
+    { label: "消耗 万 ↓", key: "tokens", dec: 1, lower: true },
+    { label: "每轮账单 ¥ ↓", key: "bill", dec: 2, lower: true },
+    { label: "三轮总费用 ¥", key: "total3", dec: 2, lower: true }
+  ];
+  var sortCol = 2, sortDesc = true;
+  var head = document.getElementById("detail-head");
+  var body = document.getElementById("detail-body");
+
+  COLS.forEach(function (c, ci) {
+    var th = el("th", null, c.label + ' <span class="arrow">↕</span>');
+    th.addEventListener("click", function () {
+      if (sortCol === ci) sortDesc = !sortDesc;
+      else { sortCol = ci; sortDesc = c.type !== "text"; }
+      renderTable();
+    });
+    head.appendChild(th);
+  });
+
+  function renderTable() {
+    var col = COLS[sortCol];
+    var rows = MODELS.slice().sort(function (a, b) {
+      var av = a[col.key], bv = b[col.key];
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      if (typeof av === "string") return sortDesc ? bv.localeCompare(av) : av.localeCompare(bv);
+      return sortDesc ? bv - av : av - bv;
+    });
+
+    head.querySelectorAll("th").forEach(function (th, i) {
+      th.classList.toggle("sorted", i === sortCol);
+      th.querySelector(".arrow").textContent = i === sortCol ? (sortDesc ? "↓" : "↑") : "↕";
+    });
+
+    body.innerHTML = "";
+    rows.forEach(function (m) {
+      var tr = el("tr");
+      COLS.forEach(function (c) {
+        var td;
+        if (c.type === "text") td = el("td", null, esc(m[c.key]));
+        else {
+          var v = m[c.key];
+          var cls = "n";
+          if (c.key === "human") cls += m.human >= 60 ? " best" : (m.human < 50 ? " worst" : "");
+          var star = c.star && m.complyPartial ? " *" : "";
+          td = el("td", cls, v == null ? "N/A" : fmt(v, c.dec) + star);
+        }
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+  }
+  renderTable();
+
+  /* ==========================================================
+     Suggestion box → Feishu Base form
+     ========================================================== */
+  var FORM_URL = "https://soloent-ai.feishu.cn/share/base/shrcnhbBteCGWNksTgo6qf1NyZg";
+  var askInput = document.getElementById("ask-input");
+  var askMsg = document.getElementById("ask-msg");
+
+  function submitAsk() {
+    var v = askInput.value.trim();
+    if (!v) {
+      askMsg.className = "ask-msg warn";
+      askMsg.textContent = "先写一句想看的方向，再点提交。";
+      askInput.focus();
+      return;
+    }
+    function go(copied) {
+      askMsg.className = "ask-msg";
+      askMsg.textContent = copied
+        ? "已复制你的建议，表单已在新标签页打开，粘贴进去提交即可。"
+        : "表单已在新标签页打开，把你写的内容填进去就行。";
+      window.open(FORM_URL, "_blank", "noopener");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(v).then(function () { go(true); }, function () { go(false); });
+    } else {
+      go(false);
+    }
+  }
+  document.getElementById("ask-btn").addEventListener("click", submitAsk);
+  askInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); submitAsk(); }
+  });
+})();
+</script>

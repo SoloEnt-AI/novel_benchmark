@@ -259,6 +259,8 @@ thead th {
   border-bottom: 1px solid var(--rule-2); font-weight: 800; font-size: .76rem;
   color: var(--ink-2); letter-spacing: .02em; cursor: pointer; user-select: none;
 }
+/* 短表格不需要吸顶表头，否则滚动时会盖住紧邻的数据行 */
+table.nostick thead th { position: static; }
 thead th:hover { color: var(--accent); }
 thead th .arrow { opacity: .35; font-size: .7em; }
 thead th.sorted { color: var(--accent); }

@@ -17,7 +17,10 @@
 
 | 期号 | slug | 内容 |
 |---|---|---|
-| 01 | `xianxia-ch1` | 正文写作 · 仙侠篇：10 个模型 × 3 篇第一章，117 份双盲评分 |
+| 01 | `workflow-18models` | 全流程 · 18 模型汇总：从 Plan 引导到第一章落盘，四维拆解 + 成本 |
+| 02 | `xianxia-ch1` | 正文写作 · 仙侠篇：10 个模型 × 3 篇第一章，117 份双盲评分 |
+
+首页按 `date` 倒序排列，期号写在各自的 `meta.json` 里。
 
 ## 目录结构
 
@@ -33,9 +36,9 @@ src/
   home.template.html    首页正文
 reports/<slug>/
   meta.json             这期的标题、日期、标签、摘要、统计数字、导航锚点
-  page.template.html    这期的正文（HTML + CSS 补充 + JS，带两个数据占位符）
-  data/works.json       参评作品正文，key 是四位数匿名编号
-  data/comments.json    评审简评，按编号关联到作品
+  page.template.html    这期的正文（HTML + JS；公开原文的期带两个数据占位符）
+  data/works.json       参评作品正文，key 是四位数匿名编号（可选）
+  data/comments.json    评审简评，按编号关联到作品（可选）
 scripts/build.mjs       编译成 dist/index.html 和 dist/reports/<slug>/index.html
 .github/workflows/      push 到 main 自动构建并部署到 GitHub Pages
 ```
@@ -55,10 +58,10 @@ open dist/index.html          # 直接用浏览器打开即可，不需要起服
 
 ## 新增一期报告
 
-1. `cp -r reports/xianxia-ch1 reports/<新 slug>`，删掉里面的 `data/*.json`。
-2. 改 `meta.json`：`slug` 必须等于目录名；`stats` 里 `label` 用「参评模型 / 匿名作品 / 有效评分」这几个名字，首页的累计数字按 label 求和。
-3. 改 `page.template.html`：正文、`MODELS` / `WORKS` 数组，保留 `__WORK_TEXT__` 和 `__COMMENTS__` 两个占位符。
-4. 放入 `data/works.json` 和 `data/comments.json`，格式见下。
+1. `cp -r reports/xianxia-ch1 reports/<新 slug>`，删掉里面的 `data/`。
+2. 改 `meta.json`：`slug` 必须等于目录名；`stats` 是这期页面上展示的四个数字，随便写；`totals`（`models` / `works` / `ratings`）是首页累计数字的来源，两者互不影响。
+3. 改 `page.template.html`：正文和 `MODELS` 数组。
+4. 要公开原文就放入 `data/works.json` 和 `data/comments.json`（格式见下），并在模板里保留 `__WORK_TEXT__` 和 `__COMMENTS__` 两个占位符；不公开原文就整个 `data/` 不要，构建会自动跳过。
 5. `node scripts/build.mjs` —— 首页卡片、页脚链接、导航都会自动带上新的一期，按 `date` 倒序排列。
 
 ```jsonc
