@@ -19,8 +19,8 @@
 
 | 期号 | slug | 内容 |
 |---|---|---|
-| 01 | `workflow-18models` | 全流程 · 18 模型汇总：从 Plan 引导到第一章落盘，四维拆解 + 成本 |
-| 02 | `xianxia-ch1` | 正文写作 · 仙侠篇：10 个模型 × 3 篇第一章，117 份双盲评分 |
+| 01 | `writingflow_18models` | 全流程 · 18 模型汇总：从 Plan 引导到第一章落盘，四维拆解 + 成本 |
+| 02 | `prosewriting_xianxia` | 正文写作 · 仙侠篇：10 个模型 × 3 篇第一章，117 份双盲评分 |
 
 首页按 `date` 倒序排列，期号写在各自的 `meta.json` 里。
 
@@ -61,7 +61,7 @@ open dist/index.html          # 直接用浏览器打开即可，不需要起服
 
 ## 新增一期报告
 
-1. `cp -r reports/xianxia-ch1 reports/<新 slug>`，删掉里面的 `data/`。
+1. `cp -r reports/prosewriting_xianxia reports/<新 slug>`，删掉里面的 `data/`。
 2. 改 `meta.json`：`slug` 必须等于目录名；`stats` 是这期页面上展示的四个数字，随便写；`totals`（`models` / `works` / `ratings`）是首页累计数字的来源，两者互不影响。
 3. 改 `page.template.html`：正文和 `MODELS` 数组。
 4. 要公开原文就放入 `data/works.json` 和 `data/comments.json`（格式见下），并在模板里保留 `__WORK_TEXT__` 和 `__COMMENTS__` 两个占位符；不公开原文就整个 `data/` 不要，构建会自动跳过。

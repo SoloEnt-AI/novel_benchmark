@@ -530,7 +530,7 @@ const homeHtml = shell({
 	body: homeBody,
 	navLinks: '<a href="#reports">全部报告</a>\n      <a href="#method">测评方法</a>\n      <a href="#join">加入测评团</a>',
 	brandSub: '',
-	footerNote: ['真人盲评 · 数据与口径公开'],
+	footerNote: ['© 2026 SoloEnt.ai. 版权所有。为勇敢的故事创作者而生。'],
 	home: './',
 	og: 'website',
 });
