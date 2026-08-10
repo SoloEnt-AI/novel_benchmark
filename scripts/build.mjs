@@ -504,7 +504,7 @@ const cards = reports
             <span class="rdate" style="margin-left:auto">${esc(r.date.replace(/-/g, '.'))}</span>
           </div>
           <h3>${esc(r.cardTitle)}</h3>
-          <p class="rsum">${esc(r.summary)}</p>
+          <p class="rsum">${esc(r.summary).replace(/\n/g, '<br />')}</p>
           <div class="rstats">
             ${r.stats.map((s) => `<div><b>${esc(s.value)}</b>${esc(s.label)}</div>`).join('\n            ')}
           </div>
