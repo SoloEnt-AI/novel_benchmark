@@ -1,0 +1,80 @@
+/* ============================================================
+   首页专用
+   ============================================================ */
+.rgrid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .rgrid { grid-template-columns: repeat(2, 1fr); } }
+
+.rcard {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-card);
+  padding: 30px; box-shadow: var(--shadow); color: inherit;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+}
+a.rcard:hover { text-decoration: none; transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: var(--accent); }
+.rcard .rtop { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.rcard .rdate { font-size: .8rem; font-weight: 600; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.rcard h3 { font-size: 1.55rem; line-height: 1.3; }
+.rcard .rsum { margin-top: 14px; font-size: .93rem; font-weight: 500; color: var(--ink-3); line-height: 1.75; }
+.rcard .rstats {
+  display: flex; flex-wrap: wrap; gap: 24px; margin-top: 22px;
+  padding-top: 20px; border-top: 1px solid var(--rule);
+}
+.rcard .rstats div { font-size: .76rem; font-weight: 600; color: var(--ink-3); }
+.rcard .rstats b {
+  display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em;
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+.rcard .rmore {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 22px;
+  font-size: .9rem; font-weight: 700; color: var(--accent-ink);
+}
+a.rcard:hover .rmore .icon { transform: translateX(3px); }
+.rcard .rmore .icon { transition: transform .2s; }
+
+.rcard.soon { border-style: dashed; background: transparent; box-shadow: none; }
+.rcard.soon h3 { color: var(--ink-2); }
+
+/* 我们怎么测 */
+.steps { display: grid; gap: 40px; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.step { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.step .ring {
+  position: relative; margin-bottom: 28px;
+  width: 92px; height: 92px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; font-weight: 800; color: var(--accent); box-shadow: var(--shadow);
+}
+.step .ring .badge {
+  position: absolute; right: -6px; bottom: -6px;
+  width: 38px; height: 38px; border-radius: 999px; background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-accent);
+}
+.step .ring .badge .icon { width: 19px; height: 19px; }
+.step h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.step p { font-size: .94rem; font-weight: 500; color: var(--ink-3); line-height: 1.8; max-width: 22em; }
+
+.band { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface-2); }
+
+/* 首页 CTA */
+.homecta { display: grid; gap: 16px; }
+@media (min-width: 860px) { .homecta { grid-template-columns: 1.05fr 1fr; } }
+.ccard {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-card);
+  padding: 32px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+}
+.ccard.join { border-color: var(--accent); background: var(--accent-soft); }
+.ccard .ceyebrow { font-size: .72rem; font-weight: 800; letter-spacing: .16em; color: var(--ink-3); text-transform: uppercase; }
+.ccard h3 { font-size: 1.7rem; margin: 12px 0 14px; }
+.ccard p { font-size: .93rem; font-weight: 500; color: var(--ink-2); line-height: 1.85; }
+.ccard .spacer { flex: 1; min-height: 20px; }
+
+.ask-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.ask-input {
+  flex: 1; min-width: 220px; padding: 13px 20px; border-radius: 999px;
+  border: 1px solid var(--rule-2); background: var(--surface-2); color: var(--ink);
+  font-family: inherit; font-size: .92rem;
+}
+.ask-input::placeholder { color: var(--ink-3); }
+.ask-msg { margin-top: 12px; font-size: .82rem; color: var(--teal-ink); min-height: 1.4em; }
+.ask-msg.warn { color: var(--accent-ink); }

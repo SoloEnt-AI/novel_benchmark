@@ -1,48 +1,73 @@
-# AI 写小说哪家强 · 正文写作 · 仙侠篇
+# SoloEnt 模型测评
 
-SoloEnt 模型测评的成果页：10 个模型拿到同一份仙侠大纲，各写三遍第一章，117 份测评员评分全程双盲。
+同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。本仓库是这系列测评的成果站：**首页列出全部报告，每期报告是一个二级页**。
 
 线上地址：<https://soloent-ai.github.io/novel_benchmark/>
 
-页面是**单文件静态站**，无运行时依赖、无外部请求，30 篇原文和 148 条评审简评全部内联，离线可读。
+页面是**静态站**，无运行时依赖、无外部请求，参评作品原文和评审简评全部内联，离线可读。视觉沿用 [soloent-web](https://soloent.ai) 主页的设计（配色、字重、圆角、深色页脚）。
 
-## 页面包含什么
+## 站点结构
 
-| 章节 | 内容 |
-|---|---|
-| 一 | 押注：先猜谁最强，选完揭晓真实排名 |
-| 二 | 总榜：7 个维度切换，榜单实时重排 |
-| 三 | 五维雷达：任选两个模型对比 |
-| 四 | 稳定性：三次生成的点阵与极差 |
-| 五 | 成本：每章成本 × 总分散点（对数轴）+ 章节数预算滑块 |
-| 六 | AI 腔检测器：按测评员点名的句式做字面匹配 |
-| 七 | 选型器：两个问题给出对应建议 |
-| 八 | 148 条评审原话，可按模型和分数筛选 |
-| 九 | 30 篇原文全文，四个入口都能打开阅读抽屉 |
-| 十 | 方法与局限，附测评用的统一大纲 |
+```
+/                            首页：报告列表 + 测评方法 + 加入测评团
+/reports/<slug>/             报告详情页（一期一个）
+```
+
+已发布：
+
+| 期号 | slug | 内容 |
+|---|---|---|
+| 01 | `xianxia-ch1` | 正文写作 · 仙侠篇：10 个模型 × 3 篇第一章，117 份双盲评分 |
 
 ## 目录结构
 
 ```
-src/index.template.html   页面本体（HTML + CSS + JS，带两个数据占位符）
-data/works.json           30 篇作品正文，key 是四位数匿名编号
-data/comments.json        148 条评审简评，按编号关联到作品
-scripts/build.mjs         把模板和数据编译成 dist/index.html
-.github/workflows/        push 到 main 自动构建并部署到 GitHub Pages
+src/
+  shell/
+    base.css            设计令牌 + 基础样式 + 导航 + 页脚（所有页面共用）
+    home.css            首页专用样式
+    report.css          报告详情页专用样式（图表 / 阅读器 / 表格…）
+    shell.js            主题切换、滚动进度、入场动画、数字滚动
+    nav.html            顶部导航模板
+    footer.html         页脚模板
+  home.template.html    首页正文
+reports/<slug>/
+  meta.json             这期的标题、日期、标签、摘要、统计数字、导航锚点
+  page.template.html    这期的正文（HTML + CSS 补充 + JS，带两个数据占位符）
+  data/works.json       参评作品正文，key 是四位数匿名编号
+  data/comments.json    评审简评，按编号关联到作品
+scripts/build.mjs       编译成 dist/index.html 和 dist/reports/<slug>/index.html
+.github/workflows/      push 到 main 自动构建并部署到 GitHub Pages
 ```
 
-分数、价格等汇总数据直接写在 `src/index.template.html` 顶部的 `MODELS` / `WORKS` 两个数组里，改数字在那里改。
+分数、价格等汇总数据直接写在各期 `page.template.html` 顶部的 `MODELS` / `WORKS` 两个数组里，改数字在那里改。
 
 ## 本地开发
 
 ```bash
-node scripts/build.mjs        # 生成 dist/index.html
+node scripts/build.mjs        # 生成 dist/
 open dist/index.html          # 直接用浏览器打开即可，不需要起服务
 ```
 
 只依赖 Node（≥18），没有 npm 依赖。
 
-改完 `src/index.template.html` 重新跑一次构建就能看到效果。构建时会校验作品数量、空正文和孤儿简评，任一不通过直接报错。
+构建时会校验每期作品的空正文和孤儿简评、`meta.json` 的 slug 与目录名是否一致、模板占位符是否全部替换，任一不通过直接报错。
+
+## 新增一期报告
+
+1. `cp -r reports/xianxia-ch1 reports/<新 slug>`，删掉里面的 `data/*.json`。
+2. 改 `meta.json`：`slug` 必须等于目录名；`stats` 里 `label` 用「参评模型 / 匿名作品 / 有效评分」这几个名字，首页的累计数字按 label 求和。
+3. 改 `page.template.html`：正文、`MODELS` / `WORKS` 数组，保留 `__WORK_TEXT__` 和 `__COMMENTS__` 两个占位符。
+4. 放入 `data/works.json` 和 `data/comments.json`，格式见下。
+5. `node scripts/build.mjs` —— 首页卡片、页脚链接、导航都会自动带上新的一期，按 `date` 倒序排列。
+
+```jsonc
+// works.json
+{ "2017": { "chars": 5144, "text": "# 第一章 ...\n\n正文..." } }
+
+// comments.json
+[{ "workId": "2017", "code": "C01", "group": "资深组", "total": 6, "note": "……" }]
+```
 
 ## 部署
 
@@ -52,14 +77,4 @@ push 到 `main` 触发 `.github/workflows/deploy.yml`：构建 → 上传 artifa
 
 ## 数据来源
 
-原始数据在内部的测评项目里（飞书多维表格 + 评审作品仓库），`data/*.json` 是导出的快照。作品正文按匿名编号存放，不含评审真实姓名，也不含内部文档链接。
-
-重新出一批数据时，覆盖 `data/works.json` 和 `data/comments.json` 再构建即可，格式：
-
-```jsonc
-// works.json
-{ "2017": { "chars": 5144, "text": "# 第一章 ...\n\n正文..." } }
-
-// comments.json
-[{ "workId": "2017", "code": "C01", "group": "资深组", "total": 6, "note": "……" }]
-```
+原始数据在内部的测评项目里（飞书多维表格 + 评审作品仓库），`reports/<slug>/data/*.json` 是导出的快照。作品正文按匿名编号存放，不含评审真实姓名，也不含内部文档链接。
