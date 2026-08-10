@@ -31,9 +31,6 @@ a.rcard:hover { text-decoration: none; transform: translateY(-4px); box-shadow: 
 a.rcard:hover .rmore .icon { transform: translateX(3px); }
 .rcard .rmore .icon { transition: transform .2s; }
 
-.rcard.soon { border-style: dashed; background: transparent; box-shadow: none; }
-.rcard.soon h3 { color: var(--ink-2); }
-
 /* 我们怎么测 */
 .steps { display: grid; gap: 40px; grid-template-columns: 1fr; }
 @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }

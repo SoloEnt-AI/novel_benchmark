@@ -5,8 +5,8 @@
       <span class="tag eyebrow">SoloEnt 模型测评</span>
       <h1>AI 写小说<br /><em>哪家强</em></h1>
       <p class="lede">
-        同一份输入，多个模型各跑几遍，交给读网文的人盲评打分。
-        每期公开完整数据、评分口径和已知局限，你可以自己复核每一个结论。
+        设计场景，切换多个模型运行多次，交由机器与真人共同评分。
+        每期公开完整数据、评分口径和设计局限，希望结论对你的写作有所帮助。
       </p>
       <div class="herocta">
         <a class="btn" href="#reports">看最新一期</a>
@@ -27,17 +27,10 @@
     <div class="wrap">
       <div class="sechead reveal">
         <h2>全部报告</h2>
-        <p>每期一个题材、一个环节。点进去可以切换维度看榜单重排，公开原文的那几期还能直接读参评作品全文。</p>
+        <p>每期测试重点有所不同。报告可查看测评结论和所有产出作品素材。</p>
       </div>
       <div class="rgrid reveal">
         {{REPORT_CARDS}}
-        <div class="rcard soon">
-          <div class="rtop"><span class="tag muted">筹备中</span></div>
-          <h3>下一期</h3>
-          <p class="rsum">题材、模型、环节都还没定。想看什么，在页面下方告诉我们，我们按呼声排期。</p>
-          <div class="spacer" style="flex:1"></div>
-          <span class="rmore" style="color:var(--ink-3)">敬请期待</span>
-        </div>
       </div>
     </div>
   </section>
@@ -47,7 +40,7 @@
     <div class="wrap">
       <div class="sechead reveal">
         <h2>我们怎么测</h2>
-        <p>三步，全程双盲。打分的人不知道自己读的是哪个模型写的，也看不到别人的分。</p>
+        <p>控制测试输入，机器自动采集，真人双盲参评，科学数据清洗。</p>
       </div>
       <div class="steps reveal">
         <div class="step">
@@ -55,21 +48,21 @@
             <span class="badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h10" /></svg></span>
           </div>
           <h3>统一输入</h3>
-          <p>大纲、章纲、人物设定完全一致，每个模型独立生成多遍，互不参照，只换模型不换提示词。</p>
+          <p>不同写作场景的测试，均保证有统一的输入，每个模型可独立生成多次结果，互不干扰。</p>
         </div>
         <div class="step">
           <div class="ring">2
             <span class="badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z" /><circle cx="12" cy="12" r="2.6" /></svg></span>
           </div>
-          <h3>双盲打分</h3>
-          <p>作品编号随机化，测评员只看到四位数编号。编号与模型的映射只存在于管理端，评分期间不公开。</p>
+          <h3>真人评盲</h3>
+          <p>写作效果无法完全使用模型评分，真人对最终正文的评价更具参考价值。测评员打分时不知道模型信息。</p>
         </div>
         <div class="step">
           <div class="ring">3
             <span class="badge"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15V9m4 6V6m4 9v-4" /></svg></span>
           </div>
           <h3>清洗后统计</h3>
-          <p>逐列剔除异常值，判别力不足的样本整批排除，再出榜单。样本量、口径和局限全部写在报告里。</p>
+          <p>科学剔除异常值，判别力不足的样本整批排除，再进行数据统计。样本量和数据口径完全透明。</p>
         </div>
       </div>
     </div>
@@ -83,8 +76,8 @@
           <span class="ceyebrow">来打分</span>
           <h3>加入测评团</h3>
           <p>
-            我们在持续招募有网文深度阅读经验的同学。每期测评的分数与评语都来自 SoloEnt 社群的热心测评员，
-            报告里的每一条原话都署名到评审编号，不作润色。
+            我们在持续招募有网文深度阅读经验的同学。
+            每期真人测评的分数与评语都来自 SoloEnt 社群的资深读者和测评员。
           </p>
           <div class="spacer"></div>
           <a class="btn" style="align-self:flex-start" href="https://soloent.cn/zh/activities/mo-xing-ce-ping-zuo-pin-ping-shen-tuan-zhao-mu-la" target="_blank" rel="noopener">加入测评团 →</a>
@@ -93,11 +86,12 @@
         <div class="ccard">
           <span class="ceyebrow">点菜</span>
           <h3>下一期想看什么测评？</h3>
-          <p>想看测评什么品类，什么模型，或什么环节，快让我们知道吧。</p>
+          <p>想看测评什么品类，什么模型，或什么写作场景，快告诉我们吧。</p>
           <div class="spacer"></div>
           <div class="ask-row">
             <input class="ask-input" id="ask-input" type="text" maxlength="200"
-              placeholder="例如：想看 AI 写悬疑推理的测评" aria-label="你还想看什么测评" />
+              data-source="测评站首页"
+              placeholder="例如：Kimi K3 写小说怎么样" aria-label="你还想看什么测评" />
             <button class="btn" type="button" id="ask-btn">提交</button>
           </div>
           <p class="ask-msg" id="ask-msg"></p>
@@ -106,38 +100,3 @@
     </div>
   </section>
 </main>
-
-<script>
-(function () {
-  "use strict";
-  var FORM_URL = "https://soloent-ai.feishu.cn/share/base/shrcnhbBteCGWNksTgo6qf1NyZg";
-  var askInput = document.getElementById("ask-input");
-  var askMsg = document.getElementById("ask-msg");
-
-  function submitAsk() {
-    var v = askInput.value.trim();
-    if (!v) {
-      askMsg.className = "ask-msg warn";
-      askMsg.textContent = "先写一句想看的方向，再点提交。";
-      askInput.focus();
-      return;
-    }
-    function go(copied) {
-      askMsg.className = "ask-msg";
-      askMsg.textContent = copied
-        ? "已复制你的建议，表单已在新标签页打开，粘贴进去提交即可。"
-        : "表单已在新标签页打开，把你写的内容填进去就行。";
-      window.open(FORM_URL, "_blank", "noopener");
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(v).then(function () { go(true); }, function () { go(false); });
-    } else {
-      go(false);
-    }
-  }
-  document.getElementById("ask-btn").addEventListener("click", submitAsk);
-  askInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") { e.preventDefault(); submitAsk(); }
-  });
-})();
-</script>

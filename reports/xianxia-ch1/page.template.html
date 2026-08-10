@@ -486,6 +486,7 @@
           <div class="spacer"></div>
           <div class="ask-row">
             <input class="ask-input" id="ask-input" type="text" maxlength="200"
+              data-source="仙侠篇正文测评页"
               placeholder="例如：想看 AI 写悬疑推理的测评" aria-label="你还想看什么测评" />
             <button class="btn" type="button" id="ask-btn">提交</button>
           </div>
@@ -1428,38 +1429,6 @@
     });
   });
 
-  /* ==========================================================
-     Suggestion box → Feishu Base form
-     ========================================================== */
-  var FORM_URL = "https://soloent-ai.feishu.cn/share/base/shrcnhbBteCGWNksTgo6qf1NyZg";
-  var askInput = document.getElementById("ask-input");
-  var askMsg = document.getElementById("ask-msg");
-
-  function submitAsk() {
-    var v = askInput.value.trim();
-    if (!v) {
-      askMsg.className = "ask-msg warn";
-      askMsg.textContent = "先写一句想看的方向，再点提交。";
-      askInput.focus();
-      return;
-    }
-    function go(copied) {
-      askMsg.className = "ask-msg";
-      askMsg.textContent = copied
-        ? "已复制你的建议，表单已在新标签页打开，粘贴进去提交即可。"
-        : "表单已在新标签页打开，把你写的内容填进去就行。";
-      window.open(FORM_URL, "_blank", "noopener");
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(v).then(function () { go(true); }, function () { go(false); });
-    } else {
-      go(false);
-    }
-  }
-  document.getElementById("ask-btn").addEventListener("click", submitAsk);
-  askInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") { e.preventDefault(); submitAsk(); }
-  });
 
   /* ==========================================================
      Detail table

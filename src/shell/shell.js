@@ -32,6 +32,39 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
   document.querySelectorAll(".reveal").forEach(function (n) { io.observe(n); });
 
+  /* 点菜：把用户写的内容作为 prefill 参数拼进飞书表单
+     用户打开时字已经填好，只需点一次提交，不用复制粘贴 */
+  var askInput = document.getElementById("ask-input");
+  if (askInput) {
+    var FORM_URL = "https://soloent-ai.feishu.cn/share/base/shrcnhbBteCGWNksTgo6qf1NyZg";
+    var F_WANT = "你还想看什么测评？";
+    var F_FROM = "来源页面（可留空）";
+    var askMsg = document.getElementById("ask-msg");
+    var askBtn = document.getElementById("ask-btn");
+    var source = askInput.getAttribute("data-source") || document.title;
+
+    var submitAsk = function () {
+      var v = askInput.value.trim();
+      if (!v) {
+        askMsg.className = "ask-msg warn";
+        askMsg.textContent = "先写一句想看的方向，再点提交。";
+        askInput.focus();
+        return;
+      }
+      var url = FORM_URL +
+        "?prefill_" + encodeURIComponent(F_WANT) + "=" + encodeURIComponent(v) +
+        "&prefill_" + encodeURIComponent(F_FROM) + "=" + encodeURIComponent(source);
+      window.open(url, "_blank", "noopener");
+      askMsg.className = "ask-msg";
+      askMsg.textContent = "表单已在新标签页打开，你写的内容已经填好，点一下提交就行。";
+    };
+
+    askBtn.addEventListener("click", submitAsk);
+    askInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); submitAsk(); }
+    });
+  }
+
   var cio = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
