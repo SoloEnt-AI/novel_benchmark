@@ -9,8 +9,10 @@
 ## 站点结构
 
 ```
-/                            首页：报告列表 + 测评方法 + 加入测评团
-/reports/<slug>/             报告详情页（一期一个）
+/                                      首页：报告列表 + 测评方法 + 加入测评团
+/reports/<slug>/                       报告详情页（一期一个）
+/reports/<slug>/materials/             测试素材索引（有素材的期才有）
+/reports/<slug>/materials/<run>/       某一轮跑出来的全部文件
 ```
 
 已发布：
@@ -39,6 +41,7 @@ reports/<slug>/
   page.template.html    这期的正文（HTML + JS；公开原文的期带两个数据占位符）
   data/works.json       参评作品正文，key 是四位数匿名编号（可选）
   data/comments.json    评审简评，按编号关联到作品（可选）
+  materials/<run>/**    这一轮跑出来的原始文件（可选），构建时渲染成素材浏览器
 scripts/build.mjs       编译成 dist/index.html 和 dist/reports/<slug>/index.html
 .github/workflows/      push 到 main 自动构建并部署到 GitHub Pages
 ```
@@ -62,7 +65,8 @@ open dist/index.html          # 直接用浏览器打开即可，不需要起服
 2. 改 `meta.json`：`slug` 必须等于目录名；`stats` 是这期页面上展示的四个数字，随便写；`totals`（`models` / `works` / `ratings`）是首页累计数字的来源，两者互不影响。
 3. 改 `page.template.html`：正文和 `MODELS` 数组。
 4. 要公开原文就放入 `data/works.json` 和 `data/comments.json`（格式见下），并在模板里保留 `__WORK_TEXT__` 和 `__COMMENTS__` 两个占位符；不公开原文就整个 `data/` 不要，构建会自动跳过。
-5. `node scripts/build.mjs` —— 首页卡片、页脚链接、导航都会自动带上新的一期，按 `date` 倒序排列。
+5. 要公开测试素材，把每一轮的原始文件放进 `materials/<run>/`（`<run>` 形如 `compare-gpt-01`，末段是轮次），并在 `meta.json` 的 `materials.map` 里写好「前缀 → 模型名」的映射、`materials.order` 里写分组顺序。构建会把 markdown 渲染成素材浏览器，图片等二进制原样拷贝。
+6. `node scripts/build.mjs` —— 首页卡片、页脚链接、导航都会自动带上新的一期，按 `date` 倒序排列。
 
 ```jsonc
 // works.json

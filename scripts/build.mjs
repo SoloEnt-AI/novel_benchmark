@@ -1,9 +1,9 @@
 // 把模板 + 数据编译成静态站：dist/index.html（首页）+ dist/reports/<slug>/index.html（报告详情）
 // 用法：node scripts/build.mjs
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, copyFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, posix } from 'node:path';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...p) => readFileSync(join(ROOT, ...p), 'utf8');
@@ -41,6 +41,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const BASE_CSS = read('src/shell/base.css');
 const HOME_CSS = read('src/shell/home.css');
 const REPORT_CSS = read('src/shell/report.css');
+const MATERIALS_CSS = read('src/shell/materials.css');
 const SHELL_JS = read('src/shell/shell.js');
 const NAV = read('src/shell/nav.html');
 const FOOTER = read('src/shell/footer.html');
@@ -136,6 +137,319 @@ function write(relDir, html) {
 }
 
 /* ============================================================
+   Markdown → HTML
+   够用即可：素材是模型生成的策划文件与正文，没有嵌套引用、脚注这类结构
+   ============================================================ */
+function inline(s) {
+	return esc(s)
+		.replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`)
+		.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, a, u) => `<img src="${u}" alt="${a}" loading="lazy" />`)
+		.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => `<a href="${u}" rel="noopener">${t}</a>`)
+		.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+		.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+}
+
+function mdToHtml(src) {
+	const lines = src.replace(/\r\n?/g, '\n').split('\n');
+	const out = [];
+	const listStack = [];   // [{ tag, indent }]
+	let para = [];
+	let fence = null;
+	let fenceBuf = [];
+
+	const flushPara = () => {
+		if (para.length) out.push(`<p>${inline(para.join('\n')).replace(/\n/g, '<br />')}</p>`);
+		para = [];
+	};
+	const closeLists = (toIndent) => {
+		while (listStack.length && listStack[listStack.length - 1].indent >= toIndent) {
+			out.push(`</${listStack.pop().tag}>`);
+		}
+	};
+
+	for (let i = 0; i < lines.length; i++) {
+		const line = lines[i];
+
+		if (fence !== null) {
+			if (line.trim().startsWith('```')) {
+				out.push(`<pre><code>${esc(fenceBuf.join('\n'))}</code></pre>`);
+				fence = null;
+				fenceBuf = [];
+			} else fenceBuf.push(line);
+			continue;
+		}
+		if (line.trim().startsWith('```')) {
+			flushPara();
+			closeLists(0);
+			fence = line.trim().slice(3);
+			continue;
+		}
+
+		if (!line.trim()) { flushPara(); closeLists(0); continue; }
+
+		const h = line.match(/^(#{1,6})\s+(.*)$/);
+		if (h) {
+			flushPara(); closeLists(0);
+			out.push(`<h${h[1].length}>${inline(h[2].trim())}</h${h[1].length}>`);
+			continue;
+		}
+
+		if (/^\s*([-*_])\s*\1\s*\1[\s\-*_]*$/.test(line)) {
+			flushPara(); closeLists(0);
+			out.push('<hr />');
+			continue;
+		}
+
+		// 表格：| a | b |  后跟 | --- | --- |
+		if (line.trim().startsWith('|') && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1] || '')) {
+			flushPara(); closeLists(0);
+			const cells = (l) => l.trim().replace(/^\||\|$/g, '').split('|').map((c) => inline(c.trim()));
+			let html = '<div class="tablebox"><table><thead><tr>' +
+				cells(line).map((c) => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+			i += 2;
+			for (; i < lines.length && lines[i].trim().startsWith('|'); i++) {
+				html += '<tr>' + cells(lines[i]).map((c) => `<td>${c}</td>`).join('') + '</tr>';
+			}
+			i--;
+			out.push(html + '</tbody></table></div>');
+			continue;
+		}
+
+		const q = line.match(/^\s*>\s?(.*)$/);
+		if (q) {
+			flushPara(); closeLists(0);
+			const buf = [q[1]];
+			while (i + 1 < lines.length && /^\s*>/.test(lines[i + 1])) buf.push(lines[++i].replace(/^\s*>\s?/, ''));
+			out.push(`<blockquote>${mdToHtml(buf.join('\n'))}</blockquote>`);
+			continue;
+		}
+
+		const li = line.match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/);
+		if (li) {
+			flushPara();
+			const indent = li[1].replace(/\t/g, '    ').length;
+			const tag = /^\d/.test(li[2]) ? 'ol' : 'ul';
+			closeLists(indent + 1);
+			const top = listStack[listStack.length - 1];
+			if (!top || top.indent < indent) {
+				listStack.push({ tag, indent });
+				out.push(`<${tag}>`);
+			} else if (top.tag !== tag) {
+				out.push(`</${listStack.pop().tag}>`);
+				listStack.push({ tag, indent });
+				out.push(`<${tag}>`);
+			}
+			out.push(`<li>${inline(li[3])}</li>`);
+			continue;
+		}
+
+		if (listStack.length) { out.push(`<li>${inline(line.trim())}</li>`); continue; }
+		para.push(line.trim());
+	}
+	if (fence !== null) out.push(`<pre><code>${esc(fenceBuf.join('\n'))}</code></pre>`);
+	flushPara();
+	closeLists(0);
+	return out.join('\n');
+}
+
+/* ============================================================
+   测试素材浏览器：reports/<slug>/materials/<run>/**
+   ============================================================ */
+function walk(dir, base = '') {
+	const out = [];
+	for (const e of readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name, 'zh'))) {
+		if (e.name.startsWith('.')) continue;
+		const rel = base ? posix.join(base, e.name) : e.name;
+		if (e.isDirectory()) out.push(...walk(join(dir, e.name), rel));
+		else out.push(rel);
+	}
+	return out;
+}
+
+function buildMaterials(r) {
+	const src = join(ROOT, r.dir, 'materials');
+	if (!existsSync(src)) return null;
+
+	const cfg = r.materials || {};
+	const modelOf = (run) => (cfg.map || {})[run.replace(/-[^-]+$/, '')] || run;
+	const roundOf = (run) => (run.match(/-([^-]+)$/) || [, ''])[1].replace(/^0+/, '');
+
+	const runs = readdirSync(src, { withFileTypes: true })
+		.filter((e) => e.isDirectory() && !e.name.startsWith('.'))
+		.map((e) => e.name)
+		.sort((a, b) => a.localeCompare(b, 'zh'))
+		.map((run) => ({ run, model: modelOf(run), round: roundOf(run), files: walk(join(src, run)) }));
+
+	let bytes = 0;
+	const navLinks = `<a href="../../">全部报告</a>\n      <a href="../">返回报告</a>`;
+
+	for (const it of runs) {
+		const docs = [];
+		for (const f of it.files) {
+			if (f.toLowerCase().endsWith('.md')) {
+				docs.push({ path: f, html: mdToHtml(readFileSync(join(src, it.run, f), 'utf8')) });
+			} else {
+				// 图片等二进制原样拷贝，页面里按相对路径引用
+				const dest = join(ROOT, 'dist', r.dir.replace('reports/', 'reports/'), 'materials', it.run, f);
+				mkdirSync(dirname(dest), { recursive: true });
+				copyFileSync(join(src, it.run, f), dest);
+				docs.push({ path: f, html: `<img src="${encodeURI(f)}" alt="${esc(f)}" loading="lazy" />` });
+			}
+		}
+
+		let sidebar = '';
+		let lastDir = null;
+		docs.forEach((d, i) => {
+			const dir = posix.dirname(d.path);
+			if (dir !== lastDir) {
+				sidebar += `<div class="fdir">${dir === '.' ? '（根目录）' : esc(dir) + '/'}</div>`;
+				lastDir = dir;
+			}
+			sidebar += `<button type="button" data-i="${i}"${i === 0 ? ' class="on"' : ''}>${esc(posix.basename(d.path))}</button>`;
+		});
+
+		const body = `<main>
+  <div class="wrap">
+    <header class="mhead">
+      <div class="crumb">
+        <a href="../">${esc(r.brandSub)}</a><span class="sep">/</span>
+        <a href="./">测试素材</a><span class="sep">/</span>
+        <span>${esc(it.model)} 第 ${esc(it.round)} 轮</span>
+      </div>
+      <span class="tag">${esc(it.model)} · 第 ${esc(it.round)} 轮</span>
+      <h1>${esc(it.model)}　第 ${esc(it.round)} 轮的全部产出</h1>
+      <p class="lede">
+        这一轮落盘的 ${docs.length} 个文件，按模型自己建的目录结构排列，内容未作任何删改。
+        左侧切换文件。
+      </p>
+    </header>
+
+    <div class="mlayout">
+      <nav class="mfiles" id="mfiles" aria-label="文件列表">${sidebar}</nav>
+      <article class="mdoc">
+        <div class="mdoc-top">
+          <b id="doc-name"></b>
+          <span id="doc-path"></span>
+        </div>
+        <div class="md" id="doc-body"></div>
+      </article>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var DOCS = ${JSON.stringify(docs)};
+  var box = document.getElementById("mfiles");
+  var name = document.getElementById("doc-name");
+  var path = document.getElementById("doc-path");
+  var bodyEl = document.getElementById("doc-body");
+
+  function show(i) {
+    var d = DOCS[i];
+    if (!d) return;
+    name.textContent = d.path.split("/").pop();
+    path.textContent = d.path;
+    bodyEl.innerHTML = d.html;
+    box.querySelectorAll("button").forEach(function (b) {
+      b.classList.toggle("on", +b.getAttribute("data-i") === i);
+    });
+    if (location.hash.slice(1) !== String(i)) history.replaceState(null, "", "#" + i);
+  }
+  box.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (b) show(+b.getAttribute("data-i"));
+  });
+  show(Math.max(0, Math.min(DOCS.length - 1, parseInt(location.hash.slice(1), 10) || 0)));
+})();
+</script>`;
+
+		bytes += write(
+			join(r.dir.replace(/^reports\//, 'reports/'), 'materials', it.run),
+			shell({
+				title: `${it.model} 第 ${it.round} 轮 · 测试素材 · ${r.title}`,
+				description: `${it.model} 在第 ${it.round} 轮同题运行中落盘的全部策划文件与第一章正文，共 ${docs.length} 个文件。`,
+				url: `${SITE.url}${r.dir.replace(/^reports\//, 'reports/')}/materials/${it.run}/`,
+				css: `${BASE_CSS}\n${MATERIALS_CSS}`,
+				body,
+				navLinks,
+				brandSub: '测试素材',
+				footerNote: r.footerNote,
+				home: '../../../../',
+				og: 'article',
+			})
+		);
+	}
+
+	// 索引页：按模型分组
+	const byModel = new Map();
+	for (const it of runs) {
+		if (!byModel.has(it.model)) byModel.set(it.model, []);
+		byModel.get(it.model).push(it);
+	}
+	const order = cfg.order || [...byModel.keys()];
+	const groups = order
+		.filter((m) => byModel.has(m))
+		.map((m) => {
+			const items = byModel.get(m);
+			const total = items.reduce((n, it) => n + it.files.length, 0);
+			return `<section class="mgroup">
+        <div class="mgroup-head">
+          <h2>${esc(m)}</h2>
+          <span class="meta">${items.length} 轮 · 共 ${total} 个文件</span>
+        </div>
+        <div class="mruns">
+          ${items
+						.map(
+							(it) => `<a class="mrun" href="${encodeURIComponent(it.run)}/">
+            <span class="r-round">第 ${esc(it.round)} 轮</span>
+            <span class="r-files">${it.files.length} 个文件</span>
+            <span class="r-dir">${esc(it.run)}</span>
+            <span class="r-open">打开 ${ARROW}</span>
+          </a>`
+						)
+						.join('\n          ')}
+        </div>
+      </section>`;
+		})
+		.join('\n      ');
+
+	const totalFiles = runs.reduce((n, it) => n + it.files.length, 0);
+	const indexBody = `<main>
+  <div class="wrap">
+    <header class="mhead">
+      <div class="crumb">
+        <a href="../">${esc(r.brandSub)}</a><span class="sep">/</span><span>测试素材</span>
+      </div>
+      <span class="tag">${runs.length} 轮 · ${totalFiles} 个文件</span>
+      <h1>全部测试素材</h1>
+      <p class="lede">${esc(cfg.note || '')}</p>
+    </header>
+    ${groups}
+  </div>
+</main>`;
+
+	bytes += write(
+		join(r.dir.replace(/^reports\//, 'reports/'), 'materials'),
+		shell({
+			title: `全部测试素材 · ${r.title}`,
+			description: `${r.title}的全部测试素材：${runs.length} 轮同题运行落盘的 ${totalFiles} 个文件，含策划总纲、分卷与章节细纲、人物设定与第一章正文。`,
+			url: `${SITE.url}${r.dir.replace(/^reports\//, 'reports/')}/materials/`,
+			css: `${BASE_CSS}\n${MATERIALS_CSS}`,
+			body: indexBody,
+			navLinks: `<a href="../../">全部报告</a>\n      <a href="../">返回报告</a>`,
+			brandSub: '测试素材',
+			footerNote: r.footerNote,
+			home: '../../../',
+			og: 'website',
+		})
+	);
+
+	return { runs: runs.length, files: totalFiles, bytes };
+}
+
+/* ============================================================
    报告详情页
    ============================================================ */
 const built = [];
@@ -170,6 +484,7 @@ for (const r of reports) {
 		bytes,
 		works: r.works ? Object.keys(r.works).length : 0,
 		comments: r.comments ? r.comments.length : 0,
+		materials: buildMaterials(r),
 	});
 }
 
@@ -231,4 +546,9 @@ const kb = (n) => (n / 1024).toFixed(0) + ' KB';
 console.log(`dist/index.html — ${reports.length} 期报告 · ${kb(homeBytes)}`);
 for (const b of built) {
 	console.log(`dist/reports/${b.slug}/index.html — ${b.works} 篇原文 · ${b.comments} 条简评 · ${kb(b.bytes)}`);
+	if (b.materials) {
+		console.log(
+			`  └ materials/ — ${b.materials.runs} 轮 · ${b.materials.files} 个文件 · ${kb(b.materials.bytes)}`
+		);
+	}
 }
