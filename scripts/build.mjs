@@ -87,12 +87,7 @@ function shell({ title, description, url, css, body, navLinks, brandSub, footerN
 		.replace('{{BRAND_SUB}}', brandSub ? esc(brandSub) : '')
 		.replace('{{NAV_LINKS}}', navLinks);
 
-	const footerReports = reports
-		.map((r) => `<li><a href="${home}reports/${r.slug}/">第 ${esc(r.issue)} 期 · ${esc(r.brandSub)}</a></li>`)
-		.join('\n          ');
-
 	const footer = FOOTER.replace('{{LOGO}}', LOGO)
-		.replace('{{FOOTER_REPORTS}}', footerReports)
 		.replace('{{FOOTER_NOTE}}', footerNote.map((s) => `<span>${esc(s)}</span>`).join('\n      '));
 
 	return `<!doctype html>
@@ -527,9 +522,9 @@ const homeHtml = shell({
 	url: SITE.url,
 	css: `${BASE_CSS}\n${HOME_CSS}`,
 	body: homeBody,
-	navLinks: '<a href="#reports">全部报告</a>\n      <a href="#method">怎么测</a>\n      <a href="#join">加入测评团</a>',
+	navLinks: '<a href="#reports">全部报告</a>\n      <a href="#method">测评方法</a>\n      <a href="#join">加入测评团</a>',
 	brandSub: '',
-	footerNote: ['盲评打分 · 数据与口径全部公开', '页面为静态站，无外部请求，离线可读'],
+	footerNote: ['真人盲评 · 数据与口径公开'],
 	home: './',
 	og: 'website',
 });

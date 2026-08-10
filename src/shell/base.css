@@ -323,6 +323,8 @@ footer.site a:hover { color: var(--accent); text-decoration: none; }
   text-transform: uppercase; letter-spacing: .14em; margin-bottom: 18px;
 }
 .fcol ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.fsocial a { display: inline-flex; align-items: center; gap: 10px; }
+.fsocial svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
 .fbottom {
   margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .07);
   font-size: .82rem; color: #6B7280; display: flex; flex-wrap: wrap; gap: 8px 20px;
