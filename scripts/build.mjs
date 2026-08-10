@@ -274,6 +274,13 @@ function buildMaterials(r) {
 		.map((e) => e.name)
 		.sort((a, b) => a.localeCompare(b, 'zh'))
 		.map((run) => ({ run, model: modelOf(run), round: roundOf(run), files: walk(join(src, run)) }));
+	const modelRunCounts = new Map();
+	for (const it of runs) {
+		const displayRound = (modelRunCounts.get(it.model) || 0) + 1;
+		modelRunCounts.set(it.model, displayRound);
+		it.displayRound = String(displayRound).padStart(2, '0');
+		it.label = `${it.model}-${it.displayRound}`;
+	}
 
 	let bytes = 0;
 	const navLinks = `<a href="../../">全部报告</a>\n      <a href="../">返回报告</a>`;
@@ -309,10 +316,10 @@ function buildMaterials(r) {
       <div class="crumb">
         <a href="../">${esc(r.brandSub)}</a><span class="sep">/</span>
         <a href="./">测试素材</a><span class="sep">/</span>
-        <span>${esc(it.model)} 第 ${esc(it.round)} 轮</span>
+        <span>${esc(it.label)}</span>
       </div>
-      <span class="tag">${esc(it.model)} · 第 ${esc(it.round)} 轮</span>
-      <h1>${esc(it.model)}　第 ${esc(it.round)} 轮的全部产出</h1>
+      <span class="tag">${esc(it.label)}</span>
+      <h1>${esc(it.label)} 的全部产出</h1>
       <p class="lede">
         这一轮落盘的 ${docs.length} 个文件，按模型自己建的目录结构排列，内容未作任何删改。
         左侧切换文件。
@@ -363,8 +370,8 @@ function buildMaterials(r) {
 		bytes += write(
 			join(r.dir.replace(/^reports\//, 'reports/'), 'materials', it.run),
 			shell({
-				title: `${it.model} 第 ${it.round} 轮 · 测试素材 · ${r.title}`,
-				description: `${it.model} 在第 ${it.round} 轮同题运行中落盘的全部策划文件与第一章正文，共 ${docs.length} 个文件。`,
+				title: `${it.label} · 测试素材 · ${r.title}`,
+				description: `${it.label} 同题运行中落盘的全部策划文件与第一章正文，共 ${docs.length} 个文件。`,
 				url: `${SITE.url}${r.dir.replace(/^reports\//, 'reports/')}/materials/${it.run}/`,
 				css: `${BASE_CSS}\n${MATERIALS_CSS}`,
 				body,
@@ -398,9 +405,8 @@ function buildMaterials(r) {
           ${items
 						.map(
 							(it) => `<a class="mrun" href="${encodeURIComponent(it.run)}/">
-            <span class="r-round">第 ${esc(it.round)} 轮</span>
+            <span class="r-round">${esc(it.label)}</span>
             <span class="r-files">${it.files.length} 个文件</span>
-            <span class="r-dir">${esc(it.run)}</span>
             <span class="r-open">打开 ${ARROW}</span>
           </a>`
 						)
