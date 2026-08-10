@@ -262,9 +262,12 @@ a.btn-ghost:hover { text-decoration: none; }
 }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero .lede {
-  margin: 26px auto 0; max-width: 40em;
+  margin: 26px auto 0; max-width: 46em;
   font-size: 1.06rem; font-weight: 500; color: var(--ink-3); line-height: 1.8;
 }
+/* 宽屏在指定处断行，窄屏交给自动回流，免得手机上断得很碎 */
+.br-wide { display: none; }
+@media (min-width: 900px) { .br-wide { display: inline; } }
 .hero .herocta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 38px; }
 
 .statrow {
