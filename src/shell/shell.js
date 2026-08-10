@@ -37,8 +37,10 @@
   var askInput = document.getElementById("ask-input");
   if (askInput) {
     var FORM_URL = "https://soloent-ai.feishu.cn/share/base/shrcnhbBteCGWNksTgo6qf1NyZg";
+    // 这两个必须和表单里的字段名逐字一致（含全角括号），改了表单字段名就要同步改这里，
+    // 否则 prefill 参数匹配不上，会静默地填不进去
     var F_WANT = "你还想看什么测评？";
-    var F_FROM = "来源页面（可留空）";
+    var F_FROM = "来源页面（自动填写）";
     var askMsg = document.getElementById("ask-msg");
     var askBtn = document.getElementById("ask-btn");
     var source = askInput.getAttribute("data-source") || document.title;
