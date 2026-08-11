@@ -98,9 +98,21 @@ open dist/index.html          # 直接用浏览器打开即可，不需要起服
 
 ## 部署
 
+### 国际站（GitHub Pages）· `https://benchmark.soloent.ai/`
+
 push 到 `main` 触发 `.github/workflows/deploy.yml`：构建 → 上传 artifact → 部署 Pages。仓库 Settings → Pages 的 Source 需要设为 **GitHub Actions**。
 
 自定义域名：`benchmark.soloent.ai`（根目录 `CNAME`，构建时复制进 `dist/`）。DNS 在 Cloudflare 配 **CNAME → `soloent-ai.github.io`**，代理须为 **DNS only（灰云）**；校验通过后在仓库 Settings → Pages 勾选 Enforce HTTPS。
+
+### 中国站（Zeabur）· `https://benchmark.soloent.cn/`
+
+仓库带 `zbpack.json`：构建 `npm run build`，静态根目录 `dist/`（Caddy 托管）。在 Zeabur 服务环境变量里设置：
+
+```text
+SITE_URL=https://benchmark.soloent.cn/
+```
+
+（写入页面 canonical / og:url；不设则默认国际站域名。）绑定自定义域名后重新部署即可。
 
 ## 数据来源
 
