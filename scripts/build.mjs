@@ -14,7 +14,7 @@ const SITE = {
 	title: 'AI 写小说哪家强 · SoloEnt 模型写作测评',
 	description:
 		'SoloEnt 模型写作测评：同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。每期公开全部原文、原始评语与统计口径。',
-	url: 'https://soloent-ai.github.io/novel_benchmark/',
+	url: 'https://benchmark.soloent.ai/',
 };
 
 // 站点图标 / 品牌标识：SoloEnt 八瓣花

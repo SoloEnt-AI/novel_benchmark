@@ -2,7 +2,7 @@
 
 同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。本仓库是这系列测评的成果站：**首页列出全部报告，每期报告是一个二级页**。
 
-线上地址：<https://soloent-ai.github.io/novel_benchmark/>
+线上地址：<https://benchmark.soloent.ai/>（GitHub Pages 备用：<https://soloent-ai.github.io/novel_benchmark/>）
 
 页面是**静态站**，无运行时依赖、无外部请求，参评作品原文和评审简评全部内联，离线可读。视觉沿用 [soloent-web](https://soloent.ai) 主页的设计（配色、字重、圆角、深色页脚）。
 
@@ -100,7 +100,7 @@ open dist/index.html          # 直接用浏览器打开即可，不需要起服
 
 push 到 `main` 触发 `.github/workflows/deploy.yml`：构建 → 上传 artifact → 部署 Pages。仓库 Settings → Pages 的 Source 需要设为 **GitHub Actions**。
 
-要用自定义域名，在仓库根目录放一个 `CNAME` 文件（写入域名），构建时会自动复制进 `dist/`。
+自定义域名：`benchmark.soloent.ai`（根目录 `CNAME`，构建时复制进 `dist/`）。DNS 在 Cloudflare 配 **CNAME → `soloent-ai.github.io`**，代理须为 **DNS only（灰云）**；校验通过后在仓库 Settings → Pages 勾选 Enforce HTTPS。
 
 ## 数据来源
 
