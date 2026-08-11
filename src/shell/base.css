@@ -232,21 +232,14 @@ a.btn-ghost:hover { text-decoration: none; }
 
 .navtail { display: flex; align-items: center; gap: 10px; margin-left: auto; }
 @media (min-width: 900px) { .navtail { margin-left: 24px; } }
-.themebtn {
+.langbtn {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 999px;
+  min-width: 40px; height: 40px; padding: 0 12px; border-radius: 999px;
   background: transparent; border: 1px solid var(--rule-2); color: var(--ink-2);
+  font-size: .82rem; font-weight: 700; letter-spacing: .02em;
   transition: border-color .2s, color .2s;
 }
-.themebtn:hover { border-color: var(--accent); color: var(--accent); }
-.themebtn .icon { width: 20px; height: 20px; }
-.themebtn .i-sun { display: none; }
-:root[data-theme="dark"] .themebtn .i-sun { display: block; }
-:root[data-theme="dark"] .themebtn .i-moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .themebtn .i-sun { display: block; }
-  :root:not([data-theme="light"]) .themebtn .i-moon { display: none; }
-}
+.langbtn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 .navcta { display: none; }
 @media (min-width: 640px) { .navcta { display: inline-flex; } }
 

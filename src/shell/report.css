@@ -250,6 +250,38 @@ input[type="range"]::-moz-range-thumb {
 .qcard .score.lo { color: var(--accent-ink); }
 .qcard .qlink { display: block; margin-top: 8px; font-size: .74rem; font-weight: 600; color: var(--accent-ink); }
 
+/* ---------- 测评员讨论：一段引子 + 两种相反看法 ---------- */
+.debate {
+  margin-top: 36px; padding: 26px;
+  background: var(--surface); border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent); border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+}
+@media (min-width: 720px) { .debate { padding: 34px 38px; } }
+.debate .lead {
+  margin: 16px 0 0; max-width: var(--prose);
+  font-size: 1.05rem; font-weight: 700; line-height: 1.8; color: var(--ink);
+  letter-spacing: -.01em;
+}
+.debate .ctx {
+  margin: 12px 0 0; max-width: var(--prose);
+  font-size: .92rem; font-weight: 500; line-height: 1.9; color: var(--ink-2);
+}
+.debate-views { display: grid; gap: 16px; margin-top: 24px; }
+@media (min-width: 860px) { .debate-views { grid-template-columns: 1fr 1fr; } }
+.debate-view {
+  position: relative; padding: 20px 22px;
+  background: var(--surface-2); border: 1px solid var(--rule); border-radius: var(--r-md);
+}
+.debate-view b {
+  display: block; font-size: .78rem; font-weight: 800;
+  letter-spacing: .04em; color: var(--accent-ink);
+}
+.debate-view.alt b { color: var(--teal-ink); }
+.debate-view p {
+  margin: 10px 0 0; font-size: .92rem; font-weight: 500; line-height: 1.9; color: var(--ink-2);
+}
+
 /* ---------- 明细表 ---------- */
 table { border-collapse: collapse; width: 100%; font-size: .85rem; }
 th, td { padding: 11px 14px; text-align: right; white-space: nowrap; }

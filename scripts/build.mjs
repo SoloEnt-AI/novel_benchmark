@@ -1,4 +1,5 @@
 // 把模板 + 数据编译成静态站：dist/index.html（首页）+ dist/reports/<slug>/index.html（报告详情）
+// 中文在根目录，英文在 /en/ 下，两套页面结构完全一致
 // 用法：node scripts/build.mjs
 
 import { readFileSync, writeFileSync, copyFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
@@ -9,10 +10,10 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...p) => readFileSync(join(ROOT, ...p), 'utf8');
 
 const SITE = {
-	name: 'SoloEnt 模型测评',
-	title: 'AI 写小说哪家强 · SoloEnt 模型测评',
+	name: 'SoloEnt 模型写作测评',
+	title: 'AI 写小说哪家强 · SoloEnt 模型写作测评',
 	description:
-		'SoloEnt 模型测评：同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。每期公开全部原文、原始评语与统计口径。',
+		'SoloEnt 模型写作测评：同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。每期公开全部原文、原始评语与统计口径。',
 	url: 'https://soloent-ai.github.io/novel_benchmark/',
 };
 
@@ -37,6 +38,61 @@ const FAVICON =
 	);
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+/* ============================================================
+   语言：中文是原文，英文文案全部集中在 en/，靠「原文 → 译文」的词典逐串替换
+   en/shell.json 是外壳和首页，en/reports/<slug>.json 是各期正文和 meta 字段。
+   按串长从长到短替换，避免短串先把长句切碎；查不到的串原样保留，页面上一眼能看出漏了什么。
+   ============================================================ */
+const LANGS = [
+	{ id: 'zh', code: 'zh-CN', base: '', label: 'EN', aria: 'Switch to English' },
+	{ id: 'en', code: 'en', base: 'en/', label: '中文', aria: '切换到中文' },
+];
+
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+function makeTranslator(dictFiles) {
+	const dict = new Map();
+	const keep = []; // 译文留空 = 有意保持中文（评审昵称、AI 感检测器的句式清单和示例）
+	for (const f of dictFiles) {
+		if (!existsSync(join(ROOT, f))) continue;
+		for (const [k, v] of Object.entries(JSON.parse(read(f)))) {
+			if (k.startsWith('_')) continue;
+			if (v) dict.set(k, v);
+			else keep.push(k);
+		}
+	}
+	// 模板里的长句会跨行折行，所以词条中的空白一律按「一处或多处空白」匹配
+	const rules = [...dict.keys()]
+		.sort((a, b) => b.trim().length - a.trim().length)
+		.map((k) => ({
+			re: new RegExp(k.trim().split(/\s+/).map(reEsc).join('\\s+'), 'g'),
+			to: dict.get(k),
+		}));
+	const t = (s) => {
+		if (typeof s !== 'string' || !s) return s;
+		let out = s;
+		for (const r of rules) out = out.replace(r.re, () => r.to);
+		return out;
+	};
+	t.keep = keep;
+	return t;
+}
+
+const noop = (s) => s;
+// 各语言的翻译函数：外壳一份，每期报告在外壳基础上叠自己的词典
+const SHELL_DICT = 'en/shell.json';
+const reportDict = (slug) => `en/reports/${slug}.json`;
+
+const shellT = { zh: noop, en: makeTranslator([SHELL_DICT]) };
+const reportTranslators = new Map();
+const translatorFor = (slug, langId) => {
+	if (langId === 'zh') return noop;
+	if (!reportTranslators.has(slug)) {
+		reportTranslators.set(slug, makeTranslator([SHELL_DICT, reportDict(slug)]));
+	}
+	return reportTranslators.get(slug);
+};
 
 const BASE_CSS = read('src/shell/base.css');
 const HOME_CSS = read('src/shell/home.css');
@@ -81,17 +137,35 @@ if (!reports.length) throw new Error('reports/ 下没有找到任何 meta.json')
 /* ============================================================
    页面外壳
    ============================================================ */
-function shell({ title, description, url, css, body, navLinks, brandSub, footerNote, home, og }) {
-	const nav = NAV.replace('{{HOME}}', home)
-		.replace('{{LOGO}}', LOGO)
-		.replace('{{BRAND_SUB}}', brandSub ? esc(brandSub) : '')
-		.replace('{{NAV_LINKS}}', navLinks);
+// rel：页面相对各语言根目录的路径（首页是 ''，报告是 'reports/<slug>/'），
+// 由它推出返回首页的相对路径、另一语言同名页的相对路径和绝对 URL
+function shell({ lang, rel, title, description, css, body, navLinks, brandSub, footerNote, t, og }) {
+	const depth = rel ? rel.split('/').filter(Boolean).length : 0;
+	const home = depth ? '../'.repeat(depth) : './';
+	const alt = LANGS.find((l) => l.id !== lang.id);
+	const altHref = '../'.repeat(depth + (lang.id === 'en' ? 1 : 0)) + alt.base + rel;
 
-	const footer = FOOTER.replace('{{LOGO}}', LOGO)
-		.replace('{{FOOTER_NOTE}}', footerNote.map((s) => `<span>${esc(s)}</span>`).join('\n      '));
+	const nav = t(NAV)
+		.replace('{{HOME}}', home)
+		.replace('{{LOGO}}', LOGO)
+		.replace('{{BRAND_SUB}}', brandSub ? esc(t(brandSub)) : '')
+		.replace('{{NAV_LINKS}}', navLinks)
+		.replace('{{LANG_HREF}}', esc(altHref))
+		.replace('{{LANG_CODE}}', alt.code)
+		.replace('{{LANG_ARIA}}', esc(lang.aria))
+		.replace('{{LANG_LABEL}}', esc(lang.label));
+
+	const footer = t(FOOTER)
+		.replace('{{LOGO}}', LOGO)
+		.replace('{{FOOTER_NOTE}}', footerNote.map((s) => `<span>${esc(t(s))}</span>`).join('\n      '));
+
+	const url = SITE.url + lang.base + rel;
+	const alternates = LANGS.map(
+		(l) => `<link rel="alternate" hreflang="${l.code}" href="${esc(SITE.url + l.base + rel)}" />`
+	).join('\n');
 
 	return `<!doctype html>
-<html lang="zh-CN">
+<html lang="${lang.code}">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -99,8 +173,12 @@ function shell({ title, description, url, css, body, navLinks, brandSub, footerN
 <meta name="description" content="${esc(description)}" />
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="${FAVICON}" />
+<link rel="canonical" href="${esc(url)}" />
+${alternates}
+<link rel="alternate" hreflang="x-default" href="${esc(SITE.url + rel)}" />
 <meta property="og:type" content="${og}" />
-<meta property="og:site_name" content="${esc(SITE.name)}" />
+<meta property="og:site_name" content="${esc(t(SITE.name))}" />
+<meta property="og:locale" content="${lang.id === 'en' ? 'en_US' : 'zh_CN'}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:url" content="${esc(url)}" />
@@ -118,7 +196,7 @@ ${nav}
 ${body}
 ${footer}
 <script>
-${SHELL_JS}
+${t(SHELL_JS)}
 </script>
 </body>
 </html>
@@ -129,6 +207,26 @@ function write(relDir, html) {
 	mkdirSync(join(ROOT, 'dist', relDir), { recursive: true });
 	writeFileSync(join(ROOT, 'dist', relDir, 'index.html'), html);
 	return Buffer.byteLength(html);
+}
+
+// 带占位符的句子：先整句翻译，再把 %name 换成实际值
+const fmt = (s, vals) => String(s).replace(/%(\w+)/g, (_, k) => (k in vals ? vals[k] : `%${k}`));
+
+// meta.json 里会出现在页面上的字段，按语言翻一份
+function localize(r, t) {
+	return {
+		...r,
+		title: t(r.title),
+		brandSub: t(r.brandSub),
+		cardTitle: t(r.cardTitle),
+		summary: t(r.summary),
+		description: t(r.description),
+		tags: (r.tags || []).map(t),
+		stats: (r.stats || []).map((s) => ({ ...s, label: t(s.label) })),
+		nav: (r.nav || []).map((l) => ({ ...l, label: t(l.label) })),
+		footerNote: (r.footerNote || []).map(t),
+		materials: r.materials ? { ...r.materials, note: t(r.materials.note || '') } : r.materials,
+	};
 }
 
 /* ============================================================
@@ -261,7 +359,7 @@ function walk(dir, base = '') {
 	return out;
 }
 
-function buildMaterials(r) {
+function buildMaterials(r, lang, t) {
 	const src = join(ROOT, r.dir, 'materials');
 	if (!existsSync(src)) return null;
 
@@ -283,7 +381,7 @@ function buildMaterials(r) {
 	}
 
 	let bytes = 0;
-	const navLinks = `<a href="../../">全部报告</a>\n      <a href="../">返回报告</a>`;
+	const navLinks = `<a href="../../">${esc(t('全部报告'))}</a>\n      <a href="../">${esc(t('返回报告'))}</a>`;
 
 	for (const it of runs) {
 		const docs = [];
@@ -292,7 +390,7 @@ function buildMaterials(r) {
 				docs.push({ path: f, html: mdToHtml(readFileSync(join(src, it.run, f), 'utf8')) });
 			} else {
 				// 图片等二进制原样拷贝，页面里按相对路径引用
-				const dest = join(ROOT, 'dist', r.dir.replace('reports/', 'reports/'), 'materials', it.run, f);
+				const dest = join(ROOT, 'dist', lang.base, r.dir, 'materials', it.run, f);
 				mkdirSync(dirname(dest), { recursive: true });
 				copyFileSync(join(src, it.run, f), dest);
 				docs.push({ path: f, html: `<img src="${encodeURI(f)}" alt="${esc(f)}" loading="lazy" />` });
@@ -304,7 +402,7 @@ function buildMaterials(r) {
 		docs.forEach((d, i) => {
 			const dir = posix.dirname(d.path);
 			if (dir !== lastDir) {
-				sidebar += `<div class="fdir">${dir === '.' ? '（根目录）' : esc(dir) + '/'}</div>`;
+				sidebar += `<div class="fdir">${dir === '.' ? esc(t('（根目录）')) : esc(dir) + '/'}</div>`;
 				lastDir = dir;
 			}
 			sidebar += `<button type="button" data-i="${i}"${i === 0 ? ' class="on"' : ''}>${esc(posix.basename(d.path))}</button>`;
@@ -315,19 +413,18 @@ function buildMaterials(r) {
     <header class="mhead">
       <div class="crumb">
         <a href="../">${esc(r.brandSub)}</a><span class="sep">/</span>
-        <a href="./">测试素材</a><span class="sep">/</span>
+        <a href="./">${esc(t('测试素材'))}</a><span class="sep">/</span>
         <span>${esc(it.label)}</span>
       </div>
       <span class="tag">${esc(it.label)}</span>
-      <h1>${esc(it.label)} 的全部产出</h1>
+      <h1>${esc(fmt(t('%label 的全部产出'), { label: it.label }))}</h1>
       <p class="lede">
-        这一轮落盘的 ${docs.length} 个文件，按模型自己建的目录结构排列，内容未作任何删改。
-        左侧切换文件。
+        ${esc(fmt(t('这一轮落盘的 %n 个文件，按模型自己建的目录结构排列，内容未作任何删改。左侧切换文件。'), { n: docs.length }))}
       </p>
     </header>
 
     <div class="mlayout">
-      <nav class="mfiles" id="mfiles" aria-label="文件列表">${sidebar}</nav>
+      <nav class="mfiles" id="mfiles" aria-label="${esc(t('文件列表'))}">${sidebar}</nav>
       <article class="mdoc">
         <div class="mdoc-top">
           <b id="doc-name"></b>
@@ -368,17 +465,21 @@ function buildMaterials(r) {
 </script>`;
 
 		bytes += write(
-			join(r.dir.replace(/^reports\//, 'reports/'), 'materials', it.run),
+			join(lang.base, r.dir, 'materials', it.run),
 			shell({
-				title: `${it.label} · 测试素材 · ${r.title}`,
-				description: `${it.label} 同题运行中落盘的全部策划文件与第一章正文，共 ${docs.length} 个文件。`,
-				url: `${SITE.url}${r.dir.replace(/^reports\//, 'reports/')}/materials/${it.run}/`,
+				lang,
+				rel: `reports/${r.slug}/materials/${it.run}/`,
+				title: `${it.label} · ${t('测试素材')} · ${r.title}`,
+				description: fmt(
+					t('%label 同题运行中落盘的全部策划文件与第一章正文，共 %n 个文件。'),
+					{ label: it.label, n: docs.length }
+				),
 				css: `${BASE_CSS}\n${MATERIALS_CSS}`,
 				body,
 				navLinks,
-				brandSub: '测试素材',
+				brandSub: t('测试素材'),
 				footerNote: r.footerNote,
-				home: '../../../../',
+				t,
 				og: 'article',
 			})
 		);
@@ -399,15 +500,15 @@ function buildMaterials(r) {
 			return `<section class="mgroup">
         <div class="mgroup-head">
           <h2>${esc(m)}</h2>
-          <span class="meta">${items.length} 轮 · 共 ${total} 个文件</span>
+          <span class="meta">${esc(fmt(t('%r 轮 · 共 %n 个文件'), { r: items.length, n: total }))}</span>
         </div>
         <div class="mruns">
           ${items
 						.map(
 							(it) => `<a class="mrun" href="${encodeURIComponent(it.run)}/">
             <span class="r-round">${esc(it.label)}</span>
-            <span class="r-files">${it.files.length} 个文件</span>
-            <span class="r-open">打开 ${ARROW}</span>
+            <span class="r-files">${esc(fmt(t('%n 个文件'), { n: it.files.length }))}</span>
+            <span class="r-open">${esc(t('打开'))} ${ARROW}</span>
           </a>`
 						)
 						.join('\n          ')}
@@ -421,10 +522,10 @@ function buildMaterials(r) {
   <div class="wrap">
     <header class="mhead">
       <div class="crumb">
-        <a href="../">${esc(r.brandSub)}</a><span class="sep">/</span><span>测试素材</span>
+        <a href="../">${esc(r.brandSub)}</a><span class="sep">/</span><span>${esc(t('测试素材'))}</span>
       </div>
-      <span class="tag">${runs.length} 轮 · ${totalFiles} 个文件</span>
-      <h1>全部测试素材</h1>
+      <span class="tag">${esc(fmt(t('%r 轮 · %n 个文件'), { r: runs.length, n: totalFiles }))}</span>
+      <h1>${esc(t('全部测试素材'))}</h1>
       <p class="lede">${esc(cfg.note || '')}</p>
     </header>
     ${groups}
@@ -432,17 +533,23 @@ function buildMaterials(r) {
 </main>`;
 
 	bytes += write(
-		join(r.dir.replace(/^reports\//, 'reports/'), 'materials'),
+		join(lang.base, r.dir, 'materials'),
 		shell({
-			title: `全部测试素材 · ${r.title}`,
-			description: `${r.title}的全部测试素材：${runs.length} 轮同题运行落盘的 ${totalFiles} 个文件，含策划总纲、分卷与章节细纲、人物设定与第一章正文。`,
-			url: `${SITE.url}${r.dir.replace(/^reports\//, 'reports/')}/materials/`,
+			lang,
+			rel: `reports/${r.slug}/materials/`,
+			title: `${t('全部测试素材')} · ${r.title}`,
+			description: fmt(
+				t(
+					'%title的全部测试素材：%r 轮同题运行落盘的 %n 个文件，含策划总纲、分卷与章节细纲、人物设定与第一章正文。'
+				),
+				{ title: r.title, r: runs.length, n: totalFiles }
+			),
 			css: `${BASE_CSS}\n${MATERIALS_CSS}`,
 			body: indexBody,
-			navLinks: `<a href="../../">全部报告</a>\n      <a href="../">返回报告</a>`,
-			brandSub: '测试素材',
+			navLinks,
+			brandSub: t('测试素材'),
 			footerNote: r.footerNote,
-			home: '../../../',
+			t,
 			og: 'website',
 		})
 	);
@@ -455,38 +562,49 @@ function buildMaterials(r) {
    ============================================================ */
 const built = [];
 
-for (const r of reports) {
-	const template = read(r.dir, 'page.template.html');
-	const body = template
-		.replace('__WORK_TEXT__', JSON.stringify(r.works))
-		.replace('__COMMENTS__', JSON.stringify(r.comments));
-	if (/__WORK_TEXT__|__COMMENTS__/.test(body)) throw new Error(`${r.dir}：模板占位符未全部替换`);
+for (const lang of LANGS) {
+	for (const raw of reports) {
+		const t = translatorFor(raw.slug, lang.id);
+		const r = localize(raw, t);
 
-	const navLinks = [{ href: '../../', label: '全部报告' }, ...(r.nav || [])]
-		.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`)
-		.join('\n      ');
+		// 先翻译模板，再塞作品原文与评语——它们是被评的对象，始终保持中文
+		const tpl = t(read(r.dir, 'page.template.html'));
+		const body = tpl
+			.replace('__WORK_TEXT__', JSON.stringify(r.works))
+			.replace('__COMMENTS__', JSON.stringify(r.comments));
+		if (/__WORK_TEXT__|__COMMENTS__/.test(body)) throw new Error(`${r.dir}：模板占位符未全部替换`);
 
-	const html = shell({
-		title: `${r.title} · ${SITE.name}`,
-		description: r.description,
-		url: `${SITE.url}reports/${r.slug}/`,
-		css: `${BASE_CSS}\n${REPORT_CSS}`,
-		body,
-		navLinks,
-		brandSub: r.brandSub,
-		footerNote: r.footerNote,
-		home: '../../',
-		og: 'article',
-	});
+		const navLinks = [{ href: '../../', label: t('全部报告') }, ...(r.nav || [])]
+			.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`)
+			.join('\n      ');
 
-	const bytes = write(join('reports', r.slug), html);
-	built.push({
-		slug: r.slug,
-		bytes,
-		works: r.works ? Object.keys(r.works).length : 0,
-		comments: r.comments ? r.comments.length : 0,
-		materials: buildMaterials(r),
-	});
+		const html = shell({
+			lang,
+			rel: `reports/${r.slug}/`,
+			title: `${r.title} · ${t(SITE.name)}`,
+			description: r.description,
+			css: `${BASE_CSS}\n${REPORT_CSS}`,
+			body,
+			navLinks,
+			brandSub: r.brandSub,
+			footerNote: r.footerNote,
+			t,
+			og: 'article',
+		});
+
+		const bytes = write(join(lang.base, 'reports', r.slug), html);
+		built.push({
+			lang: lang.id,
+			slug: r.slug,
+			bytes,
+			works: r.works ? Object.keys(r.works).length : 0,
+			comments: r.comments ? r.comments.length : 0,
+			untranslated: (
+				(t.keep || []).reduce((s, k) => s.split(k.trim()).join(''), tpl).match(/[一-鿿]/g) || []
+			).length,
+			materials: buildMaterials(r, lang, t),
+		});
+	}
 }
 
 /* ============================================================
@@ -495,12 +613,18 @@ for (const r of reports) {
 // 首页的累计数字来自各期 meta.totals，与用于展示的 stats 解耦
 const sum = (key) => reports.reduce((n, r) => n + Number((r.totals || {})[key] || 0), 0);
 
-const cards = reports
-	.map(
-		(r) => `<a class="rcard" href="reports/${r.slug}/">
+const homeBytes = {};
+
+for (const lang of LANGS) {
+	const t = shellT[lang.id];
+
+	const cards = reports
+		.map((raw) => localize(raw, translatorFor(raw.slug, lang.id)))
+		.map(
+			(r) => `<a class="rcard" href="reports/${r.slug}/">
           <div class="rtop">
-            <span class="tag">第 ${esc(r.issue)} 期</span>
-            ${(r.tags || []).map((t) => `<span class="tag muted">${esc(t)}</span>`).join('')}
+            <span class="tag">${esc(fmt(t('第 %n 期'), { n: r.issue }))}</span>
+            ${(r.tags || []).map((tag) => `<span class="tag muted">${esc(tag)}</span>`).join('')}
             <span class="rdate" style="margin-left:auto">${esc(r.date.replace(/-/g, '.'))}</span>
           </div>
           <h3>${esc(r.cardTitle)}</h3>
@@ -508,34 +632,40 @@ const cards = reports
           <div class="rstats">
             ${r.stats.map((s) => `<div><b>${esc(s.value)}</b>${esc(s.label)}</div>`).join('\n            ')}
           </div>
-          <span class="rmore">读报告 ${ARROW}</span>
+          <span class="rmore">${esc(t('读报告'))} ${ARROW}</span>
         </a>`
-	)
-	.join('\n        ');
+		)
+		.join('\n        ');
 
-const homeBody = read('src/home.template.html')
-	.replace('{{REPORT_CARDS}}', cards)
-	.replace('{{TOTAL_REPORTS}}', String(reports.length))
-	.replace('{{TOTAL_MODELS}}', String(sum('models')))
-	.replace('{{TOTAL_WORKS}}', String(sum('works')))
-	.replace('{{TOTAL_SCORES}}', String(sum('ratings')));
+	const homeBody = t(read('src/home.template.html'))
+		.replace('{{REPORT_CARDS}}', cards)
+		.replace('{{TOTAL_REPORTS}}', String(reports.length))
+		.replace('{{TOTAL_MODELS}}', String(sum('models')))
+		.replace('{{TOTAL_WORKS}}', String(sum('works')))
+		.replace('{{TOTAL_SCORES}}', String(sum('ratings')));
 
-if (/\{\{[A-Z_]+\}\}/.test(homeBody)) throw new Error('首页模板占位符未全部替换');
+	if (/\{\{[A-Z_]+\}\}/.test(homeBody)) throw new Error('首页模板占位符未全部替换');
 
-const homeHtml = shell({
-	title: SITE.title,
-	description: SITE.description,
-	url: SITE.url,
-	css: `${BASE_CSS}\n${HOME_CSS}`,
-	body: homeBody,
-	navLinks: '<a href="#reports">全部报告</a>\n      <a href="#method">测评方法</a>\n      <a href="#join">加入测评团</a>',
-	brandSub: '',
-	footerNote: ['© 2026 SoloEnt.ai. 版权所有。为勇敢的故事创作者而生。'],
-	home: './',
-	og: 'website',
-});
+	const homeHtml = shell({
+		lang,
+		rel: '',
+		title: t(SITE.title),
+		description: t(SITE.description),
+		css: `${BASE_CSS}\n${HOME_CSS}`,
+		body: homeBody,
+		navLinks: [
+			`<a href="#reports">${esc(t('全部报告'))}</a>`,
+			`<a href="#method">${esc(t('测评方法'))}</a>`,
+			`<a href="#join">${esc(t('加入测评团'))}</a>`,
+		].join('\n      '),
+		brandSub: '',
+		footerNote: ['© 2026 SoloEnt.ai. 版权所有。为勇敢的故事创作者而生。'],
+		t,
+		og: 'website',
+	});
 
-const homeBytes = write('.', homeHtml);
+	homeBytes[lang.id] = write(lang.base || '.', homeHtml);
+}
 
 // GitHub Pages 默认会跑 Jekyll，.nojekyll 关掉它
 writeFileSync(join(ROOT, 'dist/.nojekyll'), '');
@@ -544,12 +674,28 @@ if (existsSync(join(ROOT, 'CNAME'))) {
 }
 
 const kb = (n) => (n / 1024).toFixed(0) + ' KB';
-console.log(`dist/index.html — ${reports.length} 期报告 · ${kb(homeBytes)}`);
-for (const b of built) {
-	console.log(`dist/reports/${b.slug}/index.html — ${b.works} 篇原文 · ${b.comments} 条简评 · ${kb(b.bytes)}`);
-	if (b.materials) {
+for (const lang of LANGS) {
+	const prefix = lang.base || '';
+	console.log(`dist/${prefix}index.html — ${reports.length} 期报告 · ${kb(homeBytes[lang.id])}`);
+	for (const b of built.filter((x) => x.lang === lang.id)) {
 		console.log(
-			`  └ materials/ — ${b.materials.runs} 轮 · ${b.materials.files} 个文件 · ${kb(b.materials.bytes)}`
+			`dist/${prefix}reports/${b.slug}/index.html — ${b.works} 篇原文 · ${b.comments} 条简评 · ${kb(b.bytes)}`
 		);
+		if (b.materials) {
+			console.log(
+				`  └ materials/ — ${b.materials.runs} 轮 · ${b.materials.files} 个文件 · ${kb(b.materials.bytes)}`
+			);
+		}
+	}
+}
+
+// 漏译提醒：只看模板本身（作品原文、评语、素材内容本来就保持中文，不计入）
+const miss = built.filter((b) => b.lang !== 'zh' && b.untranslated);
+if (miss.length) {
+	console.log(`\n⚠️  以下页面模板还有没进词典的中文：`);
+	for (const b of miss) {
+		const dict = reportDict(b.slug);
+		const hint = existsSync(join(ROOT, dict)) ? dict : `${dict}（还没建）`;
+		console.log(`   /${b.lang}/reports/${b.slug}/ — ${b.untranslated} 个汉字 · 补到 ${hint}`);
 	}
 }

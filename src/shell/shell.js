@@ -1,19 +1,16 @@
-/* 所有页面共用：主题切换、滚动进度、入场动画、数字滚动
+/* 所有页面共用：滚动进度、入场动画、数字滚动
+   深色 / 浅色跟随系统，没有手动开关；系统主题变了要通知图表重画。
    注：window.onThemeChange 由 <head> 里的内联桩函数提前定义，页面脚本先于本文件执行 */
 (function () {
   "use strict";
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var toggle = document.getElementById("theme-toggle");
-  if (toggle) {
-    toggle.addEventListener("click", function () {
-      var root = document.documentElement;
-      var cur = root.getAttribute("data-theme");
-      if (!cur) cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
-      (window.__themeHooks || []).forEach(function (fn) { fn(); });
-    });
-  }
+  var dark = window.matchMedia("(prefers-color-scheme: dark)");
+  var onSchemeChange = function () {
+    (window.__themeHooks || []).forEach(function (fn) { fn(); });
+  };
+  if (dark.addEventListener) dark.addEventListener("change", onSchemeChange);
+  else if (dark.addListener) dark.addListener(onSchemeChange);
 
   var bar = document.getElementById("progress");
   if (bar) {

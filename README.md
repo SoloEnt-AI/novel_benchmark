@@ -1,4 +1,4 @@
-# SoloEnt 模型测评
+# SoloEnt 模型写作测评
 
 同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。本仓库是这系列测评的成果站：**首页列出全部报告，每期报告是一个二级页**。
 
@@ -13,7 +13,11 @@
 /reports/<slug>/                       报告详情页（一期一个）
 /reports/<slug>/materials/             测试素材索引（有素材的期才有）
 /reports/<slug>/materials/<run>/       某一轮跑出来的全部文件
+/en/**                                 上面每一页的英文版，路径结构完全一致
 ```
+
+中文在根目录，英文在 `/en/` 下，导航右上角的 `EN` / `中文` 按钮在两者之间跳转（页面对页面，不会跳回首页）。
+深色 / 浅色跟随系统，没有手动开关。
 
 已发布：
 
@@ -32,7 +36,7 @@ src/
     base.css            设计令牌 + 基础样式 + 导航 + 页脚（所有页面共用）
     home.css            首页专用样式
     report.css          报告详情页专用样式（图表 / 阅读器 / 表格…）
-    shell.js            主题切换、滚动进度、入场动画、数字滚动
+    shell.js            滚动进度、入场动画、数字滚动
     nav.html            顶部导航模板
     footer.html         页脚模板
   home.template.html    首页正文
@@ -42,11 +46,26 @@ reports/<slug>/
   data/works.json       参评作品正文，key 是四位数匿名编号（可选）
   data/comments.json    评审简评，按编号关联到作品（可选）
   materials/<run>/**    这一轮跑出来的原始文件（可选），构建时渲染成素材浏览器
-scripts/build.mjs       编译成 dist/index.html 和 dist/reports/<slug>/index.html
+en/
+  shell.json            外壳 + 首页 + 素材页的英文文案
+  reports/<slug>.json   这一期正文与 meta 的英文文案
+  README.md             英文文案怎么改
+scripts/build.mjs       编译成 dist/ 下的中英两套页面
 .github/workflows/      push 到 main 自动构建并部署到 GitHub Pages
 ```
 
 分数、价格等汇总数据直接写在各期 `page.template.html` 顶部的 `MODELS` / `WORKS` 两个数组里，改数字在那里改。
+
+## 英文版怎么来的
+
+**英文页上的每一个字都在 [`en/`](en/) 里**，模板只写一份中文，构建时按「原文 → 译文」逐串替换：`en/shell.json` 管外壳和首页，`en/reports/<slug>.json` 管这一期的正文和 `meta.json` 字段。改英文只动 `en/`，结构、图表和分数数据永远只有一处来源。
+
+- 键是模板里的原文，值是译文。**键里的空白按「一处或多处空白」匹配**，所以模板里折行的长句照抄一行即可。
+- 按串长从长到短替换，长句先落地，短词才不会把长句切碎。
+- **值留空 = 有意保持中文**：评审昵称、AI 感检测器的句式清单和示例文本都是被检测的对象，翻译了就失真。以 `_` 开头的键是注释，不参与替换。
+- 键里带引号的条目是 JS / HTML 片段（如 `"（第`），值必须用直引号；纯文案里的引号一律用弯引号 `“ ”`，否则会撑破 JS 字符串。
+- 参评作品原文、评审简评、`materials/` 里的素材始终保持中文，构建时在翻译之后才注入。
+- 构建结束会列出英文模板里还没进词典的中文字数，为 0 才算翻完。
 
 ## 本地开发
 
@@ -66,7 +85,8 @@ open dist/index.html          # 直接用浏览器打开即可，不需要起服
 3. 改 `page.template.html`：正文和 `MODELS` 数组。
 4. 要公开原文就放入 `data/works.json` 和 `data/comments.json`（格式见下），并在模板里保留 `__WORK_TEXT__` 和 `__COMMENTS__` 两个占位符；不公开原文就整个 `data/` 不要，构建会自动跳过。
 5. 要公开测试素材，把每一轮的原始文件放进 `materials/<run>/`（`<run>` 形如 `compare-gpt-01`，末段是轮次），并在 `meta.json` 的 `materials.map` 里写好「前缀 → 模型名」的映射、`materials.order` 里写分组顺序。构建会把 markdown 渲染成素材浏览器，图片等二进制原样拷贝。
-6. `node scripts/build.mjs` —— 首页卡片、页脚链接、导航都会自动带上新的一期，按 `date` 倒序排列。
+6. 新建 `en/reports/<新 slug>.json`：把这期正文和 `meta.json` 里的中文串翻成英文（做法见 [`en/README.md`](en/README.md)）。先跑一次构建，末尾会告诉你还差多少字没翻。
+7. `node scripts/build.mjs` —— 首页卡片、页脚链接、导航都会自动带上新的一期，按 `date` 倒序排列，中英各生成一套。
 
 ```jsonc
 // works.json
