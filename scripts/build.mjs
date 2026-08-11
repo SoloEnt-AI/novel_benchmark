@@ -9,12 +9,15 @@ import { dirname, join, posix } from 'node:path';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...p) => readFileSync(join(ROOT, ...p), 'utf8');
 
+// 默认国际站；中国区 Zeabur 等构建时设 SITE_URL=https://benchmark.soloent.cn/
+const siteUrl = (process.env.SITE_URL || 'https://benchmark.soloent.ai/').replace(/\/?$/, '/');
+
 const SITE = {
 	name: 'SoloEnt 模型写作测评',
 	title: 'AI 写小说哪家强 · SoloEnt 模型写作测评',
 	description:
 		'SoloEnt 模型写作测评：同一份大纲，多个模型各写几遍，交给读网文的人双盲打分。每期公开全部原文、原始评语与统计口径。',
-	url: 'https://soloent-ai.github.io/novel_benchmark/',
+	url: siteUrl,
 };
 
 // 站点图标 / 品牌标识：SoloEnt 八瓣花
