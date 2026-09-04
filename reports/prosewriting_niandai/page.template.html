@@ -1,0 +1,1311 @@
+<main>
+  <!-- ================= HERO ================= -->
+  <header id="hero" class="hero hero-gradient">
+    <div class="wrap">
+      <span class="tag eyebrow">第 04 期 · 正文写作 · 年代篇 · 2026.09.04</span>
+      <h1>同一章纲写正文 · <em>年代题材</em></h1>
+      <p class="lede">
+        题材是年代文：1979 年盛夏，现代社畜猝死穿越，附身北京什刹海一个寄居二叔檐下的孤儿。
+        大纲、章纲、人物设定完全一致，每个模型独立生成三篇，互不参照。
+        91 份测评员评分全程双盲，即打分的人只看得到四位数随机编号，不知道出自什么模型。
+      </p>
+      <div class="herocta">
+        <a class="btn" href="#rank">看总榜</a>
+        <a class="btn-ghost" href="#quotes">读测评团原话</a>
+      </div>
+
+      <div class="statrow">
+        <div class="stat"><b class="num" data-count="10">0</b><span>参评模型</span></div>
+        <div class="stat"><b class="num" data-count="30">0</b><span>匿名作品</span></div>
+        <div class="stat"><b class="num" data-count="91">0</b><span>有效评分</span></div>
+        <div class="stat"><b class="num" data-count="6">0</b><span>评分维度</span></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= RANK ================= -->
+  <section class="chapter" id="rank">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">01</div>
+        <div>
+          <h2>总榜：Kimi K3 登顶，但没有一项维度第一</h2>
+          <p class="sub">
+            总榜按测评员给出的整体分排序。Kimi K3 总分第一，五个单项都没进前二。点击维度可切换榜单。
+          </p>
+        </div>
+      </div>
+
+      <div class="card pad reveal">
+        <div class="chips scroller" id="dim-chips" style="padding-bottom:4px;margin-bottom:24px;flex-wrap:nowrap"></div>
+        <div class="lb-wrap">
+          <div class="lb-rows" id="lb-rows"></div>
+          <div class="lb-axis" id="lb-axis"></div>
+        </div>
+        <p class="note" id="lb-note" style="margin-top:18px"></p>
+      </div>
+
+      <div class="tierbar reveal">
+        <div class="tier">
+          <b>第一档</b>
+          <p>Kimi K3 · Gemini 3.7 Flash · Gemini 3.1 Pro</p>
+          <p class="rng">6.87 至 7.19</p>
+        </div>
+        <div class="tier">
+          <b>第二档</b>
+          <p>GLM-5.3 · GPT-5.6 Luna · Qwen3.8 Max</p>
+          <p class="rng">6.23 至 6.62</p>
+        </div>
+        <div class="tier">
+          <b>第三档</b>
+          <p>DeepSeek V4 Pro · GPT-5.6 Terra · Grok 4.6 · DeepSeek V4 Flash</p>
+          <p class="rng">4.67 至 5.83</p>
+        </div>
+      </div>
+
+      <div class="card pad reveal" style="margin-top:20px">
+        <h3 style="font-size:1rem;margin-bottom:4px">Kimi K3 赢总分，Gemini 3.7 Flash 赢单项</h3>
+        <p class="note" style="margin-top:8px">
+          <strong>Kimi K3 拿了总分第一，但它在五个维度里没有一项进前二</strong>：
+          网文感第 5、人物描写第 3、细节描写第 5、逻辑严密第 8、AI 感第 5。
+          而总分第二的 Gemini 3.7 Flash，五个维度里拿了四个第一。
+        </p>
+        <div class="ranksplit" id="ranksplit"></div>
+        <p class="note" style="margin-top:16px">
+          <strong>总评分记录整篇的阅读感受，五个维度分别打分。</strong>两组数据分开统计，因此整体读感和单项能力会给出不同排名。
+        </p>
+        <p class="note">
+          Kimi K3 的 7.19 靠的是三篇里那篇 8.00（<button type="button" class="openw" data-w="3105">3105</button>），
+          另两篇是 7.36 和 6.20；它的逻辑严密只有 4.76，排第 8，短板相当明显。
+          那篇 8.00 最终采用两份评分，第三位测评员给出的 4.5 分触发异常值规则，被剔除。
+          给出高总分的两位测评员，五个维度的平均分只有 4.20 和 6.50，
+          <strong>总分比维度分高出 3.8 和 1.5</strong>。这种「整体印象远好于逐项拆解」的落差，Kimi K3 是全场最大的（平均 +1.15），
+          而 Gemini 3.7 Flash 几乎没有（+0.18）。
+          Gemini 3.7 Flash 各项最均衡，代表作 <button type="button" class="openw" data-w="3556">3556</button> 得 7.87 分。
+          <strong>看均衡性，选 Gemini 3.7 Flash；看单篇上限，Kimi K3 更高。</strong>
+        </p>
+      </div>
+
+      <p class="note reveal" style="margin-top:14px;max-width:var(--prose)">
+        前三名只差 0.32 分，第一到第五只差 0.57 分，差距没有统计显著性。因此只分档，不细排名次。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= DIMENSIONS ================= -->
+  <section class="chapter" id="dims">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">02</div>
+        <div>
+          <h2>五维拆解：谁强在哪，谁塌在哪</h2>
+          <p class="sub">
+            「逻辑问题」和「AI 感」已换算成质量分（10 减原分），五项都是高分更好。可任选两个模型对比。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div class="radar-layout">
+          <div class="chart-box">
+            <svg class="radar-svg" viewBox="0 0 380 350" id="radar" role="img" aria-label="五维能力对比雷达图"></svg>
+            <p class="note" style="text-align:center;margin-top:4px">径向刻度 2 至 8 分，覆盖全部实际得分</p>
+          </div>
+          <div>
+            <div class="pickgroup">
+              <div class="picklabel"><span class="swatch" style="background:var(--accent)"></span>模型 A</div>
+              <select class="sel" id="radar-a"></select>
+            </div>
+            <div class="pickgroup">
+              <div class="picklabel"><span class="swatch" style="background:var(--teal)"></span>模型 B</div>
+              <select class="sel" id="radar-b"></select>
+            </div>
+            <div class="deltas" id="radar-deltas"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= TEXTURE ================= -->
+  <section class="chapter" id="texture">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">03</div>
+        <div>
+          <h2>细节质感：堆字数堆不出年代感</h2>
+          <p class="sub">
+            章纲要求三千字左右，实际平均 4,628 字，三分之一超过 5,000 字。篇幅与得分几乎无关。
+          </p>
+        </div>
+      </div>
+
+      <div class="card pad reveal">
+        <div class="corr" id="corr"></div>
+        <p class="note" style="margin-top:18px">
+          各模型平均篇幅从 3,240 字到 6,519 字，最长接近最短的两倍。
+          篇幅与总分的相关系数只有 <strong>0.14</strong>，与细节分的相关系数为 0.45。多写通常没有多拿分。
+        </p>
+      </div>
+
+      <div class="card pad reveal" style="margin-top:20px">
+        <h3 style="font-size:1rem;margin-bottom:4px">篇幅与细节分对照</h3>
+        <p class="note" style="margin-top:0;margin-bottom:6px">灰条是平均篇幅，绿条是细节描写分。两者并不同步。</p>
+        <div class="eff" id="eff"></div>
+        <p class="note" style="margin-top:16px">
+          <strong>Gemini 3.7 Flash</strong> 用 4,631 字拿到全场最高的细节分 6.93；
+          <strong>GLM-5.3</strong> 多写 40%（6,519 字，单篇最长 8,052 字），细节分为 6.86。
+          <strong>Gemini 3.1 Pro</strong> 平均只有 3,240 字，是全场最短，细节分 6.27 排第四，
+          比写了 5,099 字的 DeepSeek V4 Flash（5.27）整整高一分。
+        </p>
+        <p class="note">
+          <strong>GPT-5.6 Terra</strong> 平均写 3,979 字，细节分只有 4.30，比倒数第二的 Grok 4.6 低 0.85。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STABILITY ================= -->
+  <section class="chapter" id="stability">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">04</div>
+        <div>
+          <h2>稳定性：同一套输入，跑三次</h2>
+          <p class="sub">
+            每个点代表一次生成，横条是三次的分数跨度，竖线是均分。极差从 0.46 到 4.50，越小越稳。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div id="dotplot"></div>
+        <div class="dp-axis" id="dp-axis"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:20px;font-size:.8rem;color:var(--ink-3)">
+          <span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--accent);vertical-align:middle;margin-right:6px"></span>单次生成得分</span>
+          <span><span style="display:inline-block;width:2px;height:12px;background:var(--ink);opacity:.55;vertical-align:middle;margin-right:6px"></span>三次均分</span>
+          <span style="margin-left:auto">右侧数字为极差</span>
+        </div>
+      </div>
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 style="font-size:.95rem;color:var(--accent-ink)">Luna 最稳</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            GPT-5.6 Luna 极差 0.46 全场最小，三篇 6.78 / 6.76 / 6.32，
+            最高分不突出，最低也没跌破 6.3。追求稳定交付可以优先看它。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:.95rem;color:var(--teal-ink)">最高的一篇，来自第七名</h3>
+          <p class="note" style="font-size:.9rem;color:var(--ink-2);margin-top:8px">
+            全场最高的一篇来自总榜第七：DeepSeek V4 Pro 写出了 8.50
+            （<button type="button" class="openw" data-w="3491">3491</button>），
+            另外两篇只有 5.00 和 4.00，极差 4.50。想碰到高分稿，往往要多跑几次。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COST ================= -->
+  <section class="chapter" id="cost">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">05</div>
+        <div>
+          <h2>钱花在哪：选对的，不只选贵的</h2>
+          <p class="sub">
+            GPT-5.6 Luna 和 GLM-5.3 性价比不错，推荐日常使用。
+          </p>
+        </div>
+      </div>
+      <div class="card pad reveal">
+        <div class="chart-box">
+          <svg class="scatter-svg" viewBox="0 0 760 420" id="scatter" role="img" aria-label="每章成本与总分的散点图"></svg>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:16px;max-width:var(--prose)">
+        第一名 Kimi K3 每章 $0.074。第二名 Gemini 3.7 Flash 只要一半，第四名 GLM-5.3 约为三分之一。
+        GPT-5.6 Terra 每章 $0.0725，价格第二，排名第八。DeepSeek V4 Flash 每章 $0.0035，价格最低，总分也垫底。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= QUOTES ================= -->
+  <section class="chapter" id="quotes">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">06</div>
+        <div>
+          <h2>测评员原话</h2>
+          <p class="sub">
+            共收录 <span id="cmt-count">86</span> 条评分原话，未经润色。点击评语可读对应作品。
+          </p>
+        </div>
+      </div>
+      <div class="reveal" style="margin-bottom:20px">
+        <div class="chips scroller" id="quote-chips" style="flex-wrap:nowrap;padding-bottom:4px"></div>
+        <div class="chips" style="margin-top:10px">
+          <button class="chip on" type="button" data-cf="all">全部分数</button>
+          <button class="chip" type="button" data-cf="hi">只看 7 分以上</button>
+          <button class="chip" type="button" data-cf="lo">只看 5 分以下</button>
+        </div>
+      </div>
+      <div class="qgrid" id="qgrid"></div>
+      <div style="text-align:center;margin-top:8px">
+        <button class="chip" type="button" id="qmore">显示更多</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= DETAIL TABLE ================= -->
+  <section class="chapter" id="detail">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">07</div>
+        <div>
+          <h2>30 篇原文，全部公开</h2>
+          <p class="sub">
+            点击任意一篇，可查看全文、六项分数和全部评语。
+          </p>
+        </div>
+      </div>
+
+      <div class="viewtabs reveal">
+        <button class="chip on" type="button" data-view="cards">按篇浏览</button>
+        <button class="chip" type="button" data-view="table">明细表</button>
+      </div>
+
+      <div id="view-cards" class="reveal">
+        <div class="wgrid" id="wgrid"></div>
+      </div>
+
+      <div id="view-table" class="card reveal" style="overflow:hidden;display:none">
+        <div class="scroller">
+          <table id="detail-table">
+            <thead><tr id="detail-head"></tr></thead>
+            <tbody id="detail-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section class="chapter" id="method">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">08</div>
+        <div>
+          <h2>方法与局限</h2>
+          <p class="sub">评分方法和适用范围。</p>
+        </div>
+      </div>
+      <div class="twocol reveal">
+        <div class="card pad">
+          <h3 style="font-size:1.25rem;margin-bottom:16px">数据怎么处理的</h3>
+          <div class="deflist">
+            <div>
+              <h4>双盲</h4>
+              <p>测评员只看到匿名编号，模型名称、他人评分和评审进度均隐藏。编号与模型的对应关系只在管理端保存。</p>
+            </div>
+            <div>
+              <h4>异常值剔除</h4>
+              <p>各评分列单独判断。分数同时满足「偏离该篇中位数超过 2.5 × MAD」和「偏离超过 2 分」时剔除。本期 21 篇触发规则，共剔除 53 项；另有 1 篇进入复核。</p>
+            </div>
+            <div>
+              <h4>样本可用性筛查</h4>
+              <p>每位测评员的评分都做内部一致性检验，判别力不足的整批排除。本次排除 8 份。</p>
+            </div>
+            <div>
+              <h4>样本量</h4>
+              <p>每个模型生成 3 篇，每篇有 3 至 4 份评分，共 91 份。专家组补齐了评分不足的作品。</p>
+            </div>
+          </div>
+        </div>
+        <div class="card pad">
+          <h3 style="font-size:1.25rem;margin-bottom:16px">这份结果的边界</h3>
+          <div class="deflist">
+            <div>
+              <h4>样本量偏小</h4>
+              <p>每个模型仅 3 篇。DeepSeek V4 Pro（极差 4.50）、Qwen3.8 Max（2.75）这类波动大的模型，均分参考价值有限，看稳定性点图比看名次可靠。</p>
+            </div>
+            <div>
+              <h4>维度结论不宜单独引用</h4>
+              <p>部分维度的评分区分度不足，单项结果要谨慎使用。总分单独统计。</p>
+            </div>
+            <div>
+              <h4>只测了第一章</h4>
+              <p>本次只测开篇，实际平均 4,628 字。长篇节奏、伏笔回收和人物弧光不在评估范围内。</p>
+            </div>
+            <div>
+              <h4>「AI 感」主观性最强</h4>
+              <p>测评员对 AI 痕迹的判断会有差异。本期 AI 感质量分均值为 3.99，解读时要留意这种主观性。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note reveal" style="margin-top:20px;max-width:var(--prose)">
+        题材变化、跨期轨迹和版本对比见
+        <a href="../crossgenre_3rounds/">第 05 期 · 三题材横向对比</a>。
+      </p>
+
+      <details class="appendix reveal">
+        <summary>附录：十个模型拿到的是同一份大纲</summary>
+        <div class="appendix-body">
+          <h4>项目定位</h4>
+          <p>年代文 / 七十年代末 / 京味市井 / 文抄公金手指。</p>
+          <p>故事梗概：「1979 年的北京什刹海，现代社畜猝死穿越，成了寄居二叔家、随时会被遣返的『盲流』孤儿。」</p>
+
+          <h4>第一章：什刹海的狼</h4>
+          <p>穿越者在盛夏的荷花市场边醒来，饿得眼前发黑，随即面对街道办的遣返通牒与二叔一家的霸产欺凌。三个场景：</p>
+          <ul>
+            <li><strong>饿醒</strong>（生理 / 年代感）：醒来先感到饿。用触觉和嗅觉写淤泥、鱼腥和汗臭，避免用上帝视角交代背景。</li>
+            <li><strong>遣返通牒</strong>（冲突 / 处境）：街道办上门，「盲流」身份随时可能被送走。要求通过对话和邻里围观写出时代压力。</li>
+            <li><strong>霸产</strong>（人物 / 反差）：二叔林德柱一家占着正房，主角必须在示弱与反击之间做选择。</li>
+          </ul>
+          <p><strong>结尾钩子</strong>：他想起前世读过的小说，在这里触发「文抄公」金手指。多个模型把这个转折写得很生硬。</p>
+          <p>篇幅要求 3000 字左右。本期实际平均 4,628 字，最长的一篇 8,052 字。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section id="cta">
+    <div class="wrap">
+      <div class="cta-grid reveal">
+        <div class="cta-card join">
+          <span class="cta-eyebrow">来打分</span>
+          <h3>感谢本期测评员</h3>
+          <p class="credits">
+            <span>武行</span><span>悟道</span><span>雪白的面具</span><span>lastworm</span><span>流萤King</span><span>长庚</span><span>上帝模式</span><span>笑沧桑</span><span>海獭</span><span>慕容复国</span><span>在天子家喝茶</span><span>风</span><span>方周兴</span><span>sun</span><span>Hubert</span><span>坚强</span><span>老鸭梨</span><span>Sail</span><span>泡在海岛的猴子</span><span>Sandra</span>
+          </p>
+          <p style="margin-top:14px">
+            常看网文，也愿意认真打分？可以加入测评团。
+          </p>
+          <div class="spacer"></div>
+          <a class="btn" style="align-self:flex-start" href="https://soloent.cn/zh/activities/mo-xing-ce-ping-zuo-pin-ping-shen-tuan-zhao-mu-la" target="_blank" rel="noopener">加入测评团 →</a>
+        </div>
+
+        <div class="cta-card">
+          <span class="cta-eyebrow">点菜</span>
+          <h3>下一期想看什么测评？</h3>
+          <p>写下想测的题材、模型或写作环节。</p>
+          <div class="spacer"></div>
+          <div class="ask-row">
+            <input class="ask-input" id="ask-input" type="text" maxlength="200"
+              data-source="年代篇正文测评页"
+              placeholder="例如：想看 AI 写悬疑推理的测评" aria-label="你还想看什么测评" />
+            <button class="btn" type="button" id="ask-btn">提交</button>
+          </div>
+          <p class="ask-msg" id="ask-msg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<style>
+  .openw {
+    display: inline-flex; align-items: center; gap: 3px; padding: 1px 7px; margin: 0 1px;
+    font-family: var(--font-mono); font-size: .82em; font-weight: 700;
+    color: var(--accent-ink); background: var(--accent-soft); border: 1px solid transparent;
+    border-radius: var(--r-sm); cursor: pointer; transition: border-color .2s;
+  }
+  .openw:hover { border-color: var(--accent); }
+  .openw::after { content: "↗"; font-size: .9em; opacity: .7; }
+
+  .ranksplit { display: flex; flex-direction: column; gap: 7px; margin-top: 14px; }
+  .rs-row { display: grid; grid-template-columns: 92px 1fr 1fr; gap: 10px; align-items: center; font-size: .82rem; }
+  .rs-row.head { font-size: .7rem; color: var(--ink-3); font-weight: 700; letter-spacing: .04em; }
+  .rs-dim { color: var(--ink-2); }
+  .rs-cell { display: flex; align-items: center; gap: 8px; }
+  .rs-pill {
+    font-family: var(--font-mono); font-size: .74rem; font-weight: 700;
+    width: 26px; height: 22px; display: grid; place-items: center; border-radius: var(--r-sm);
+    background: var(--surface-2); color: var(--ink-2); flex: none;
+  }
+  .rs-pill.gold { background: var(--accent-soft); color: var(--accent-ink); }
+  .rs-pill.bad { background: var(--warn-soft); color: var(--warn); }
+  .rs-v { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-3); }
+
+  .corr { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .corr { grid-template-columns: 1fr 1fr; } }
+  .corr-panel { border: 1px solid var(--rule); border-radius: var(--r-sm); padding: 14px 16px 12px; background: var(--surface-2); }
+  .corr-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .corr-t { font-weight: 800; font-size: .9rem; }
+  .corr-r { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: var(--ink-3); }
+  .corr-sub { font-size: .76rem; color: var(--ink-3); line-height: 1.6; }
+
+  .eff { display: flex; flex-direction: column; gap: 9px; margin-top: 8px; }
+  .eff-row { display: grid; grid-template-columns: 128px 1fr 60px 46px; gap: 10px; align-items: center; font-size: .82rem; }
+  .eff-row.head { font-size: .7rem; color: var(--ink-3); font-weight: 700; letter-spacing: .04em; }
+  .eff-name { font-weight: 700; }
+  .eff-track { position: relative; height: 20px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .eff-len { position: absolute; left: 0; top: 0; bottom: 0; background: var(--rule-2); border-radius: 999px; }
+  .eff-det { position: absolute; left: 0; top: 50%; height: 6px; transform: translateY(-50%); background: var(--accent); border-radius: 999px; }
+  .eff-v { font-family: var(--font-mono); font-size: .76rem; text-align: right; color: var(--ink-3); }
+  .eff-v.hi { color: var(--teal-ink); font-weight: 700; }
+  .eff-v.lo { color: var(--accent-ink); font-weight: 700; }
+</style>
+<div id="tip" role="tooltip"></div>
+
+<div id="scrim"></div>
+<aside id="reader" role="dialog" aria-modal="true" aria-label="作品全文" aria-hidden="true">
+  <div class="rd-top">
+    <div>
+      <div class="rd-id" id="rd-id">—</div>
+      <div class="rd-model" id="rd-model">—</div>
+      <div class="rd-sub" id="rd-sub">—</div>
+    </div>
+    <button class="rd-close" id="rd-close" type="button" aria-label="关闭">×</button>
+  </div>
+  <div class="rd-scroll" id="rd-scroll">
+    <div class="rd-scores" id="rd-scores"></div>
+    <article class="rd-body" id="rd-body"></article>
+    <div class="rd-cmt" id="rd-cmt"></div>
+  </div>
+  <div class="rd-nav">
+    <button type="button" id="rd-prev">← 上一篇</button>
+    <button type="button" id="rd-next">下一篇 →</button>
+  </div>
+</aside>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ==========================================================
+     Data
+     ========================================================== */
+  // 五维已转为质量分（越高越好）：logic = 10 − 逻辑问题, deslop = 10 − AI 感
+  var MODELS = [
+    { id:"kimi", name:"Kimi K3", short:"Kimi K3", total:7.19, gens:[8.00, 7.36, 6.20], n:10, web:6.27, char:6.59, detail:6.17, logic:4.76, deslop:3.61, avg5:5.48, range:1.80, sd:0.74, pin:3.00, pout:15.00, cost:0.074, len:4925 },
+    { id:"g37f", name:"Gemini 3.7 Flash", short:"G3.7 Flash", total:7.00, gens:[7.87, 7.00, 6.14], n:9, web:6.62, char:7.25, detail:6.93, logic:7.36, deslop:6.10, avg5:6.85, range:1.73, sd:0.71, pin:1.50, pout:7.50, cost:0.037, len:4631 },
+    { id:"g31p", name:"Gemini 3.1 Pro", short:"G3.1 Pro", total:6.87, gens:[7.25, 6.86, 6.50], n:9, web:6.49, char:6.23, detail:6.27, logic:5.78, deslop:5.15, avg5:5.98, range:0.75, sd:0.31, pin:2.00, pout:12.00, cost:0.058, len:3240 },
+    { id:"glm", name:"GLM-5.3", short:"GLM-5.3", total:6.62, gens:[7.30, 6.67, 5.90], n:9, web:6.73, char:6.66, detail:6.86, logic:4.59, deslop:3.05, avg5:5.58, range:1.40, sd:0.57, pin:1.40, pout:4.40, cost:0.0233, len:6519 },
+    { id:"luna", name:"GPT-5.6 Luna", short:"5.6 Luna", total:6.62, gens:[6.78, 6.76, 6.32], n:9, web:6.47, char:5.95, detail:6.07, logic:6.74, deslop:5.80, avg5:6.21, range:0.46, sd:0.21, pin:1.00, pout:6.00, cost:0.029, len:5200 },
+    { id:"qwen", name:"Qwen3.8 Max", short:"Qwen3.8", total:6.23, gens:[7.75, 5.93, 5.00], n:9, web:5.59, char:5.55, detail:6.63, logic:4.36, deslop:2.63, avg5:4.95, range:2.75, sd:1.14, pin:2.50, pout:7.50, cost:0.04, len:4675 },
+    { id:"dsp", name:"DeepSeek V4 Pro", short:"DS V4 Pro", total:5.83, gens:[8.50, 5.00, 4.00], n:9, web:5.15, char:6.02, detail:5.17, logic:6.66, deslop:5.94, avg5:5.79, range:4.50, sd:1.93, pin:0.66, pout:1.98, cost:0.0106, len:3912 },
+    { id:"terra", name:"GPT-5.6 Terra", short:"5.6 Terra", total:5.43, gens:[6.08, 5.72, 4.50], n:9, web:4.40, char:4.26, detail:4.30, logic:6.07, deslop:3.47, avg5:4.50, range:1.58, sd:0.68, pin:2.50, pout:15.00, cost:0.0725, len:3979 },
+    { id:"grok", name:"Grok 4.6", short:"Grok 4.6", total:5.21, gens:[5.88, 5.00, 4.75], n:9, web:3.89, char:4.61, detail:5.15, logic:5.70, deslop:1.83, avg5:4.24, range:1.13, sd:0.48, pin:2.00, pout:6.00, cost:0.032, len:4097 },
+    { id:"dsf", name:"DeepSeek V4 Flash", short:"DS V4 Flash", total:4.67, gens:[5.06, 5.00, 3.94], n:9, web:5.32, char:4.93, detail:5.27, logic:5.75, deslop:2.31, avg5:4.72, range:1.12, sd:0.51, pin:0.22, pout:0.66, cost:0.0035, len:5099 }
+  ];
+  var BY_ID = {};
+  MODELS.forEach(function (m) { BY_ID[m.id] = m; });
+
+  // 30 篇明细：编号 / 模型 / 份数 / 总分 / 网文感 / 人物 / 细节 / 逻辑问题↓ / AI感↓
+  var WORKS = [
+    ["3047", "dsf", 3, 5.00, 5.64, 5.60, 6.00, 5.00, 7.00],
+    ["3086", "dsf", 3, 5.06, 6.20, 5.06, 5.50, 4.56, 8.56],
+    ["3105", "kimi", 3, 8.00, 5.93, 6.14, 5.00, 7.00, 8.86],
+    ["3152", "dsp", 3, 4.00, 3.25, 4.00, 3.25, 4.34, 5.00],
+    ["3199", "qwen", 3, 5.00, 4.50, 3.50, 7.17, 7.50, 7.50],
+    ["3271", "glm", 3, 7.30, 8.25, 6.50, 7.00, 7.17, 7.33],
+    ["3281", "g37f", 3, 6.14, 6.29, 6.64, 6.50, 2.00, 3.80],
+    ["3288", "terra", 3, 4.50, 1.67, 2.67, 2.67, 3.67, 8.50],
+    ["3289", "g37f", 3, 7.00, 6.43, 7.43, 7.29, 1.60, 4.14],
+    ["3328", "dsf", 3, 3.94, 4.13, 4.13, 4.31, 3.20, 7.50],
+    ["3360", "g31p", 3, 6.50, 5.72, 5.67, 6.33, 7.67, 3.78],
+    ["3410", "grok", 3, 5.88, 5.88, 6.50, 5.25, 5.50, 8.50],
+    ["3463", "grok", 3, 4.75, 4.50, 5.63, 6.75, 4.00, 7.88],
+    ["3466", "dsp", 3, 5.00, 4.44, 6.06, 5.00, 3.17, 4.67],
+    ["3478", "qwen", 3, 5.93, 5.64, 6.57, 6.14, 4.00, 7.60],
+    ["3491", "dsp", 3, 8.50, 7.75, 8.00, 7.25, 2.50, 2.50],
+    ["3535", "grok", 3, 5.00, 1.30, 1.70, 3.44, 3.40, 8.13],
+    ["3553", "luna", 3, 6.78, 5.89, 5.44, 6.22, 2.78, 4.00],
+    ["3556", "g37f", 3, 7.87, 7.13, 7.67, 7.00, 4.33, 3.75],
+    ["3560", "glm", 3, 5.90, 5.60, 5.80, 6.90, 5.50, 6.80],
+    ["3575", "g31p", 3, 6.86, 6.86, 6.14, 5.43, 2.00, 6.40],
+    ["3581", "luna", 3, 6.76, 6.78, 6.00, 6.00, 2.00, 1.60],
+    ["3596", "g31p", 3, 7.25, 6.88, 6.88, 7.06, 3.00, 4.38],
+    ["3680", "luna", 3, 6.32, 6.75, 6.40, 6.00, 5.00, 7.00],
+    ["3756", "terra", 3, 5.72, 5.11, 4.67, 4.89, 3.56, 4.22],
+    ["3864", "kimi", 3, 6.20, 5.60, 6.20, 6.30, 3.80, 4.50],
+    ["3870", "qwen", 3, 7.75, 6.64, 6.57, 6.57, 5.43, 7.00],
+    ["3878", "kimi", 4, 7.36, 7.28, 7.44, 7.22, 4.91, 5.82],
+    ["3899", "terra", 3, 6.08, 6.43, 5.44, 5.33, 4.56, 6.86],
+    ["3900", "glm", 3, 6.67, 6.33, 7.67, 6.67, 3.56, 6.71]
+  ];
+
+  // 每篇作品的原文（构建时注入）：{ workId: { title, text, chars, url } }
+  var WORK_TEXT = __WORK_TEXT__;
+
+  // 每条评审简评（构建时注入）：{ workId, code, group, total, note }
+  var COMMENTS = __COMMENTS__;
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function fmt(v, d) { return Number(v).toFixed(d == null ? 2 : d); }
+  function money(v) {
+    if (v >= 100) return "$" + Math.round(v).toLocaleString("en-US");
+    if (v >= 1) return "$" + v.toFixed(2);
+    if (v >= 0.01) return "$" + v.toFixed(3);
+    return "$" + v.toFixed(4);
+  }
+  function esc(s) {
+    return s.replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  var tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.classList.add("on");
+    var r = tip.getBoundingClientRect();
+    var left = Math.min(Math.max(8, x - r.width / 2), window.innerWidth - r.width - 8);
+    var top = y - r.height - 14;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.classList.remove("on"); }
+
+  function bindTip(node, htmlFn) {
+    function move(e) {
+      var t = e.touches ? e.touches[0] : e;
+      showTip(htmlFn(), t.clientX, t.clientY);
+    }
+    node.addEventListener("mouseenter", move);
+    node.addEventListener("mousemove", move);
+    node.addEventListener("mouseleave", hideTip);
+    node.addEventListener("touchstart", function (e) { move(e); }, { passive: true });
+  }
+
+  /* ==========================================================
+     Reader: full text of any of the 30 works
+     ========================================================== */
+  var WORK_BY_ID = {};
+  WORKS.forEach(function (w) { WORK_BY_ID[w[0]] = w; });
+  var READ_ORDER = WORKS.map(function (w) { return w[0]; });   // 已按总分降序
+  var CMT_BY_WORK = {};
+  COMMENTS.forEach(function (c) {
+    (CMT_BY_WORK[c.workId] = CMT_BY_WORK[c.workId] || []).push(c);
+  });
+  Object.keys(CMT_BY_WORK).forEach(function (k) {
+    CMT_BY_WORK[k].sort(function (a, b) { return b.total - a.total; });
+  });
+
+  var reader = document.getElementById("reader");
+  var scrim = document.getElementById("scrim");
+  var curWork = null;
+  var lastFocus = null;
+
+  function renderMd(md) {
+    return md.split(/\n{2,}|\n/).map(function (line) {
+      var s = line.trim();
+      if (!s) return "";
+      if (/^#\s+/.test(s)) return "<h1>" + esc(s.replace(/^#\s+/, "")) + "</h1>";
+      if (/^#{2,}\s+/.test(s)) return "<h2>" + esc(s.replace(/^#{2,}\s+/, "")) + "</h2>";
+      if (/^([-*_]\s*){3,}$/.test(s)) return "<hr />";
+      return "<p>" + esc(s) + "</p>";
+    }).join("");
+  }
+
+  function openWork(id) {
+    var w = WORK_BY_ID[id];
+    var doc = WORK_TEXT[id];
+    if (!w || !doc) return;
+    curWork = id;
+    var m = BY_ID[w[1]];
+    var rank = READ_ORDER.indexOf(id) + 1;
+
+    document.getElementById("rd-id").textContent = "编号 " + id;
+    document.getElementById("rd-model").textContent = m.name;
+    document.getElementById("rd-sub").innerHTML =
+      "全场第 " + rank + " / 30 篇 · " + w[2] + " 份评分 · 正文 " +
+      doc.chars.toLocaleString("en-US") + " 字";
+
+    var sc = [
+      { k: "总评分", v: w[3], cls: "main" },
+      { k: "网文感 ↑", v: w[4], cls: "" },
+      { k: "人物描写 ↑", v: w[5], cls: "" },
+      { k: "细节描写 ↑", v: w[6], cls: "" },
+      { k: "逻辑问题 ↓", v: w[7], cls: "rev" },
+      { k: "AI 感 ↓", v: w[8], cls: "rev" }
+    ];
+    document.getElementById("rd-scores").innerHTML = sc.map(function (s) {
+      return '<div class="rd-sc ' + s.cls + '"><b>' + fmt(s.v) + "</b><span>" + s.k + "</span></div>";
+    }).join("");
+
+    document.getElementById("rd-body").innerHTML = renderMd(doc.text);
+
+    var cmts = CMT_BY_WORK[id] || [];
+    document.getElementById("rd-cmt").innerHTML =
+      "<h3>评审怎么说 <span>· " + cmts.length + " 条简评，原文未作润色</span></h3>" +
+      (cmts.length
+        ? cmts.map(function (c) {
+            var cls = c.total >= 7 ? "hi" : (c.total <= 5 ? "lo" : "");
+            return '<div class="cmt"><div class="cmt-head">' +
+              '<span class="cmt-c">' + esc(c.code) + "</span>" +
+              '<span class="cmt-g">' + esc(c.group) + "</span>" +
+              '<span class="cmt-s ' + cls + '">' + c.total + " 分</span>" +
+              "</div><p>" + esc(c.note) + "</p></div>";
+          }).join("")
+        : '<p class="note">这一篇没有留下文字简评。</p>');
+
+    var i = READ_ORDER.indexOf(id);
+    var prev = document.getElementById("rd-prev");
+    var next = document.getElementById("rd-next");
+    prev.disabled = i <= 0;
+    next.disabled = i >= READ_ORDER.length - 1;
+    prev.textContent = i > 0 ? "← 上一名 · " + BY_ID[WORK_BY_ID[READ_ORDER[i - 1]][1]].short : "← 已是第一名";
+    next.textContent = i < READ_ORDER.length - 1 ? BY_ID[WORK_BY_ID[READ_ORDER[i + 1]][1]].short + " · 下一名 →" : "已是最后一名 →";
+
+    if (!reader.classList.contains("on")) {
+      lastFocus = document.activeElement;
+      document.body.style.overflow = "hidden";
+    }
+    reader.classList.add("on");
+    reader.setAttribute("aria-hidden", "false");
+    scrim.classList.add("on");
+    document.getElementById("rd-scroll").scrollTop = 0;
+    document.getElementById("rd-close").focus();
+  }
+
+  function closeReader() {
+    reader.classList.remove("on");
+    reader.setAttribute("aria-hidden", "true");
+    scrim.classList.remove("on");
+    document.body.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    curWork = null;
+  }
+
+  document.getElementById("rd-close").addEventListener("click", closeReader);
+  scrim.addEventListener("click", closeReader);
+  document.getElementById("rd-prev").addEventListener("click", function () {
+    var i = READ_ORDER.indexOf(curWork);
+    if (i > 0) openWork(READ_ORDER[i - 1]);
+  });
+  document.getElementById("rd-next").addEventListener("click", function () {
+    var i = READ_ORDER.indexOf(curWork);
+    if (i < READ_ORDER.length - 1) openWork(READ_ORDER[i + 1]);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!reader.classList.contains("on")) return;
+    if (e.key === "Escape") closeReader();
+    if (e.key === "ArrowLeft") document.getElementById("rd-prev").click();
+    if (e.key === "ArrowRight") document.getElementById("rd-next").click();
+  });
+
+  /* ==========================================================
+     主题切换后重画图表（切换逻辑在 shell.js）
+     ========================================================== */
+  window.onThemeChange(function () { drawRadar(true); drawScatter(); });
+
+
+  /* ==========================================================
+     Leaderboard
+     ========================================================== */
+  var DIMS = [
+    { key: "total",  label: "总评分",   max: 10, lower: false, dec: 2, note: "Kimi K3 以 7.19 排第一，五个单项都没进前二。总分记录整篇的阅读感受。" },
+    { key: "web",    label: "网文感",   max: 10, lower: false, dec: 2, note: "看冲突、爽点、节奏和代入感。GLM-5.3 得 6.73，Grok 4.6 得 3.89，相差 2.84 分。" },
+    { key: "char",   label: "人物描写", max: 10, lower: false, dec: 2, note: "看人物是否符合设定、塑造是否适合网文。Gemini 3.7 Flash 的 7.25 是全场唯一超过 7 分的成绩。" },
+    { key: "detail", label: "细节描写", max: 10, lower: false, dec: 2, note: "看时代细节是否真实、能否带出人物，以及描写占比。GPT-5.6 Terra 只有 4.30，全场最低。" },
+    { key: "logic",  label: "逻辑质量", max: 10, lower: false, dec: 2, note: "由原始的「逻辑问题」换算而来。Gemini 3.7 Flash 最高（7.36），Kimi K3 排第八（4.76）。" },
+    { key: "deslop", label: "AI 感", max: 10, lower: false, dec: 2, note: "这一项已换算为高分更好。Grok 4.6 只有 1.83，是三期最低值。" },
+    { key: "range",  label: "稳定性",   max: 5,  lower: true,  dec: 2, note: "看三次生成的极差，越小越稳。GPT-5.6 Luna 最稳（0.46），DeepSeek V4 Pro 波动最大（4.50）。" }
+  ];
+  var curDim = DIMS[0];
+  var ROW_H = 0;
+  var lbRows = document.getElementById("lb-rows");
+  var lbNodes = {};
+
+  MODELS.forEach(function (m) {
+    var row = el("div", "lb-row");
+    row.innerHTML =
+      '<div class="lb-rank">1</div>' +
+      '<div class="lb-name">' + esc(m.name) + "</div>" +
+      '<div class="lb-track"><div class="lb-bar"></div></div>' +
+      '<div class="lb-val">0.00</div>';
+    bindTip(row, function () {
+      return "<b>" + esc(m.name) + "</b>" +
+        '<span class="k">总分</span> ' + fmt(m.total) + " · " + m.n + " 份评分<br />" +
+        '<span class="k">三次生成</span> ' + m.gens.map(function (g) { return fmt(g); }).join(" / ") + "<br />" +
+        '<span class="k">每章成本</span> ' + money(m.cost);
+    });
+    lbRows.appendChild(row);
+    lbNodes[m.id] = row;
+  });
+
+  function rowHeight() { return window.innerWidth < 700 ? 40 : 36; }
+
+  function renderLB() {
+    ROW_H = rowHeight();
+    lbRows.style.height = MODELS.length * ROW_H + "px";
+    var sorted = MODELS.slice().sort(function (a, b) {
+      var d = curDim.lower ? a[curDim.key] - b[curDim.key] : b[curDim.key] - a[curDim.key];
+      return d !== 0 ? d : b.total - a.total;
+    });
+    sorted.forEach(function (m, i) {
+      var row = lbNodes[m.id];
+      row.style.transform = "translateY(" + i * ROW_H + "px)";
+      row.style.height = ROW_H + "px";
+      row.querySelector(".lb-rank").textContent = i + 1;
+      row.querySelector(".lb-val").textContent = fmt(m[curDim.key], curDim.dec);
+      row.querySelector(".lb-bar").style.width = (m[curDim.key] / curDim.max) * 100 + "%";
+      row.classList.toggle("is-top", i === 0);
+      row.classList.toggle("dim", curDim.lower && i >= 7);
+    });
+    document.getElementById("lb-note").textContent = curDim.note;
+
+    var axis = document.getElementById("lb-axis");
+    axis.innerHTML = "";
+    var steps = curDim.max === 3 ? [0, 1, 2, 3] : [0, 2, 4, 6, 8, 10];
+    steps.forEach(function (s) { axis.appendChild(el("span", null, String(s))); });
+  }
+
+  var chipWrap = document.getElementById("dim-chips");
+  DIMS.forEach(function (d, i) {
+    var b = el("button", "chip" + (i === 0 ? " on" : ""), d.label);
+    b.type = "button";
+    b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", function () {
+      curDim = d;
+      chipWrap.querySelectorAll(".chip").forEach(function (c) {
+        c.classList.remove("on");
+        c.setAttribute("aria-pressed", "false");
+      });
+      b.classList.add("on");
+      b.setAttribute("aria-pressed", "true");
+      renderLB();
+    });
+    chipWrap.appendChild(b);
+  });
+  renderLB();
+  window.addEventListener("resize", renderLB);
+
+  /* ==========================================================
+     Radar
+     ========================================================== */
+  var AXES = [
+    { key: "web", label: "网文感" },
+    { key: "char", label: "人物描写" },
+    { key: "detail", label: "细节描写" },
+    { key: "logic", label: "逻辑质量" },
+    { key: "deslop", label: "AI 感" }
+  ];
+  var RMIN = 2, RMAX = 8, RC = { x: 190, y: 168, r: 118 };
+  var selA = document.getElementById("radar-a");
+  var selB = document.getElementById("radar-b");
+  MODELS.forEach(function (m) {
+    [selA, selB].forEach(function (sel) {
+      var o = document.createElement("option");
+      o.value = m.id; o.textContent = m.name;
+      sel.appendChild(o);
+    });
+  });
+  selA.value = "kimi";
+  selB.value = "g37f";
+
+  var shown = { a: null, b: null };
+
+  function pt(i, v) {
+    var ang = (Math.PI * 2 * i) / AXES.length - Math.PI / 2;
+    var t = Math.max(0, Math.min(1, (v - RMIN) / (RMAX - RMIN)));
+    return [RC.x + Math.cos(ang) * RC.r * t, RC.y + Math.sin(ang) * RC.r * t];
+  }
+  function poly(vals) {
+    return vals.map(function (v, i) { return pt(i, v).join(","); }).join(" ");
+  }
+
+  var radarAnim = null;
+  function drawRadar(instant) {
+    var A = BY_ID[selA.value], B = BY_ID[selB.value];
+    var targetA = AXES.map(function (a) { return A[a.key]; });
+    var targetB = AXES.map(function (a) { return B[a.key]; });
+    if (!shown.a || instant || reduceMotion) {
+      shown.a = targetA.slice(); shown.b = targetB.slice();
+      paintRadar(shown.a, shown.b, A, B);
+      return;
+    }
+    var fromA = shown.a.slice(), fromB = shown.b.slice(), t0 = performance.now(), dur = 420;
+    if (radarAnim) cancelAnimationFrame(radarAnim);
+    (function step(t) {
+      var p = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      shown.a = fromA.map(function (v, i) { return v + (targetA[i] - v) * e; });
+      shown.b = fromB.map(function (v, i) { return v + (targetB[i] - v) * e; });
+      paintRadar(shown.a, shown.b, A, B);
+      if (p < 1) radarAnim = requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function paintRadar(va, vb, A, B) {
+    var svg = document.getElementById("radar");
+    var g = "";
+    // rings
+    [2, 4, 6, 8].forEach(function (v) {
+      var vals = AXES.map(function () { return v; });
+      g += '<polygon points="' + poly(vals) + '" fill="none" stroke="var(--rule)" stroke-width="1" />';
+    });
+    // spokes + labels
+    AXES.forEach(function (a, i) {
+      var p = pt(i, RMAX);
+      g += '<line x1="' + RC.x + '" y1="' + RC.y + '" x2="' + p[0] + '" y2="' + p[1] + '" stroke="var(--rule)" stroke-width="1" />';
+      var lp = pt(i, RMAX + 1.5);
+      var anchor = Math.abs(lp[0] - RC.x) < 6 ? "middle" : (lp[0] > RC.x ? "start" : "end");
+      g += '<text x="' + lp[0] + '" y="' + (lp[1] + 4) + '" text-anchor="' + anchor + '" class="ax-title" style="font-size:12px;fill:var(--ink-2)">' + a.label + "</text>";
+    });
+    // series B first (behind)
+    g += '<polygon points="' + poly(vb) + '" fill="var(--teal)" fill-opacity="0.14" stroke="var(--teal)" stroke-width="2" stroke-linejoin="round" />';
+    g += '<polygon points="' + poly(va) + '" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" />';
+    vb.forEach(function (v, i) {
+      var p = pt(i, v);
+      g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4" fill="var(--teal)" stroke="var(--surface)" stroke-width="2" />';
+    });
+    va.forEach(function (v, i) {
+      var p = pt(i, v);
+      g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" />';
+    });
+    // direct labels
+    g += '<text x="14" y="326" class="ax-title" style="font-size:12px;fill:var(--accent-ink)">■ ' + esc(A.name) + "</text>";
+    g += '<text x="14" y="344" class="ax-title" style="font-size:12px;fill:var(--teal-ink)">■ ' + esc(B.name) + "</text>";
+    svg.innerHTML = g;
+
+    var d = document.getElementById("radar-deltas");
+    d.innerHTML = "";
+    AXES.forEach(function (a) {
+      var av = A[a.key], bv = B[a.key], diff = av - bv;
+      var r = el("div", "delta-row");
+      r.innerHTML =
+        "<span>" + a.label + "</span>" +
+        '<span class="a">' + fmt(av) + "</span>" +
+        '<span class="b">' + fmt(bv) + "</span>" +
+        '<span class="d">' + (diff >= 0 ? "+" : "") + fmt(diff) + "</span>";
+      d.appendChild(r);
+    });
+    var rr = el("div", "delta-row");
+    rr.style.borderTop = "1px solid var(--rule-2)";
+    rr.style.marginTop = "6px";
+    rr.innerHTML =
+      "<span style=\"font-weight:600;color:var(--ink)\">总评分</span>" +
+      '<span class="a">' + fmt(A.total) + "</span>" +
+      '<span class="b">' + fmt(B.total) + "</span>" +
+      '<span class="d">' + (A.total - B.total >= 0 ? "+" : "") + fmt(A.total - B.total) + "</span>";
+    d.appendChild(rr);
+  }
+
+  selA.addEventListener("change", function () { drawRadar(); });
+  selB.addEventListener("change", function () { drawRadar(); });
+  drawRadar(true);
+
+  /* ==========================================================
+     Stability dot plot
+     ========================================================== */
+  var DMIN = 3.4, DMAX = 7.5;
+  function dpos(v) { return ((v - DMIN) / (DMAX - DMIN)) * 100; }
+
+  var dp = document.getElementById("dotplot");
+  MODELS.slice().sort(function (a, b) { return a.range - b.range; }).forEach(function (m) {
+    var row = el("div", "dp-row");
+    var lo = Math.min.apply(null, m.gens), hi = Math.max.apply(null, m.gens);
+    var track = el("div", "dp-track");
+    var rng = el("div", "dp-range");
+    rng.style.left = dpos(lo) + "%";
+    rng.style.width = (dpos(hi) - dpos(lo)) + "%";
+    track.appendChild(rng);
+
+    var mean = el("div", "dp-mean");
+    mean.style.left = dpos(m.total) + "%";
+    track.appendChild(mean);
+
+    m.gens.forEach(function (g, i) {
+      var dot = el("div", "dp-dot");
+      dot.style.left = dpos(g) + "%";
+      bindTip(dot, function () {
+        return "<b>" + esc(m.name) + "</b>" +
+          '<span class="k">生成 ' + (i + 1) + "</span> " + fmt(g) + " 分<br />" +
+          '<span class="k">三次均分</span> ' + fmt(m.total) + " · 极差 " + fmt(m.range);
+      });
+      track.appendChild(dot);
+    });
+
+    row.innerHTML = '<div class="dp-name">' + esc(m.name) + "</div>";
+    row.appendChild(track);
+    var v = el("div", "dp-val", fmt(m.range));
+    row.appendChild(v);
+    dp.appendChild(row);
+  });
+
+  var dpAxis = document.getElementById("dp-axis");
+  [3.5, 4.5, 5.5, 6.5, 7.5].forEach(function (t) {
+    dpAxis.appendChild(el("span", null, t.toFixed(1)));
+  });
+
+  var dpio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      dpio.unobserve(e.target);
+      var dots = e.target.querySelectorAll(".dp-dot");
+      dots.forEach(function (d, i) {
+        setTimeout(function () { d.classList.add("in"); }, reduceMotion ? 0 : i * 55);
+      });
+    });
+  }, { threshold: 0.25 });
+  dp.querySelectorAll(".dp-row").forEach(function (r) { dpio.observe(r); });
+
+  /* ==========================================================
+     Cost scatter
+     ========================================================== */
+  /* 标签相对圆点的偏移；没登记的模型用默认值，避免新模型进来时整段抛错 */
+  var LABEL_OFFSET = {
+    kimi:  [-11, -9, "end"],
+    g37f:  [11, -9, "start"],
+    g31p:  [11, 16, "start"],
+    glm:   [11, -9, "start"],
+    luna:  [11, 15, "start"],
+    qwen:  [11, -9, "start"],
+    dsp:   [-11, 16, "end"],
+    terra: [-11, 5, "end"],
+    grok:  [11, 5, "start"],
+    dsf:   [11, -9, "start"]
+  };
+  var LABEL_DEFAULT = [11, -9, "start"];
+
+  function drawScatter() {
+    var svg = document.getElementById("scatter");
+    var W = 760, H = 420, L = 56, R = 24, T = 26, B = 62;
+    // 坐标范围按本期实际数据算，留出余量，免得点落到画布外
+    var costs = MODELS.map(function (m) { return m.cost; });
+    var totals = MODELS.map(function (m) { return m.total; });
+    var cMin = Math.min.apply(null, costs), cMax = Math.max.apply(null, costs);
+    var x0 = Math.log10(cMin) - 0.18, x1 = Math.log10(cMax) + 0.18;
+    var y0 = Math.floor((Math.min.apply(null, totals) - 0.3) * 2) / 2;
+    var y1 = Math.ceil((Math.max.apply(null, totals) + 0.3) * 2) / 2;
+    function X(c) { return L + ((Math.log10(c) - x0) / (x1 - x0)) * (W - L - R); }
+    function Y(v) { return H - B - ((v - y0) / (y1 - y0)) * (H - T - B); }
+
+    var g = "";
+    for (var v = y0; v <= y1 + 1e-9; v += 0.5) {
+      g += '<line class="ax-line" x1="' + L + '" y1="' + Y(v) + '" x2="' + (W - R) + '" y2="' + Y(v) + '" />';
+      g += '<text class="ax-text" x="' + (L - 10) + '" y="' + (Y(v) + 3.5) + '" text-anchor="end">' + v.toFixed(1) + "</text>";
+    }
+    [0.002, 0.005, 0.01, 0.02, 0.05, 0.1].forEach(function (c) {
+      if (Math.log10(c) < x0 || Math.log10(c) > x1) return;
+      g += '<line class="ax-line" x1="' + X(c) + '" y1="' + T + '" x2="' + X(c) + '" y2="' + (H - B) + '" stroke-dasharray="2 4" />';
+      g += '<text class="ax-text" x="' + X(c) + '" y="' + (H - B + 18) + '" text-anchor="middle">$' + c + "</text>";
+    });
+    g += '<text class="ax-title" x="' + ((L + W - R) / 2) + '" y="' + (H - B + 40) + '" text-anchor="middle">每章成本（美元，对数刻度）</text>';
+    g += '<text class="ax-title" x="' + (L - 10) + '" y="' + (T - 10) + '" text-anchor="end">总分</text>';
+
+    // 价差标注线
+    var yAnn = Y(y0 + 0.15);
+    var span = Math.round(cMax / cMin);
+    var qGap = (Math.max.apply(null, totals) / Math.min.apply(null, totals)).toFixed(1);
+    g += '<line x1="' + X(cMin) + '" y1="' + yAnn + '" x2="' + X(cMax) + '" y2="' + yAnn + '" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3 3" />';
+    g += '<line x1="' + X(cMin) + '" y1="' + (yAnn - 5) + '" x2="' + X(cMin) + '" y2="' + (yAnn + 5) + '" stroke="var(--ink-3)" stroke-width="1" />';
+    g += '<line x1="' + X(cMax) + '" y1="' + (yAnn - 5) + '" x2="' + X(cMax) + '" y2="' + (yAnn + 5) + '" stroke="var(--ink-3)" stroke-width="1" />';
+    g += '<text class="ax-text" x="' + ((X(cMin) + X(cMax)) / 2) + '" y="' + (yAnn - 10) + '" text-anchor="middle" style="fill:var(--ink-2)">最贵的比最便宜的贵 ' + span + ' 倍，分数只差 ' + qGap + ' 倍</text>';
+
+    svg.innerHTML = g;
+
+    MODELS.forEach(function (m) {
+      var off = LABEL_OFFSET[m.id] || LABEL_DEFAULT;
+      var cx = X(m.cost), cy = Y(m.total);
+      var ns = "http://www.w3.org/2000/svg";
+      var c = document.createElementNS(ns, "circle");
+      c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", 7);
+      c.setAttribute("fill", "var(--accent)");
+      c.setAttribute("stroke", "var(--surface)");
+      c.setAttribute("stroke-width", "2");
+      c.setAttribute("class", "sc-dot");
+      bindTip(c, function () {
+        return "<b>" + esc(m.name) + "</b>" +
+          '<span class="k">总分</span> ' + fmt(m.total) + "（第 " + (ranked.indexOf(m) + 1) + " 名）<br />" +
+          '<span class="k">每章</span> ' + money(m.cost) + " · <span class=\"k\">每万章</span> " + money(m.cost * 10000) + "<br />" +
+          '<span class="k">单价</span> 输入 $' + m.pin.toFixed(2) + " / 输出 $" + m.pout.toFixed(2) + " 每百万 token";
+      });
+      svg.appendChild(c);
+
+      var t = document.createElementNS(ns, "text");
+      t.setAttribute("x", cx + off[0]);
+      t.setAttribute("y", cy + off[1]);
+      t.setAttribute("text-anchor", off[2]);
+      t.setAttribute("class", "sc-label");
+      t.textContent = m.short;
+      svg.appendChild(t);
+    });
+  }
+  drawScatter();
+
+  /* ==========================================================
+     Quotes
+     ========================================================== */
+  var qgrid = document.getElementById("qgrid");
+  var qchips = document.getElementById("quote-chips");
+  var qmore = document.getElementById("qmore");
+  var qFilter = "all", qScore = "all", qShown = 18;
+
+  document.getElementById("cmt-count").textContent = COMMENTS.filter(function (c) { return hasContent(c.note); }).length;
+
+  // 只有标点没有字的评语（比如一串省略号）不展示，读者读不到任何信息
+  function hasContent(note) {
+    return String(note || "").replace(/[\s.。，,、；;：:！!？?…～~—\-]/g, "").length >= 2;
+  }
+
+  function filteredComments() {
+    var list = COMMENTS.filter(function (c) {
+      var w = WORK_BY_ID[c.workId];
+      if (!w) return false;
+      if (!hasContent(c.note)) return false;
+      if (qFilter !== "all" && w[1] !== qFilter) return false;
+      if (qScore === "hi" && c.total < 7) return false;
+      if (qScore === "lo" && c.total > 5) return false;
+      return true;
+    }).sort(function (a, b) {
+      // 同分时把写得详细的排前面，让每一屏都尽量是有信息量的评语
+      return b.total - a.total || String(b.note).length - String(a.note).length;
+    });
+    if (qScore === "lo") return list.reverse();
+    if (qScore === "hi") return list;
+    // 默认视图从两端交替取，避免只看到一片好评
+    var out = [], i = 0, j = list.length - 1;
+    while (i <= j) {
+      out.push(list[i++]);
+      if (i <= j) out.push(list[j--]);
+    }
+    return out;
+  }
+
+  function renderQuotes() {
+    var list = filteredComments();
+    qgrid.innerHTML = "";
+    list.slice(0, qShown).forEach(function (c) {
+      var w = WORK_BY_ID[c.workId];
+      var m = BY_ID[w[1]];
+      var card = el("div", "qcard");
+      var cls = c.total >= 7 ? "hi" : (c.total <= 5 ? "lo" : "");
+      card.innerHTML =
+        "<blockquote>" + esc(c.note) + "</blockquote>" +
+        '<div class="meta">' +
+          '<span class="model">' + esc(m.name) + "</span>" +
+          '<span class="judge">' + esc(c.group) + "</span>" +
+          '<span class="score ' + cls + '">' + c.total + " 分</span>" +
+        "</div>" +
+        '<span class="qlink">读它评的那一篇 · 编号 ' + c.workId + " →</span>";
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
+      card.addEventListener("click", function () { openWork(c.workId); });
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openWork(c.workId); }
+      });
+      qgrid.appendChild(card);
+    });
+    if (list.length > qShown) {
+      qmore.style.display = "";
+      qmore.textContent = "显示更多（还有 " + (list.length - qShown) + " 条）";
+    } else {
+      qmore.style.display = "none";
+    }
+    if (!list.length) qgrid.innerHTML = '<p class="note">这个筛选下没有简评。</p>';
+  }
+
+  var qOpts = [{ id: "all", name: "全部模型" }].concat(MODELS.map(function (m) { return { id: m.id, name: m.name }; }));
+  qOpts.forEach(function (o, i) {
+    var b = el("button", "chip" + (i === 0 ? " on" : ""), o.name);
+    b.type = "button";
+    b.addEventListener("click", function () {
+      qFilter = o.id; qShown = 18;
+      qchips.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("on"); });
+      b.classList.add("on");
+      renderQuotes();
+    });
+    qchips.appendChild(b);
+  });
+  document.querySelectorAll("[data-cf]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      qScore = b.getAttribute("data-cf"); qShown = 18;
+      document.querySelectorAll("[data-cf]").forEach(function (c) { c.classList.remove("on"); });
+      b.classList.add("on");
+      renderQuotes();
+    });
+  });
+  qmore.addEventListener("click", function () { qShown += 24; renderQuotes(); });
+  renderQuotes();
+
+  /* ==========================================================
+     Works browser (card view) + view toggle
+     ========================================================== */
+  var wgrid = document.getElementById("wgrid");
+  WORKS.forEach(function (w) {
+    var m = BY_ID[w[1]];
+    var doc = WORK_TEXT[w[0]] || { chars: 0 };
+    var cmts = (CMT_BY_WORK[w[0]] || []).length;
+    var card = el("button", "wcard" + (w[3] >= 6.9 ? " hi" : (w[3] <= 4.6 ? " lo" : "")));
+    card.type = "button";
+    card.innerHTML =
+      '<span class="wc-code">编号 ' + w[0] + "</span>" +
+      '<span class="wc-model">' + esc(m.name) + "</span>" +
+      '<span class="wc-score num">' + fmt(w[3]) + "</span>" +
+      '<span class="wc-meta">' + doc.chars.toLocaleString("en-US") + " 字 · " + cmts + " 条简评</span>" +
+      '<span class="wc-open">读全文 →</span>';
+    card.addEventListener("click", function () { openWork(w[0]); });
+    wgrid.appendChild(card);
+  });
+
+  document.querySelectorAll("[data-view]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-view");
+      document.querySelectorAll("[data-view]").forEach(function (c) { c.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("view-cards").style.display = v === "cards" ? "" : "none";
+      document.getElementById("view-table").style.display = v === "table" ? "" : "none";
+    });
+  });
+
+
+  /* ==========================================================
+     Detail table
+     ========================================================== */
+  var COLS = [
+    { label: "编号", i: 0, type: "code" },
+    { label: "模型", i: 1, type: "model" },
+    { label: "份数", i: 2, type: "n", dec: 0 },
+    { label: "总分", i: 3, type: "n", dec: 2 },
+    { label: "网文感 ↑", i: 4, type: "n", dec: 2 },
+    { label: "人物 ↑", i: 5, type: "n", dec: 2 },
+    { label: "细节 ↑", i: 6, type: "n", dec: 2 },
+    { label: "逻辑问题 ↓", i: 7, type: "n", dec: 2, lower: true },
+    { label: "AI 感 ↓", i: 8, type: "n", dec: 2, lower: true }
+  ];
+  var sortCol = 3, sortDesc = true;
+  var head = document.getElementById("detail-head");
+  var body = document.getElementById("detail-body");
+
+  COLS.forEach(function (c, ci) {
+    var th = el("th", null, c.label + ' <span class="arrow">↕</span>');
+    th.addEventListener("click", function () {
+      if (sortCol === ci) sortDesc = !sortDesc;
+      else { sortCol = ci; sortDesc = c.type !== "code" && c.type !== "model"; }
+      renderTable();
+    });
+    head.appendChild(th);
+  });
+
+  function renderTable() {
+    var col = COLS[sortCol];
+    var rows = WORKS.slice().sort(function (a, b) {
+      var av = a[col.i], bv = b[col.i];
+      if (col.type === "model") { av = BY_ID[av].name; bv = BY_ID[bv].name; }
+      if (typeof av === "string") return sortDesc ? bv.localeCompare(av) : av.localeCompare(bv);
+      return sortDesc ? bv - av : av - bv;
+    });
+
+    head.querySelectorAll("th").forEach(function (th, i) {
+      th.classList.toggle("sorted", i === sortCol);
+      th.querySelector(".arrow").textContent = i === sortCol ? (sortDesc ? "↓" : "↑") : "↕";
+    });
+
+    body.innerHTML = "";
+    rows.forEach(function (w) {
+      var tr = el("tr", "clickable");
+      tr.title = "点击读全文";
+      tr.addEventListener("click", function () { openWork(w[0]); });
+      COLS.forEach(function (c) {
+        var td;
+        if (c.type === "code") td = el("td", "code", String(w[c.i]));
+        else if (c.type === "model") td = el("td", null, esc(BY_ID[w[c.i]].name));
+        else {
+          var cls = "n";
+          if (c.i === 3) cls += w[3] >= 6.9 ? " best" : (w[3] <= 4.6 ? " worst" : "");
+          if (c.lower) cls += w[c.i] <= 3.1 ? " best" : (w[c.i] >= 7.2 ? " worst" : "");
+          td = el("td", cls, fmt(w[c.i], c.dec));
+        }
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+  }
+  renderTable();
+
+  /* ==========================================================
+     总分第一与维度第一的分裂对照（本期专章）
+     ========================================================== */
+  (function () {
+    var box = document.getElementById("ranksplit");
+    if (!box) return;
+    var A = BY_ID.kimi, B = BY_ID.g37f;
+    var rows = [
+      { k: "web", label: "网文感" },
+      { k: "char", label: "人物描写" },
+      { k: "detail", label: "细节描写" },
+      { k: "logic", label: "逻辑严密" },
+      { k: "deslop", label: "AI 感" }
+    ];
+    function rankIn(key, id) {
+      var s = MODELS.slice().sort(function (a, b) { return b[key] - a[key]; });
+      for (var i = 0; i < s.length; i++) if (s[i].id === id) return i + 1;
+      return 0;
+    }
+    var head = el("div", "rs-row head");
+    head.innerHTML = "<div>维度</div><div>" + esc(A.name) + "（总分第 1）</div><div>" + esc(B.name) + "（总分第 2）</div>";
+    box.appendChild(head);
+    rows.forEach(function (r) {
+      function cell(rank, val) {
+        var cls = rank === 1 ? " gold" : (rank >= 8 ? " bad" : "");
+        return '<div class="rs-cell"><span class="rs-pill' + cls + '">' + rank + "</span>" +
+          '<span class="rs-v">' + fmt(val) + "</span></div>";
+      }
+      var row = el("div", "rs-row");
+      row.innerHTML = '<div class="rs-dim">' + r.label + "</div>" +
+        cell(rankIn(r.k, A.id), A[r.k]) + cell(rankIn(r.k, B.id), B[r.k]);
+      box.appendChild(row);
+    });
+  })();
+
+  /* ==========================================================
+     篇幅与细节分（本期专章）
+     ========================================================== */
+  (function () {
+    var corr = document.getElementById("corr");
+    if (!corr) return;
+    [
+      { t: "篇幅 → 总分", r: "0.14", sub: "几乎无关，多写很少带来更高总分" },
+      { t: "篇幅 → 细节描写", r: "0.45", sub: "弱相关，细节分没有随篇幅同比增长" }
+    ].forEach(function (c) {
+      var p = el("div", "corr-panel");
+      p.innerHTML = '<div class="corr-head"><span class="corr-t">' + c.t + "</span>" +
+        '<span class="corr-r">r = ' + c.r + "</span></div>" +
+        '<div class="corr-sub">' + c.sub + "</div>";
+      corr.appendChild(p);
+    });
+
+    var eff = document.getElementById("eff");
+    var maxLen = Math.max.apply(null, MODELS.map(function (m) { return m.len; }));
+    var head = el("div", "eff-row head");
+    head.innerHTML = "<div>模型</div><div>篇幅（灰）与细节分（绿）</div><div style='text-align:right'>字数</div><div style='text-align:right'>细节</div>";
+    eff.appendChild(head);
+    MODELS.slice().sort(function (a, b) { return b.detail - a.detail; }).forEach(function (m) {
+      var row = el("div", "eff-row");
+      var hi = m.detail >= 6.8, lo = m.detail < 5;
+      row.innerHTML =
+        '<div class="eff-name">' + esc(m.name) + "</div>" +
+        '<div class="eff-track"><div class="eff-len" style="width:' + (m.len / maxLen * 100) + '%"></div>' +
+        '<div class="eff-det" style="width:' + (m.detail / 10 * 100) + '%"></div></div>' +
+        '<div class="eff-v">' + m.len.toLocaleString("en-US") + "</div>" +
+        '<div class="eff-v ' + (hi ? "hi" : (lo ? "lo" : "")) + '">' + fmt(m.detail) + "</div>";
+      eff.appendChild(row);
+    });
+  })();
+
+  /* 正文里的「读这篇」按钮 */
+  document.querySelectorAll(".openw").forEach(function (b) {
+    b.addEventListener("click", function () { openWork(b.getAttribute("data-w")); });
+  });
+
+})();
+</script>

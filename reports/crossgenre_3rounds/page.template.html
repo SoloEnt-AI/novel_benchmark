@@ -1,0 +1,667 @@
+<main>
+  <!-- ================= HERO ================= -->
+  <header id="hero" class="hero hero-gradient">
+    <div class="wrap">
+      <span class="tag eyebrow">第 05 期 · 三题材横向对比 · 2026.09.04</span>
+      <h1>AI写正文 · <em>题材对比</em></h1>
+      <p class="lede">
+        仙侠、脑洞、年代，三次测评共 90 篇作品、306 份双盲评分。
+      </p>
+      <div class="herocta">
+        <a class="btn" href="#genres">题材横向比较</a>
+        <a class="btn-ghost" href="#upgrade">模型纵向比较</a>
+      </div>
+
+      <div class="statrow">
+        <div class="stat"><b class="num" data-count="3">0</b><span>题材</span></div>
+        <div class="stat"><b class="num" data-count="16">0</b><span>涉及模型</span></div>
+        <div class="stat"><b class="num" data-count="90">0</b><span>匿名作品</span></div>
+        <div class="stat"><b class="num" data-count="306">0</b><span>有效评分</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= GENRES ================= -->
+  <section class="chapter" id="genres">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">01</div>
+        <div>
+          <h2>题材横向比较</h2>
+          <p class="sub">
+            三期的评分维度、评委分组和加权规则相同，题材考点不同。
+          </p>
+        </div>
+      </div>
+
+      <div class="rounds reveal" id="rounds"></div>
+
+      <p class="note reveal" style="margin-top:20px">
+        三期均分为 5.80、6.04、6.17，最大相差 0.37 分。整体评分松紧接近，跨期对比有基本可比性。
+      </p>
+
+      <h3 class="h3sec reveal">不同题材，分数差在哪</h3>
+      <p class="note reveal">下面是每期十个模型的维度均分。</p>
+
+      <div class="card pad reveal" style="margin-top:14px">
+        <div class="fp" id="fp"></div>
+      </div>
+
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 class="mini">脑洞题材：网文感天然占便宜</h3>
+          <p class="note">
+            网文感均分 6.53，比仙侠（5.88）和年代（5.69）高出大半分。
+            「微信群里蹦出牛顿」本身就有爽点和冲突。逻辑分也最低，只有 5.35。设定越跳，越难圆。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 class="mini">年代题材：逻辑最稳，网文感最难</h3>
+          <p class="note">
+            逻辑均分 5.78 是三期最高，网文感 5.69 是三期最低。
+            年代文顺着生活逻辑写，硬伤相对少。难点是把粮票、筒子楼这些细节写真，同时把故事写得好看。
+          </p>
+        </div>
+      </div>
+
+      <p class="note reveal" style="margin-top:20px">
+        <strong>AI 感这一项的质量分连续三期下滑</strong>，从 4.36 降到 4.16，再降到 3.99，且每期都排在五个维度末位。
+        机器味仍是最普遍的问题。
+      </p>
+      <p class="note reveal">
+        篇幅与得分的相关系数，脑洞题材是 <strong>0.71</strong>，年代题材只有 <strong>0.14</strong>。
+        脑洞文要铺设定，字数不够讲不清楚；年代文靠选对细节，堆字数堆不出年代感。
+      </p>
+
+      <h3 class="h3sec reveal">侧重点不同，榜就重排</h3>
+      <p class="note reveal">
+        脑洞篇和年代篇同一天入库，由同一批评委在同一时期评完，适合直接看题材带来的变化。
+      </p>
+
+      <div class="card pad reveal" style="margin-top:14px">
+        <div class="chart-box"><svg class="slope-svg" id="slope" viewBox="0 0 720 460" role="img" aria-label="脑洞与年代两个题材的名次变化"></svg></div>
+        <p class="note" style="margin-top:14px">
+          左边是脑洞名次，右边是年代名次。模型和评委相同。
+        </p>
+      </div>
+
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 class="mini">跌得最狠：DeepSeek V4 Flash</h3>
+          <p class="note">
+            脑洞第 6（5.92）→ 年代第 10（4.67），掉了 4 名、1.25 分。
+            它在脑洞题材的网文感有 7.30（全场第二），到年代题材只剩 5.32；
+            洁净分也从 4.62 掉到 2.31。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 class="mini">升得最猛：Kimi K3</h3>
+          <p class="note">
+            脑洞第 4（6.28）→ 年代第 1（7.19）。
+            它在脑洞题材写出过 8.00 也写出过 4.33，极差 3.67；
+            到年代题材三篇收敛到 8.00 / 7.36 / 6.20，稳住了就登顶。
+          </p>
+        </div>
+      </div>
+
+      <p class="note reveal" style="margin-top:20px">
+        十个模型里有八个换题材后名次发生了变化，只有 <strong>DeepSeek V4 Pro</strong> 和 <strong>GPT-5.6 Terra</strong> 纹丝不动（都是第 7 和第 8）。
+        <strong>同一模型换题材后的分差，可能比模型之间的分差更大。</strong>选模型时要先看题材。
+      </p>
+
+      <h3 class="h3sec reveal">谁擅长哪个题材</h3>
+      <div class="whogrid reveal" style="margin-top:14px">
+        <div class="who">
+          <div class="who-name">Gemini 3.1 Pro</div>
+          <div class="who-tag steady">稳定头部</div>
+          <p class="note">三期名次 1 / 1 / 3，总分极差只有 0.66。目前唯一不挑题材的模型。</p>
+        </div>
+        <div class="who">
+          <div class="who-name">Qwen3.8 Max</div>
+          <div class="who-tag">仙侠相对好</div>
+          <p class="note">仙侠第 4 是它三期最好的名次（此后第 9、第 6）。架空世界观这道题它答得最顺。</p>
+        </div>
+        <div class="who">
+          <div class="who-name">DeepSeek V4 Flash</div>
+          <div class="who-tag">脑洞相对好</div>
+          <p class="note">脑洞第 6，前后两期分别第 9、第 10。脑洞篇它的网文感冲到 7.30，全场第二。</p>
+        </div>
+        <div class="who">
+          <div class="who-name">Kimi K3</div>
+          <div class="who-tag">年代相对好</div>
+          <p class="note">年代篇登顶（7.19），年代细节写得又真又稳。三期名次 5 → 4 → 1，一路向上。</p>
+        </div>
+      </div>
+      <p class="note reveal" style="margin-top:14px">
+        每个模型每期只有三篇，以上只看倾向。详细限制见文末。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= OUTLINE ================= -->
+  <section class="chapter alt" id="outline">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">02</div>
+        <div>
+          <h2>章纲也会拉开差距</h2>
+          <p class="sub">三期都让模型拿章纲直接写正文，三份章纲的来源和质量不同。</p>
+        </div>
+      </div>
+
+      <div class="olad-head reveal">章纲质量 <span class="olad-arrow">→</span></div>
+      <div class="olad reveal">
+        <div class="ol t1">
+          <div class="ol-issue">第 02 期 · 仙侠</div>
+          <div class="ol-badge">AI 章纲 · 普通质量</div>
+          <p class="note">AI 直接生成，未经打磨。</p>
+        </div>
+        <div class="ol t2">
+          <div class="ol-issue">第 04 期 · 年代</div>
+          <div class="ol-badge">AI 章纲 · 优化过</div>
+          <p class="note">AI 生成后做过人工优化。</p>
+        </div>
+        <div class="ol t3">
+          <div class="ol-issue">第 03 期 · 脑洞</div>
+          <div class="ol-badge">真人作者 · 真实章纲</div>
+          <p class="note">来自已发表作品，节奏、冲突和钩子更完整。</p>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        章纲的质量，非常影响正文的质量。同样是无提示词直出，好章纲能带来更好的表现；
+        章纲里带着 AI 味，正文的 AI 味就很难去干净。
+      </div>
+
+      <div class="twocol reveal" style="margin-top:20px">
+        <div class="card pad">
+          <h3 class="mini">真人章纲更会搭台</h3>
+          <p class="note">
+            脑洞篇的网文感均分 6.53，三期最高。题材本身有优势，真人章纲也提前搭好了节奏、冲突和钩子。
+            模型只需把它们写出来。
+          </p>
+        </div>
+        <div class="card pad">
+          <h3 class="mini">去 AI 味要从章纲动手</h3>
+          <p class="note">
+            章纲会定下正文的结构和表达习惯。只改正文，往往改不干净。章纲和正文都要处理。
+          </p>
+        </div>
+      </div>
+
+      <p class="note reveal" style="margin-top:20px">
+        三期分差里混有章纲质量的影响，不能直接按均分判断模型强弱。
+        <strong>做 AI 写作流程时，章纲质量要和正文质量一起管。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= TRAJ ================= -->
+  <section class="chapter" id="traj">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">03</div>
+        <div>
+          <h2>走完三期的四个模型</h2>
+          <p class="sub">这四个模型连续参加了仙侠、脑洞和年代三期测评。</p>
+        </div>
+      </div>
+
+      <p class="note reveal">
+        第二轮名单保留了仙侠篇第一名 <strong>Gemini 3.1 Pro</strong>、国产前两名 <strong>Qwen3.8 Max</strong> 与 <strong>Kimi K3</strong>，
+        以及当时新发布的 <strong>DeepSeek V4 Flash</strong>，用于和后续加入的 DeepSeek V4 Pro 对照。
+      </p>
+
+      <div class="card pad reveal" style="margin-top:14px">
+        <div class="chart-box"><svg class="line-svg" id="lines" viewBox="0 0 720 360" role="img" aria-label="四个模型三期总分走势"></svg></div>
+      </div>
+
+      <div class="tgrid reveal" id="tgrid" style="margin-top:20px"></div>
+
+      <p class="note reveal" style="margin-top:20px">
+        <strong>Gemini 3.1 Pro</strong> 是唯一三期都待在第一梯队的模型（1 / 1 / 3 名），三期极差只有 0.66。
+        <strong>Kimi K3</strong> 一路向上，从仙侠的第 5 走到年代的第 1。
+        <strong>DeepSeek V4 Flash</strong> 三期极差 1.25，是四个里最看题材的一个。
+        <strong>Qwen3.8 Max</strong> 在脑洞题材有一次明显的塌陷（第 4 → 第 9 → 第 6）。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= UPGRADE ================= -->
+  <section class="chapter alt" id="upgrade">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">04</div>
+        <div>
+          <h2>模型纵向比较</h2>
+          <p class="sub">GLM 和 Gemini Flash 看版本变化；GPT-5.6 看不同思考强度。</p>
+        </div>
+      </div>
+
+      <h3 class="h3sec reveal" style="margin-top:0">版本升级：GLM 与 Gemini Flash</h3>
+      <div class="card pad reveal" style="margin-top:14px">
+        <div class="ups" id="ups"></div>
+      </div>
+
+      <p class="note reveal" style="margin-top:20px">
+        <strong>GLM-5.2 → GLM-5.3</strong> 是最成功的一次升级：脑洞 +0.63，年代 +1.17，
+        每章成本从 $0.018 涨到 $0.0233，多花三成钱换来一个档位的提升。
+        <strong>Gemini 3.6 → 3.7 Flash</strong> 成本不变，两个题材 +0.20 / +0.42。
+      </p>
+      <p class="note reveal">
+        新旧版测的是不同题材和章纲，涨幅只能参考。两组新版在脑洞和年代都涨分，方向较一致。
+        最新发布的 <strong>Gemini 3.8 Flash</strong>，我们也会尽快安排进下一期测评。
+      </p>
+
+      <h3 class="h3sec reveal">GPT-5.6 Sol / Luna / Terra：思考强度不同</h3>
+      <p class="note reveal">
+        Sol、Luna、Terra 是<strong>同一个 GPT-5.6 的三个思考档位</strong>。三档每章价格最多相差五倍，可粗略反映思考量。
+      </p>
+
+      <div class="thinkgrid reveal" style="margin-top:14px">
+        <div class="tk">
+          <div class="tk-name">GPT-5.6 Sol</div>
+          <div class="tk-cost">$0.145 / 章</div>
+          <div class="tk-score">仙侠 6.40 <em>（第 02 期 · 第 3 名）</em></div>
+        </div>
+        <div class="tk best">
+          <div class="tk-name">GPT-5.6 Luna <span class="tk-tag">写作更优</span></div>
+          <div class="tk-cost">$0.029 / 章</div>
+          <div class="tk-score">脑洞 6.66 · 年代 6.62</div>
+        </div>
+        <div class="tk">
+          <div class="tk-name">GPT-5.6 Terra</div>
+          <div class="tk-cost">$0.0725 / 章</div>
+          <div class="tk-score">脑洞 5.33 · 年代 5.43</div>
+        </div>
+      </div>
+
+      <p class="note reveal" style="margin-top:20px">
+        Luna 与 Terra 使用相同题材和评委，适合直接对比：
+        <strong>脑洞差 1.33 分，年代差 1.19 分</strong>，而 Terra 每章还贵 1.5 倍。
+        这两期写网文，思考强度较低的 <strong>Luna 得分更高，成本也更低</strong>
+        （两榜详见 <a href="../prosewriting_naodong/">第 03 期 · 脑洞篇</a> 与 <a href="../prosewriting_niandai/">第 04 期 · 年代篇</a>）。
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= LIMITS ================= -->
+  <section class="chapter" id="limits">
+    <div class="wrap">
+      <div class="chead reveal">
+        <div class="cnum">05</div>
+        <div>
+          <h2>这些比较在什么范围内成立</h2>
+          <p class="sub">跨期对比受题材、章纲、评委和样本量影响。</p>
+        </div>
+      </div>
+
+      <div class="card pad reveal">
+        <dl class="deflist">
+          <dt>题材对比最可靠</dt>
+          <dd>脑洞篇和年代篇同一天入库，由同一批评委在同一时期完成。主要变量是题材及配套章纲。</dd>
+          <dt>三期轨迹看适应性</dt>
+          <dd>三期评分口径一致，均分最大相差 0.37 分。题材不同，评委人数也有变化，因此轨迹适合看跨题材表现，不能当作模型能力随时间的变化。</dd>
+          <dt>版本涨幅只供参考</dt>
+          <dd>新旧版测了不同题材和章纲，分差混有其他因素。GPT-5.6 Luna 与 Terra 的同期对照更直接。</dd>
+          <dt>章纲来源不同</dt>
+          <dd>仙侠用普通 AI 章纲，年代用人工优化过的 AI 章纲，脑洞用已发表作品的真人章纲。三期均分不能直接排高低。</dd>
+          <dt>样本规模</dt>
+          <dd>每个模型每期只有三篇。波动大的模型均分参考价值较低，名次变化也会受随机性影响。</dd>
+        </dl>
+        <p class="note" style="margin-top:18px">
+          各期的完整榜单、维度拆解与全部原文：
+          <a href="../prosewriting_xianxia/">第 02 期 · 仙侠篇</a> ·
+          <a href="../prosewriting_naodong/">第 03 期 · 脑洞篇</a> ·
+          <a href="../prosewriting_niandai/">第 04 期 · 年代篇</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  .h3sec { font-size: 1.05rem; font-weight: 800; margin: 38px 0 6px; }
+
+  .rounds { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .rounds { grid-template-columns: repeat(3, 1fr); } }
+  .rd {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-md);
+    padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow);
+  }
+  .rd .rd-issue { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-3); letter-spacing: .08em; }
+  .rd .rd-genre { font-size: 1.05rem; font-weight: 800; }
+  .rd .rd-prem { font-size: .78rem; color: var(--ink-2); line-height: 1.6; min-height: 3.2em; }
+  .rd .rd-req {
+    font-size: .78rem; line-height: 1.6; color: var(--accent-ink);
+    background: var(--accent-soft); border-radius: var(--r-sm); padding: 8px 10px;
+  }
+  .rd .rd-stats { display: flex; gap: 14px; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 2px; }
+  .rd .rd-s b { display: block; font-family: var(--font-mono); font-size: 1.1rem; font-weight: 800; }
+  .rd .rd-s span { font-size: .68rem; color: var(--ink-3); }
+  .rd .rd-top { font-size: .78rem; }
+  .rd .rd-top b { color: var(--accent-ink); }
+
+  .whogrid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .whogrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .whogrid { grid-template-columns: repeat(4, 1fr); } }
+  .who {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-md);
+    padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow);
+  }
+  .who-name { font-weight: 800; font-size: .9rem; }
+  .who-tag {
+    align-self: flex-start; font-size: .7rem; font-weight: 700; letter-spacing: .04em;
+    padding: 3px 8px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-ink);
+  }
+  .who-tag.steady { background: var(--accent-soft); color: var(--accent-ink); }
+  .who .note { margin: 0; }
+
+  .olad-head {
+    font-family: var(--font-mono); font-size: .74rem; color: var(--ink-3);
+    letter-spacing: .08em; margin-bottom: 10px;
+  }
+  .olad-arrow { color: var(--accent-ink); font-weight: 700; }
+  .olad { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .olad { grid-template-columns: repeat(3, 1fr); } }
+  .ol {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-md);
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow);
+    border-top: 3px solid var(--rule-2);
+  }
+  .ol.t2 { border-top-color: var(--teal); }
+  .ol.t3 { border-top-color: var(--accent); }
+  .ol-issue { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-3); letter-spacing: .08em; }
+  .ol-badge {
+    align-self: flex-start; font-size: .74rem; font-weight: 800; letter-spacing: .02em;
+    padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2);
+  }
+  .ol.t2 .ol-badge { background: var(--teal-soft); color: var(--teal-ink); }
+  .ol.t3 .ol-badge { background: var(--accent-soft); color: var(--accent-ink); }
+  .ol .note { margin: 0; }
+
+  .callout {
+    margin-top: 20px; padding: 20px 24px; border-left: 4px solid var(--accent);
+    background: var(--accent-soft); border-radius: var(--r-sm);
+    font-size: 1.02rem; font-weight: 700; line-height: 1.8;
+  }
+
+  .tgrid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .tgrid { grid-template-columns: repeat(2, 1fr); } }
+  .tg {
+    border: 1px solid var(--rule); border-radius: var(--r-sm); padding: 14px 16px;
+    background: var(--surface); display: flex; align-items: center; gap: 14px;
+  }
+  .tg-name { font-weight: 800; font-size: .9rem; flex: 1; }
+  .tg-ranks { display: flex; gap: 6px; }
+  .tg-r {
+    font-family: var(--font-mono); font-size: .78rem; width: 30px; height: 30px;
+    display: grid; place-items: center; border-radius: var(--r-sm);
+    background: var(--surface-2); color: var(--ink-2);
+  }
+  .tg-r.best { background: var(--accent-soft); color: var(--accent-ink); font-weight: 800; }
+  .tg-range { font-family: var(--font-mono); font-size: .8rem; color: var(--ink-3); width: 3.4em; text-align: right; }
+
+  .ups { display: flex; flex-direction: column; gap: 16px; }
+  .up {
+    display: grid; grid-template-columns: 1fr; gap: 8px;
+    border-bottom: 1px solid var(--rule); padding-bottom: 16px;
+  }
+  .ups .up:last-child { border-bottom: 0; padding-bottom: 0; }
+  .up-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .up-pair { font-weight: 800; font-size: .92rem; }
+  .up-pair em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+  .up-cost { font-family: var(--font-mono); font-size: .74rem; color: var(--ink-3); }
+  .up-bars { display: grid; grid-template-columns: 88px 1fr 56px; gap: 10px; align-items: center; font-size: .8rem; }
+  .up-lab { color: var(--ink-3); }
+  .up-track { height: 18px; background: var(--surface-2); border-radius: 999px; position: relative; overflow: hidden; }
+  .up-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; background: var(--rule-2); }
+  .up-fill.now { background: var(--accent); }
+  .up-d { font-family: var(--font-mono); font-weight: 700; text-align: right; }
+  .up-d.pos { color: var(--teal-ink); }
+  .up-d.neg { color: var(--accent-ink); }
+
+  .thinkgrid { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .thinkgrid { grid-template-columns: repeat(3, 1fr); } }
+  .tk {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r-md);
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow);
+  }
+  .tk.best { border-color: var(--accent); box-shadow: var(--shadow-lift); }
+  .tk-name { font-weight: 800; font-size: .92rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .tk-tag {
+    font-size: .68rem; font-weight: 700; letter-spacing: .04em;
+    padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink);
+  }
+  .tk-cost { font-family: var(--font-mono); font-size: .76rem; color: var(--ink-3); }
+  .tk-score { font-family: var(--font-mono); font-size: .86rem; font-weight: 700; }
+  .tk-score em { font-style: normal; font-weight: 400; color: var(--ink-3); font-size: .74rem; }
+
+  .fp { display: flex; flex-direction: column; gap: 18px; }
+  .fp-dim { display: grid; grid-template-columns: 76px 1fr; gap: 12px; align-items: center; }
+  .fp-name { font-size: .84rem; font-weight: 700; }
+  .fp-bars { display: flex; flex-direction: column; gap: 4px; }
+  .fp-bar { display: grid; grid-template-columns: 52px 1fr 42px; gap: 8px; align-items: center; font-size: .72rem; }
+  .fp-g { color: var(--ink-3); }
+  .fp-track { height: 12px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .fp-fill { height: 100%; border-radius: 999px; }
+  .fp-fill.xx { background: var(--rule-2); }
+  .fp-fill.nd { background: var(--teal); }
+  .fp-fill.ni { background: var(--accent); }
+  .fp-v { font-family: var(--font-mono); text-align: right; }
+  .fp-v.hi { font-weight: 800; }
+  h3.mini { font-size: .96rem; margin: 0 0 2px; }
+  .slope-svg, .line-svg { width: 100%; height: auto; display: block; }
+</style>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+
+  /* 三期数据。总分与五维（AI 感已换算成越高越好的洁净分），成本为每章估算值 */
+  var ROUNDS = [
+    {
+      id: "xx", issue: "02", genre: "仙侠", slug: "prosewriting_xianxia",
+      prem: "暗黑西游：主角穿越成龟丞相最不受宠的十三子，在龙宫死牢里醒来。",
+      req: "主要看：架空世界观，以及对章纲的理解和执行。",
+      works: 30, ratings: 117, mean: 5.80,
+      dims: { web: 5.88, char: 5.99, detail: 5.89, logic: 5.65, deslop: 4.36 },
+      top: "Gemini 3.1 Pro", topScore: 6.78
+    },
+    {
+      id: "nd", issue: "03", genre: "脑洞", slug: "prosewriting_naodong",
+      prem: "高三学渣误入「青龙学习小组」微信群，群友是平行宇宙的牛顿、爱因斯坦、高斯。",
+      req: "主要看：能否把新奇设定写出网感和趣味。",
+      works: 30, ratings: 98, mean: 6.04,
+      dims: { web: 6.53, char: 5.96, detail: 5.79, logic: 5.35, deslop: 4.16 },
+      top: "Gemini 3.1 Pro", topScore: 7.44
+    },
+    {
+      id: "ni", issue: "04", genre: "年代", slug: "prosewriting_niandai",
+      prem: "1979 年盛夏，现代社畜猝死穿越，附身北京什刹海一个寄居二叔檐下的孤儿。",
+      req: "主要看：年代细节和生活真实感。",
+      works: 30, ratings: 91, mean: 6.17,
+      dims: { web: 5.69, char: 5.80, detail: 5.88, logic: 5.78, deslop: 3.99 },
+      top: "Kimi K3", topScore: 7.19
+    }
+  ];
+
+  /* 脑洞 / 年代 两期同批评委，用于漂移图 */
+  var DRIFT = [
+    { name: "Gemini 3.1 Pro", nd: 7.44, ni: 6.87 },
+    { name: "Gemini 3.7 Flash", nd: 6.78, ni: 7.00 },
+    { name: "GPT-5.6 Luna", nd: 6.66, ni: 6.62 },
+    { name: "Kimi K3", nd: 6.28, ni: 7.19 },
+    { name: "GLM-5.3", nd: 6.08, ni: 6.62 },
+    { name: "DeepSeek V4 Flash", nd: 5.92, ni: 4.67 },
+    { name: "DeepSeek V4 Pro", nd: 5.83, ni: 5.83 },
+    { name: "GPT-5.6 Terra", nd: 5.33, ni: 5.43 },
+    { name: "Qwen3.8 Max", nd: 5.22, ni: 6.23 },
+    { name: "Grok 4.6", nd: 4.90, ni: 5.21 }
+  ];
+
+  /* 三期都参评的四个模型 */
+  var TRAJ = [
+    { name: "Gemini 3.1 Pro", v: [6.78, 7.44, 6.87], r: [1, 1, 3] },
+    { name: "Kimi K3", v: [6.08, 6.28, 7.19], r: [5, 4, 1] },
+    { name: "Qwen3.8 Max", v: [6.28, 5.22, 6.23], r: [4, 9, 6] },
+    { name: "DeepSeek V4 Flash", v: [4.94, 5.92, 4.67], r: [9, 6, 10] }
+  ];
+
+  /* 版本升级（GPT-5.6 三变体是思考强度档位，不在此列） */
+  var UPS = [
+    { old: "GLM-5.2", now: "GLM-5.3", o: 5.45, nd: 6.08, ni: 6.62, oc: 0.018, nc: 0.0233 },
+    { old: "Gemini 3.6 Flash", now: "Gemini 3.7 Flash", o: 6.58, nd: 6.78, ni: 7.00, oc: 0.037, nc: 0.037 }
+  ];
+
+  function el(tag, cls, txt) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (txt != null) n.textContent = txt;
+    return n;
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function fmt(n) { return Number(n).toFixed(2); }
+
+  /* ---------------- 01 三期概览卡 ---------------- */
+  var rounds = document.getElementById("rounds");
+  ROUNDS.forEach(function (r) {
+    var c = el("div", "rd");
+    c.innerHTML =
+      '<div class="rd-issue">第 ' + r.issue + " 期</div>" +
+      '<div class="rd-genre">' + r.genre + "题材</div>" +
+      '<div class="rd-prem">' + esc(r.prem) + "</div>" +
+      '<div class="rd-req">' + esc(r.req) + "</div>" +
+      '<div class="rd-stats">' +
+      '<div class="rd-s"><b>' + r.works + "</b><span>作品</span></div>" +
+      '<div class="rd-s"><b>' + r.ratings + "</b><span>评分</span></div>" +
+      '<div class="rd-s"><b>' + fmt(r.mean) + "</b><span>均分</span></div>" +
+      "</div>" +
+      '<div class="rd-top">榜首 <b>' + esc(r.top) + "</b> · " + fmt(r.topScore) + " 分</div>";
+    rounds.appendChild(c);
+  });
+
+  /* ---------------- 01 题材指纹 ---------------- */
+  var fp = document.getElementById("fp");
+  [
+    { k: "web", label: "网文感" },
+    { k: "char", label: "人物描写" },
+    { k: "detail", label: "细节描写" },
+    { k: "logic", label: "逻辑严密" },
+    { k: "deslop", label: "AI 感" }
+  ].forEach(function (d) {
+    var vals = ROUNDS.map(function (r) { return r.dims[d.k]; });
+    var max = Math.max.apply(null, vals);
+    var row = el("div", "fp-dim");
+    row.innerHTML =
+      '<div class="fp-name">' + d.label + "</div>" +
+      '<div class="fp-bars">' + ROUNDS.map(function (r) {
+        var v = r.dims[d.k];
+        return '<div class="fp-bar"><span class="fp-g">' + r.genre + "</span>" +
+          '<div class="fp-track"><div class="fp-fill ' + r.id + '" style="width:' + (v / 7 * 100) + '%"></div></div>' +
+          '<span class="fp-v' + (v === max ? " hi" : "") + '">' + fmt(v) + "</span></div>";
+      }).join("") + "</div>";
+    fp.appendChild(row);
+  });
+
+  /* ---------------- 01 漂移（slope chart） ---------------- */
+  (function () {
+    var svg = document.getElementById("slope");
+    var W = 720, H = 460, PT = 34, PB = 26, LX = 236, RX = 484;
+    var n = DRIFT.length;
+    var byNd = DRIFT.slice().sort(function (a, b) { return b.nd - a.nd; });
+    var byNi = DRIFT.slice().sort(function (a, b) { return b.ni - a.ni; });
+    var posNd = {}, posNi = {};
+    byNd.forEach(function (m, i) { posNd[m.name] = i; });
+    byNi.forEach(function (m, i) { posNi[m.name] = i; });
+    var step = (H - PT - PB) / (n - 1);
+    function y(i) { return PT + i * step; }
+
+    var out = [];
+    out.push('<text class="ax-title" x="' + LX + '" y="18" text-anchor="end">脑洞题材</text>');
+    out.push('<text class="ax-title" x="' + RX + '" y="18" text-anchor="start">年代题材</text>');
+    DRIFT.forEach(function (m) {
+      var y1 = y(posNd[m.name]), y2 = y(posNi[m.name]);
+      var move = posNd[m.name] - posNi[m.name];
+      var col = move > 0 ? "var(--teal)" : (move < 0 ? "var(--accent)" : "var(--rule-2)");
+      var wgt = Math.abs(move) >= 3 ? 3 : (Math.abs(move) >= 1 ? 2 : 1.2);
+      out.push('<path d="M' + LX + " " + y1 + " C" + (LX + 80) + " " + y1 + ", " + (RX - 80) + " " + y2 + ", " + RX + " " + y2 +
+        '" fill="none" stroke="' + col + '" stroke-width="' + wgt + '" opacity="' + (Math.abs(move) ? 0.85 : 0.4) + '" />');
+      out.push('<circle cx="' + LX + '" cy="' + y1 + '" r="4" fill="' + col + '" />');
+      out.push('<circle cx="' + RX + '" cy="' + y2 + '" r="4" fill="' + col + '" />');
+      out.push('<text class="sc-label" x="' + (LX - 10) + '" y="' + (y1 + 4) + '" text-anchor="end">' +
+        (posNd[m.name] + 1) + ". " + esc(m.name) + "</text>");
+      out.push('<text class="sc-label" x="' + (RX + 10) + '" y="' + (y2 + 4) + '" text-anchor="start">' +
+        (posNi[m.name] + 1) + ". " + esc(m.name) + "</text>");
+    });
+    svg.innerHTML = out.join("");
+  })();
+
+  /* ---------------- 03 三期轨迹 ---------------- */
+  (function () {
+    var svg = document.getElementById("lines");
+    var W = 720, H = 360, PL = 62, PR = 150, PT = 24, PB = 46;
+    var xs = [PL, PL + (W - PL - PR) / 2, W - PR];
+    var lo = 4.4, hi = 7.7;
+    function Y(v) { return H - PB - (v - lo) / (hi - lo) * (H - PT - PB); }
+    var out = [];
+    [5, 6, 7].forEach(function (v) {
+      out.push('<line class="ax-line" x1="' + PL + '" y1="' + Y(v) + '" x2="' + (W - PR) + '" y2="' + Y(v) + '" />');
+      out.push('<text class="ax-text" x="' + (PL - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + v + ".0</text>");
+    });
+    ["02 仙侠", "03 脑洞", "04 年代"].forEach(function (lab, i) {
+      out.push('<text class="ax-title" x="' + xs[i] + '" y="' + (H - PB + 20) + '" text-anchor="middle">' + lab + "</text>");
+    });
+    var COLS = ["var(--accent)", "var(--teal)", "var(--ink-3)", "var(--warn)"];
+    TRAJ.forEach(function (m, k) {
+      var pts = m.v.map(function (v, i) { return xs[i] + " " + Y(v); });
+      out.push('<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + COLS[k] + '" stroke-width="2.4" stroke-linejoin="round" />');
+      m.v.forEach(function (v, i) {
+        out.push('<circle cx="' + xs[i] + '" cy="' + Y(v) + '" r="5" fill="' + COLS[k] + '"><title>' +
+          esc(m.name) + " · " + ["仙侠", "脑洞", "年代"][i] + " " + fmt(v) + " 分 · 第 " + m.r[i] + " 名</title></circle>");
+      });
+      out.push('<text class="sc-label" x="' + (W - PR + 12) + '" y="' + (Y(m.v[2]) + 4) + '" fill="' + COLS[k] + '">' + esc(m.name) + "</text>");
+    });
+    svg.innerHTML = out.join("");
+
+    var tg = document.getElementById("tgrid");
+    TRAJ.forEach(function (m) {
+      var best = Math.min.apply(null, m.r);
+      var range = Math.max.apply(null, m.v) - Math.min.apply(null, m.v);
+      var c = el("div", "tg");
+      c.innerHTML =
+        '<div class="tg-name">' + esc(m.name) + "</div>" +
+        '<div class="tg-ranks">' + m.r.map(function (r) {
+          return '<div class="tg-r' + (r === best ? " best" : "") + '">' + r + "</div>";
+        }).join("") + "</div>" +
+        '<div class="tg-range">±' + range.toFixed(2) + "</div>";
+      tg.appendChild(c);
+    });
+  })();
+
+  /* ---------------- 04 版本升级 ---------------- */
+  var ups = document.getElementById("ups");
+  UPS.forEach(function (u) {
+    var dNd = u.nd - u.o, dNi = u.ni - u.o;
+    var box = el("div", "up");
+    function bar(lab, val, d, isNow) {
+      return '<div class="up-lab">' + lab + "</div>" +
+        '<div class="up-track"><div class="up-fill' + (isNow ? " now" : "") + '" style="width:' + (val / 8 * 100) + '%"></div></div>' +
+        '<div class="up-d' + (d == null ? "" : (d >= 0 ? " pos" : " neg")) + '">' +
+        (d == null ? fmt(val) : (d >= 0 ? "+" : "") + d.toFixed(2)) + "</div>";
+    }
+    box.innerHTML =
+      '<div class="up-head"><span class="up-pair">' + esc(u.old) + " <em>→</em> " + esc(u.now) + "</span>" +
+      '<span class="up-cost">每章 $' + u.oc.toFixed(4).replace(/0+$/, "") + " → $" + u.nc.toFixed(4).replace(/0+$/, "") + "</span></div>" +
+      '<div class="up-bars">' + bar("仙侠（旧）", u.o, null, false) + "</div>" +
+      '<div class="up-bars">' + bar("脑洞（新）", u.nd, dNd, true) + "</div>" +
+      '<div class="up-bars">' + bar("年代（新）", u.ni, dNi, true) + "</div>";
+    ups.appendChild(box);
+  });
+})();
+</script>

@@ -1,0 +1,72 @@
+{
+  "slug": "prosewriting_naodong",
+  "issue": "03",
+  "date": "2026-09-04",
+  "totals": {
+    "models": 10,
+    "works": 30,
+    "ratings": 98
+  },
+  "title": "AI 写小说哪家强 · 正文写作 · 脑洞篇",
+  "brandSub": "正文写作 · 脑洞篇",
+  "cardTitle": "同一章纲写正文·脑洞题材",
+  "tags": [
+    "正文写作",
+    "脑洞流",
+    "双盲评分"
+  ],
+  "summary": "10 个模型用同一份真人章纲，各写三篇脑洞文开篇。双盲评分重点看总分、五项能力、AI 感、稳定性和成本，正文与评语全部公开。",
+  "description": "10 个模型用同一份脑洞文章纲各写三篇开篇，全程双盲评分。查看总榜、五项能力、AI 感、稳定性、成本、30 篇原文和 91 条评语。",
+  "stats": [
+    {
+      "value": 10,
+      "label": "参评模型"
+    },
+    {
+      "value": 30,
+      "label": "匿名作品"
+    },
+    {
+      "value": 98,
+      "label": "有效评分"
+    },
+    {
+      "value": 6,
+      "label": "评分维度"
+    }
+  ],
+  "nav": [
+    {
+      "href": "#rank",
+      "label": "总榜"
+    },
+    {
+      "href": "#dims",
+      "label": "五维"
+    },
+    {
+      "href": "#slop",
+      "label": "AI 感"
+    },
+    {
+      "href": "#stability",
+      "label": "稳定性"
+    },
+    {
+      "href": "#cost",
+      "label": "成本"
+    },
+    {
+      "href": "#quotes",
+      "label": "原话"
+    },
+    {
+      "href": "#detail",
+      "label": "读原文"
+    }
+  ],
+  "footerNote": [
+    "SoloEnt 2026年9月 独家测评",
+    "本报告仅供参考，未经许可不得转载或引用"
+  ]
+}
