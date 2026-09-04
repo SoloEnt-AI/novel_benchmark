@@ -216,7 +216,7 @@
   "这份测评是怎么做的": "How this benchmark was run",
   "分数怎么来的，哪些地方不能过度解读，都写在这里。": "Where the scores come from, and what they will not support.",
   "怎么测的": "The test",
-  "同一条提示词（穿越闰土修炼国术）、同一套补充条件（100 万字 / 传统国术 / 魂穿 / 热血爽文 / 清末民初）、同一流程：Plan → 补充条件 → Act → 首章落盘即停。": "One prompt (a transmigrator wakes as Runtu and trains in traditional martial arts), one set of follow-up constraints (1M characters / traditional martial arts / soul transmigration / hot-blooded power fantasy / late Qing to early Republic), one process: Plan → constraints → Act → stop once chapter one is on disk.",
+  "初始提示词（我想写一本网文，主角穿越闰土，开始修炼国术，打击洋人。你帮我规划一下小说写作流程）、一次补充回答（100 万字，传统国术，主角魂穿，热血爽文，清末民初）、同一流程：Plan → 补充回答 → Act → 首章落盘即停。": "Initial prompt (“I want to write a webnovel where the protagonist transmigrates into Runtu and starts training in traditional martial arts to fight the foreign powers — help me plan out the writing process”), one follow-up answer (1M characters, traditional martial arts, soul transmigration, hot-blooded power fantasy, late Qing to early Republic), and one identical process: Plan → follow-up answer → Act → stop once chapter one is on disk.",
   "人和机器各评什么": "What people scored, what machines scored",
   "五组首章都由真人编辑盲评，按百分制打分。采用 GPT5.6 负责有据可查的非盲评分。五组使用同一套评估框架：四项能力、三项引导标准和五项章纲遵从标准。": "All five groups of chapters were blind-scored out of 100 by human editors. GPT-5.6 handled the documented non-blind scoring. All five groups used one framework: four abilities, three elicitation criteria and five beat-sheet compliance criteria.",
   "统一输入": "One shared input",
