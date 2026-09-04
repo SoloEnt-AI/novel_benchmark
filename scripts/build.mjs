@@ -133,7 +133,7 @@ const reports = readdirSync(join(ROOT, 'reports'), { withFileTypes: true })
 
 		return { ...meta, dir, works, comments };
 	})
-	.sort((a, b) => (a.date < b.date ? 1 : -1));
+	.sort((a, b) => (a.date !== b.date ? (a.date < b.date ? 1 : -1) : Number(b.issue) - Number(a.issue)));
 
 if (!reports.length) throw new Error('reports/ 下没有找到任何 meta.json');
 
