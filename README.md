@@ -4,7 +4,7 @@
 
 线上地址：<https://benchmark.soloent.ai/>（GitHub Pages 备用：<https://soloent-ai.github.io/novel_benchmark/>）
 
-页面是**静态站**，无运行时依赖、无外部请求，参评作品原文和评审简评全部内联，离线可读。视觉沿用 [soloent-web](https://soloent.ai) 主页的设计（配色、字重、圆角、深色页脚）。
+页面是**静态站**，无运行时依赖、无外部请求，参评作品原文和评审简评全部内联，离线可读。视觉与 soloent-web 官网改版后的设计规范一致（白底 + 蟹红、扁平无投影、衬线字体，见 <https://soloent.cn/zh/styleguide>）；深色模式跟随系统，用同一套暖色调。字体自托管在 `src/fonts/`（Noto Serif SC 按 unicode-range 分片、Cormorant Garamond），构建时复制到 `dist/fonts/`，不请求任何外部字体服务。
 
 ## 站点结构
 
@@ -32,6 +32,7 @@
 
 ```
 src/
+  fonts/              自托管字体与 fonts.css（构建时整个目录复制到 dist/fonts/）
   shell/
     base.css            设计令牌 + 基础样式 + 导航 + 页脚（所有页面共用）
     home.css            首页专用样式

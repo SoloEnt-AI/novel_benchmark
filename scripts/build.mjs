@@ -147,6 +147,8 @@ function shell({ lang, rel, title, description, css, body, navLinks, brandSub, f
 	const home = depth ? '../'.repeat(depth) : './';
 	const alt = LANGS.find((l) => l.id !== lang.id);
 	const altHref = '../'.repeat(depth + (lang.id === 'en' ? 1 : 0)) + alt.base + rel;
+	// 字体只输出一份在 dist/fonts/，按页面所在层级拼相对路径（离线打开、GitHub Pages 子路径都能用）
+	const fontsHref = '../'.repeat(depth + (lang.id === 'en' ? 1 : 0)) + 'fonts/fonts.css';
 
 	const nav = t(NAV)
 		.replace('{{HOME}}', home)
@@ -176,6 +178,7 @@ function shell({ lang, rel, title, description, css, body, navLinks, brandSub, f
 <meta name="description" content="${esc(description)}" />
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="${FAVICON}" />
+<link rel="stylesheet" href="${fontsHref}" />
 <link rel="canonical" href="${esc(url)}" />
 ${alternates}
 <link rel="alternate" hreflang="x-default" href="${esc(SITE.url + rel)}" />
@@ -668,6 +671,12 @@ for (const lang of LANGS) {
 	});
 
 	homeBytes[lang.id] = write(lang.base || '.', homeHtml);
+}
+
+// 自托管字体：src/fonts/ 整个目录复制到 dist/fonts/
+mkdirSync(join(ROOT, 'dist/fonts'), { recursive: true });
+for (const f of readdirSync(join(ROOT, 'src/fonts'))) {
+	copyFileSync(join(ROOT, 'src/fonts', f), join(ROOT, 'dist/fonts', f));
 }
 
 // GitHub Pages 默认会跑 Jekyll，.nojekyll 关掉它
